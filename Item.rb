@@ -98,7 +98,7 @@ class Item
     class Key
         def initialize()
             @name = "Key"
-            @desc = ""
+            @desc = "Golden key! Wow! Awesome!"
             @helpDesc = "If you find a door with a locket, you know what to do."
         end
         
@@ -114,7 +114,7 @@ class Item
     class Potion
         def initialize()
             @name = "Potion"
-            @desc = ""
+            @desc = "Wizzard create weird thing to drink."
             @helpDesc = "+1Hp, haha cool na?"
         end
         
