@@ -1,6 +1,6 @@
 class Rps
   def initialize()
-    print("Started a Rock-Paper-Scissors game\n")
+    print("Fight versus a monster begin!\n")
   end
 
 	class Weapon
@@ -86,7 +86,6 @@ class Rps
 	end
 
   def play()
-  	puts "Game started"
   	weaponsTab = ["Scissors", "Rock", "Paper"]
     index = nil
   	until index != nil do
