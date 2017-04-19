@@ -23,9 +23,9 @@ class Maze
     end
     puts "Went in room " + x.to_s + " " + y.to_s
     @cases[x][y].describe()
-    r = rand(10)
-    # if r == 9
-    if r <= 9
+    r = rand(3)
+    # if r == 3
+    if r <= 3
       enemy = Enemy.new()
       enemy.fight(player)
     end
@@ -48,7 +48,10 @@ end
 
 size_tab = ask_param()
 maze = Maze.new(size_tab[0], size_tab[1])
-player = Player.new()
-game = Game.new(maze, player)
 again = TRUE
-game.mainloop()
+while again
+  player = Player.new()
+  game = Game.new(maze, player)
+  game.mainloop()
+  again = ask_new_game()
+end

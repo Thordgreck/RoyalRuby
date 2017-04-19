@@ -47,3 +47,20 @@ def ask_param()
     [9,9]
   end
 end
+
+def ask_new_game()
+  print("\nReady for another game? (y/N): ")
+  result = nil
+  while result == nil
+    r = gets.chomp.downcase
+    if (r == "n" || r == "no" || r == "")
+      result = false
+    elsif (r == "y" || r == "yes")
+      result = true
+    end
+    if (result == nil)
+      print("Incorrect input, write yes, no, y or n: ")
+    end
+  end
+  result
+end
