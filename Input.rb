@@ -16,7 +16,7 @@ def ask_param()
   result = nil
   while result == nil
     r = gets.chomp.downcase
-    if (r == "n" || r == "no")
+    if (r == "n" || r == "no" || r == "")
       result = false
     elsif (r == "y" || r == "yes")
       result = true
@@ -26,14 +26,23 @@ def ask_param()
     end
   end
   if result
-    puts("put the size of the maze in the format DxD, e.g 5x5")
-    size = gets.chomp.downcase
-    tab = size.split("x")
-    if (tab == nil || tab.size != 2)
-      puts("incorrect input, put the size of the maze in the format DxD, e.g 5x5")
+    ok = false
+    puts("put the size of the maze in the format DxD, e.g 5x5 :")
+    while not ok
+      size = gets.chomp.downcase
+      tab = size.split("x")
+      if (tab == nil || tab.size != 2)
+        puts("incorrect input, put the size of the maze in the format DxD, e.g 5x5 :")
+        next
+      end
+      tab.map! { |e| e.to_i  }
+      if (tab[0] <= 0 || tab[1] <= 0)
+        puts("incorrect input, put the size of the maze in the format DxD, e.g 5x5 :")
+        next
+      end
+      ok = true
     end
-    tab.map! { |e| e.to_i  }
-    tab
+      tab
   else
     [9,9]
   end
