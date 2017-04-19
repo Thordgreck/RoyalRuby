@@ -17,18 +17,18 @@ class Wall
     
     class NormalWall
         def initialize()
-            self.name = "Wall"
-            self.desc = "A normal wall."
-            self.helpDesc = "You realy need help for this?"
+            @name = "Wall"
+            @desc = "A normal wall."
+            @helpDesc = "You realy need help for this?"
             print("Init Wall\n")
         end
         
         def describe()
-            print(self.desc)
+            print(@desc)
         end
         
         def help()
-            print(self.helpDesc)
+            print(@helpDesc)
         end
     end
     
@@ -39,6 +39,14 @@ class Wall
             @helpDesc = "Increase your loot chance in the room."
             print("Init Skull Wall\n")
         end
+        
+        def describe()
+            print(@desc)
+        end
+        
+        def help()
+            print(@helpDesc)
+        end
     end
     
     class BrokenWall
@@ -47,6 +55,14 @@ class Wall
             @desc = "This wall seems craked, try to use your hammer to break it."
             @helpDesc = "Dwarf hammer! Nothing more to say!"
             print("Init Broken Wall\n")
+        end
+        
+        def describe()
+            print(@desc)
+        end
+        
+        def help()
+            print(@helpDesc)
         end
     end
 end
