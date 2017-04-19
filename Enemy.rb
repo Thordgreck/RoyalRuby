@@ -4,6 +4,19 @@ class Enemy
         @desc = "Default Enemy"
         @helpDesc = "Default Enemy"
         
+        x = rand(10) + 1
+        if x <= 5
+            @enemy = NormalEnemy.new()
+        elsif x > 5 and x <= 6
+            @enemy = Swordman.new()
+        elsif x > 6 and x <= 8
+            @enemy = ArmoredGuy.new()
+        elsif x == 9
+            @enemy = Knight.new()
+        elsif x == 10
+            @enemy = Magician.new()
+        end
+        
         @enemy
     end
     

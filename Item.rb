@@ -4,6 +4,21 @@ class Item
         @desc = "Default Item"
         @helpDesc = "Default Item"
         
+        x = rand(10) + 1
+        if x <= 2
+            @item = Armor.new()
+        elsif x > 2 and x <= 4
+            @item = Sword.new()
+        elsif x > 4 and x <= 7
+            @item = Hammer.new()
+        elsif x == 8
+            @item = Compass.new()
+        elsif x == 9
+            @item = Key.new()
+        elsif x == 10
+            @item = Potion.new()
+        end
+        
         @item
     end
     
