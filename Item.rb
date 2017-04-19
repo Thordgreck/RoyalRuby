@@ -11,7 +11,7 @@ class Item
         print(@helpDesc)
     end
     
-    class NoItem()
+    class NoItem
         @name = ""
         @desc = "There is nothing here!"
         @helpDesc = ""
