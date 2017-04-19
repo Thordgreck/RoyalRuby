@@ -8,13 +8,18 @@ require_relative 'Player.rb'
 
 class Maze
   def initialize(length, height)
-    @cases = Array.new(length) {Array.new(height)}
+    @cases = Array.new(length) {Array.new(height) {nil}}
     @length = length
     @height = height
     p "got params " + length.to_s + " " + height.to_s
   end
   def room(x, y, player)
+    if (@cases[x][y].nil?)
+      @cases[x][y] = Room.new([1])
+      p "Created room at " + x.to_s + " " + y.to_s + "\n"
+    end
     p "Went in room " + x.to_s + " " + y.to_s + "\n"
+    @cases[x][y].describe()
   end
 end
 
