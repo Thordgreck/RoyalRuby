@@ -26,6 +26,22 @@ class Door
         @door.help()
     end
     
+    class NoDoor
+        def initialize()
+            @name = ""
+            @desc = ""
+            @helpDesc = ""
+        end
+        
+        def describe()
+            print(@desc + "\n")
+        end
+        
+        def help()
+            print(@helpDesc + "\n")
+        end
+    end
+    
     class NormalDoor
         def initialize()
             @name = "Door"
