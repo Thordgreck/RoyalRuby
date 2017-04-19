@@ -88,15 +88,19 @@ class Rps
   def play()
   	puts "Game started"
   	weaponsTab = ["Scissors", "Rock", "Paper"]
-  	puts "Make your choice between Rock, Paper or Scissors"
-  	weaponChosenName = nil
-  	until weaponsTab.include?(weaponChosenName) do
+    index = nil
+  	until index != nil do
+      puts "Make your choice between Rock (r), Paper (p) or Scissors (s)"
   		weaponChosenName = gets.chomp
+      index = weaponsTab.map { |e|  e[0].upcase}.find_index(weaponChosenName.upcase)
+      if(index == nil)
+        puts "incorrect input"
+      end
   	end
   	randomWeaponName = weaponsTab[rand(3)]
   	print "You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n"
 
-  	weaponChosen = eval(weaponChosenName + ".new")
+  	weaponChosen = eval(weaponsTab[index] + ".new")
   	randomWeapon = eval(randomWeaponName + ".new")
 
 
