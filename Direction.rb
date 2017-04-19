@@ -16,6 +16,10 @@ class Direction
       @hash.key(value)
     end
 
+    def Direction.value(key)
+      @hash.value(key)
+    end
+
     Direction.add_item :NORTH, 0
     Direction.add_item :EST, 1
     Direction.add_item :SOUTH, 2
