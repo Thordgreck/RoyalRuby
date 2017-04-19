@@ -3,7 +3,6 @@ class Wall
         @name = "Default Wall"
         @desc = "Default Wall"
         @helpDesc = "Default Wall"
-        print("Wall Class\n")
         
         x = rand(10) + 1
         if x <= 6
