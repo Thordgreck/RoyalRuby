@@ -1,6 +1,6 @@
 class Player
     def initialize()
-        @hp = 5
+        @hp = 1
         @armor = FALSE
         @sword = 2
         @hammer = FALSE
@@ -8,6 +8,7 @@ class Player
     end
   
     def takeDamage(dmg, ignorArmor)
+        gameEnd = FALSE
         if ignorArmor == TRUE
            @hp -= dmg
            print("A fire ball hit you, you lose Hp.\n")
@@ -21,10 +22,13 @@ class Player
                     print("You lose #{dmg}Hp.\n")
                 else
                     print("You left your wife, your son, your home and this world for a better life...\n")
-                    #Death END GAME
+                    gameEnd = TRUE
                 end
             end
         end
-        print("#{@hp}Hp left!\n")
+        if gameEnd == FALSE
+            print("#{@hp}Hp left!\n")
+        end
+        return(gameEnd)
     end
 end
