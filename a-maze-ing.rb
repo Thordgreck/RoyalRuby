@@ -33,6 +33,8 @@ class Game
   end
   def mainloop()
     @maze.room(@x, @y, @player)
+    game = Rps.new()
+    game.play()
   end
 end
 
