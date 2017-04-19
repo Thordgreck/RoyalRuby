@@ -38,7 +38,11 @@ class Room
     }
   end
 
-  def move(direction)
+  def availableDoors()
+    
+  end
+
+  def canMove(direction)
     if @doors[Direction.value(direction)] != nil
       return TRUE
     end
