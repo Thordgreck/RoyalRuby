@@ -87,10 +87,11 @@ class Rps
 
   def play()
   	weaponsTab = ["Scissors", "Rock", "Paper"]
+    
     index = nil
   	until index != nil do
-      puts "Make your choice between Rock (r), Paper (p) or Scissors (s)"
-  		weaponChosenName = gets.chomp
+      puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :"
+      weaponChosenName = gets.chomp
       index = weaponsTab.find_index(weaponChosenName.downcase().capitalize())
       if(index == nil)
         index = weaponsTab.map { |e|  e[0].upcase}.find_index(weaponChosenName.upcase)
@@ -100,7 +101,7 @@ class Rps
       end
   	end
   	randomWeaponName = weaponsTab[rand(3)]
-  	print "You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n"
+  	print("You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n")
 
   	weaponChosen = eval(weaponsTab[index] + ".new")
   	randomWeapon = eval(randomWeaponName + ".new")
@@ -108,11 +109,11 @@ class Rps
 
   	result = weaponChosen.attack(randomWeapon)
   	if result == 0
-  		print "It's a tie!\n"
+  		print ("It's a tie!\n")
   	elsif result == 1
-  		print "You win!\n"
+  		print ("You win!\n")
   	else
-  		print "Your opponent wins!\n"
+  		print ("Your opponent wins!\n")
   	end
     result
   end

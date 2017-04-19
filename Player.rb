@@ -18,12 +18,13 @@ class Player
             else
                 @hp -= dmg
                 if @hp > 0
-                    print("You lose " + dmg + "Hp.\n")
+                    print("You lose #{dmg}Hp.\n")
                 else
                     print("You left your wife, your son, your home and this world for a better life...\n")
                     #Death END GAME
                 end
             end
         end
+        print("#{@hp}Hp left!")
     end
 end
