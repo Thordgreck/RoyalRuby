@@ -6,20 +6,27 @@ require_relative 'Direction.rb'
 require_relative 'Input.rb'
 require_relative 'Player.rb'
 require_relative 'Games.rb'
+require_relative 'Enemy.rb'
 
 class Maze
   def initialize(length, height)
     @cases = Array.new(length) {Array.new(height) {nil}}
     @length = length
     @height = height
-    p "got params " + length.to_s + " " + height.to_s
+    puts 'Created maze of width ' + length.to_s + " and height " + height.to_s
   end
+
   def room(x, y, player)
     if (@cases[x][y].nil?)
       @cases[x][y] = Room.new([1])
-      p "Created room at " + x.to_s + " " + y.to_s + "\n"
+      puts "Created room at " + x.to_s + " " + y.to_s
+      x = rand(10)
+      if x == 9
+        enemy = Enemy.new()
+        enemy.fight()
+      end
     end
-    p "Went in room " + x.to_s + " " + y.to_s + "\n"
+    puts "Went in room " + x.to_s + " " + y.to_s
     @cases[x][y].describe()
   end
 end
