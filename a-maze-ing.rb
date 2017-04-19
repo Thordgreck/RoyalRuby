@@ -4,6 +4,7 @@ require_relative 'Door.rb'
 require_relative 'Wall.rb'
 require_relative 'Direction.rb'
 require_relative 'Input.rb'
+require_relative 'Player.rb'
 
 class Maze
   def initialize(length, height)
@@ -12,9 +13,22 @@ class Maze
     @height = height
     p "got params " + length.to_s + " " + height.to_s
   end
-  def enter()
-    direction = get_direction()
+  def room(x, y, player)
+    p "Went in room " + x.to_s + " " + y.to_s + "\n"
+  end
+end
 
+class Game
+  def initialize(maze, player)
+    p "Too lazy to start"
+    @x = 0
+    @y = 0
+    @maze = maze
+    @player = player
+  end
+  def mainloop()
+    @maze.room(@x, @y, @player)
+    p "Bon bah c'est sense y avoir un jeu la mais voila hein oh c'est bon hein\n"
   end
 end
 
@@ -27,4 +41,6 @@ if (!ARGV[1].nil?)
   y_size = ARGV[1].to_i
 end
 maze = Maze.new(x_size, y_size)
-maze.enter()
+player = Player.new()
+game = Game.new(maze, player)
+game.mainloop()
