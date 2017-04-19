@@ -6,6 +6,7 @@ def get_direction()
   direction = Direction.key(a.index(gets.chomp.downcase))
   while direction == nil
     puts "Not a good direction"
+    direction = Direction.key(a.index(gets.chomp.downcase))
   end
   puts "You want to go to "+direction.to_s.downcase
   direction

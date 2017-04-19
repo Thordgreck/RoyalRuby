@@ -29,6 +29,21 @@ class Maze
       enemy = Enemy.new()
       enemy.fight(player)
     end
+    if player.isDead
+      p "témor, salu"
+      return nil
+    end
+    #loot
+    can_move = FALSE
+    direction = nil
+    while !can_move
+      puts "Select a direction in the availables: "
+      @cases[x][y].availableDoors()
+      direction = get_direction()
+      can_move = @cases[x][y].canMove(direction)
+    end
+    can_move = @cases[x][y].tryMove(direction)
+    direction
   end
 end
 
@@ -42,18 +57,6 @@ class Game
   def mainloop()
     while !@player.isDead && !@player.hasWon
       @maze.room(@x, @y, @player)
-      if !@player.isDead
-        p "témor"
-        break
-      end
-      can_move = FALSE
-      direction = nil
-      while !can_move
-        puts "Select a direction in the availables: "
-        @cases[x][y].availableDoors()
-        direction = get_direction()
-        can_move = @cases[x][y].canMove(direction)
-      end
     end
   end
 end

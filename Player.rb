@@ -1,6 +1,6 @@
 class Player
     def initialize()
-        @hp = 1
+        @hp = 10
         @armor = FALSE
         @sword = 2
         @hammer = FALSE

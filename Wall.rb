@@ -1,6 +1,5 @@
 class Wall
     def Wall.new()
-
         x = rand(10) + 1
         if x <= 6
             NormalWall.new()
@@ -9,7 +8,6 @@ class Wall
         elsif x > 8
             BrokenWall.new()
         end
-
     end
 
     class NormalWall

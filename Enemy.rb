@@ -1,6 +1,5 @@
 class Enemy
     def Enemy.new()
-
         x = rand(10) + 1
         if x <= 5
             NormalEnemy.new()
@@ -31,7 +30,6 @@ class Enemy
         end
 
         def fight(player)
-
         end
     end
 

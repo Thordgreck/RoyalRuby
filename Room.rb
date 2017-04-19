@@ -12,7 +12,7 @@ class Room
       end
       x = rand(3)
       if x < 2 || (i == needed_doors.last && fulfil_needed == FALSE)
-        @doors[i] = Door.new()
+        @doors[i] = DoorFactory.newDoor()
         puts 'Created door ' + i.to_s
         if needed_doors.include? i
           fulfil_needed = TRUE
@@ -39,7 +39,14 @@ class Room
   end
 
   def availableDoors()
-    
+    puts
+    dirs = ["north", "east", "south", "west"]
+    dirs.each_with_index{ |direction, i|
+      if (!@doors[i].nil?)
+        puts @doors[i].name() + " in the " + direction + " (guess what letter you should type!) (hint: " + direction[0] + ")"
+      end
+    }
+    puts
   end
 
   def canMove(direction)
@@ -47,5 +54,9 @@ class Room
       return TRUE
     end
     return FALSE
+  end
+
+  def tryMove(direction)
+    @doors[Direction.value(direction)].tryMove()
   end
 end

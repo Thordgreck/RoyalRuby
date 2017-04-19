@@ -3,8 +3,7 @@ class Rps
     print("Fight versus a monster begin!\n")
   end
 
-	class Weapon
-
+	class Weapon # \o/
 	end
 
 	class Rock<Weapon
@@ -87,7 +86,7 @@ class Rps
 
   def play()
   	weaponsTab = ["Scissors", "Rock", "Paper"]
-    
+
     index = nil
   	until index != nil do
       puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :"
@@ -106,15 +105,14 @@ class Rps
   	weaponChosen = eval(weaponsTab[index] + ".new")
   	randomWeapon = eval(randomWeaponName + ".new")
 
-
   	result = weaponChosen.attack(randomWeapon)
-  	if result == 0
-  		print ("It's a tie!\n")
-  	elsif result == 1
-  		print ("You win!\n")
-  	else
-  		print ("Your opponent wins!\n")
-  	end
+  	# if result == 0
+  	# 	print ("It's a tie!\n")
+  	# elsif result == 1
+  	# 	print ("You win!\n")
+  	# else
+  	# 	print ("Your opponent wins!\n")
+  	# end
     result
   end
 
