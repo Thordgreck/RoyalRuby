@@ -9,30 +9,35 @@ class Enemy
     
     class NormalEnemy
         @name = "Enemy"
-        @helpDesc = "Just a normal enemy"
+        @description = "A normal enemy."
+        @helpDesc = "Nacked guy, 1Hp and remove 1Hp."
     end
     
     class Swordman
         # Sword
         @name = "Swordman"
-        @helpDesc = "Soldier with a sword, care his hit remove you 2Hp!"
+        @description = "Soldier with a sword."
+        @helpDesc = "Care his hit remove 2Hp!"
     end
     
     class ArmoredGuy
         # Armor
         @name = "Armored guy"
-        @helpDesc = "An armored guy, he tank one of your hit."
+        @description = "He got an armor."
+        @helpDesc = "He tank one of your hit."
     end
     
     class Knight
         # Armor + Sword
         @name = "Knight"
-        @helpDesc = "This knight have an armor and a sword, he tank one of your hit and deals 2Hp damage."
+        @description = "The knight have a sword and an armor."
+        @helpDesc = "He tank one of your hit and deals 2Hp damage."
     end
     
     class Magician
         # Use magic spell, ignore players armor
         @name = "Magician"
+        @description = "Abracadabra!"
         @helpDesc = "Magic spell ignore armor!"
     end
 end
