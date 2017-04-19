@@ -21,7 +21,13 @@ class Player
         gameEnd = FALSE
         if ignorArmor == TRUE
            @hp -= dmg
-           print("A fire ball hit you, you lose Hp.\n")
+           if @hp > 0
+               print("A fire ball hit you, you lose Hp.\n")
+           else
+                print("You left your wife, your son, your home and this world for a better life...\n")
+                @dead = TRUE
+                gameEnd = TRUE
+           end
         elsif
             if @armor == TRUE
                 @armor = FALSE
