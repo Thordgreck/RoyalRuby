@@ -25,7 +25,6 @@ end
 
 class Game
   def initialize(maze, player)
-    p "Too lazy to start"
     @x = 0
     @y = 0
     @maze = maze
@@ -33,7 +32,6 @@ class Game
   end
   def mainloop()
     @maze.room(@x, @y, @player)
-    p "Bon bah c'est sense y avoir un jeu la mais voila hein oh c'est bon hein\n"
   end
 end
 
