@@ -65,8 +65,8 @@ class Item
     class Sword
         def initialize()
             @name = "Sword"
-            @desc = "Look like a paper knife but the size doesn't matter."
-            @helpDesc = "The sword make you automatically win a fight. Don't go insane if you find two sword, you can only cary one of them (Only 2 use per sword, you can choose to use it or not)."
+            @desc = "Look like a paper knife, but size doesn't matter."
+            @helpDesc = "The sword makes you automatically win a fight. Don't go insane if you find two swords, you can only carry one of them (Only 2 use per sword, you can choose to use it or not)."
         end
         
         def describe()
@@ -82,7 +82,7 @@ class Item
         def initialize()
             @name = "Hammer"
             @desc = "Hammer! Dwarf hammer!"
-            @helpDesc = "A dwarf hammer, what better than that to break a wall? A guy want to build a wall once, he receive some dwarf's hammer on the head (And some dwarf too)."
+            @helpDesc = "A dwarf hammer, what better than that to break a wall? A guy wants to build a wall once. He receives some dwarf's hammer on the head (And some dwarf too)."
         end
         
         def describe()
@@ -98,7 +98,7 @@ class Item
         def initialize()
             @name = "Compass"
             @desc = "A beautiful old compass slot in the rock, you can't pick it but it shows you a direction."
-            @helpDesc = "Show you the direction of the treasure room when you take it."
+            @helpDesc = "Show you the direction of the treasure room."
         end
         
         def describe()
@@ -129,7 +129,7 @@ class Item
     class Potion
         def initialize()
             @name = "Potion"
-            @desc = "Wizzard create weird thing to drink."
+            @desc = "Wizards create weird things to drink."
             @helpDesc = "+1Hp, haha cool na?"
         end
         

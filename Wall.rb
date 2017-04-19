@@ -43,7 +43,7 @@ class Wall
     class SkullWall
         def initialize()
             @name = "Skull Wall"
-            @desc = "A wall full of skull, they may have some stuff left on them."
+            @desc = "A wall full of skulls, they may have some stuff left on them."
             @helpDesc = "Increase your loot chance in the room."
         end
         

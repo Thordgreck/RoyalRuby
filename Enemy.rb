@@ -76,17 +76,17 @@ class Enemy
                 result = game.play()
                 if result == 1
                     mobHp -= 1
-                    print("You jump on the monster and kill him.\n")
+                    print("You jump to dodge monster's attack and kill him.\n")
                 elsif result == 0
                     gameEnd = player.takeDamage(1, FALSE)
                     if gameEnd == FALSE
                         mobHp -= 1
-                        print("The monster is dead\n")
+                        print("Your leg hurt a bit, but the monster is dead. Maybe it's time to find a potion or something...\n")
                     end
                 else
                     gameEnd = player.takeDamage(1, FALSE)
                     if gameEnd == FALSE
-                        print("You miss but the monster doesn't. Care!\n")
+                        print("You miss, but the monster doesn't. Care!\n")
                     end
                 end
             end
@@ -117,7 +117,7 @@ class Enemy
                 result = game.play()
                 if result == 1
                     mobHp -= 1
-                    print("You jump on the monster and kill him.\n")
+                    print("You jump to dodge monster's attack and kill him.\n")
                 elsif result == 0
                     gameEnd = player.takeDamage(2, FALSE)
                     if gameEnd == FALSE
@@ -127,7 +127,7 @@ class Enemy
                 else
                     gameEnd = player.takeDamage(2, FALSE)
                     if gameEnd == FALSE
-                        print("You miss but the monster doesn't. Care!\n")
+                        print("You miss, but the monster doesn't. Care!\n")
                     end
                 end
             end
@@ -159,24 +159,24 @@ class Enemy
                 if result == 1
                     mobHp -= 1
                     if mobHp == 0
-                        print("You jump on the monster and kill him.\n")
+                        print("You jump to dodge monster's attack and kill him.\n")
                     else
-                        print("You broke the armor of this Armored Guy, keep fighting!\n")
+                        print("You hit the monster but only broke his armor, keep fighting!\n")
                     end
                 elsif result == 0
                     gameEnd = player.takeDamage(1, FALSE)
                     if gameEnd == FALSE
                         mobHp -= 1
                         if mobHp == 0
-                            print("You kill the monster\n")
+                            print("You need to find some Magician drinks. The monster is dead\n")
                         else
-                            print("You remove his armor, keep fighting!\n")
+                            print("You hit the monster but only broke his armor, keep fighting!\n")
                         end
                     end
                 else
                     gameEnd = player.takeDamage(1, FALSE)
                     if gameEnd == FALSE
-                        print("You miss but the monster doesn't. Care!\n")
+                        print("You miss, but the monster doesn't. Care!\n")
                     end
                 end
             end
@@ -186,8 +186,8 @@ class Enemy
     class Knight
         def initialize()
             @name = "Knight"
-            @desc = "Look at his horse! His horse is a-maz-ing! (Armor and sword)"
-            @helpDesc = "He tank one of your hit and deals 2Hp damage."
+            @desc = "Look at his horse! His horse is a-maz-ing!"
+            @helpDesc = "He tank one of your hit and deals 2Hp damage (Armor + sword)."
         end
         
         def describe()
@@ -208,7 +208,7 @@ class Enemy
                 if result == 1
                     mobHp -= 1
                     if mobHp == 0
-                        print("You jump on the monster and kill him.\n")
+                        print("You jump to dodge monster's attack and kill him.\n")
                     else
                         print("You broke the armor of the Knight, keep fighting!\n")
                     end
@@ -217,15 +217,15 @@ class Enemy
                     if gameEnd == FALSE
                         mobHp -= 1
                         if mobHp == 0
-                            print("You kill the monster\n")
+                            print("You start to cry : \"MEDIC!!!! Oh no, wrong game... Damn knight...\"\n\n")
                         else
-                            print("You remove his armor, keep fighting!\n")
+                            print("You broke the armor of the Knight, keep fighting!\n")
                         end
                     end
                 else
                     gameEnd = player.takeDamage(2, FALSE)
                     if gameEnd == FALSE
-                        print("You miss but the monster doesn't. Care!\n")
+                        print("You miss, but the monster doesn't. Care!\n")
                     end
                 end
             end
@@ -256,17 +256,17 @@ class Enemy
                 result = game.play()
                 if result == 1
                     mobHp -= 1
-                    print("You jump on the wizzard and kill him.\n")
+                    print("You dodge the first fire ball, jump over the second one and cut the wizard's head. You found his hat really nice, but you have more important stuffs to carry...\n")
                 elsif result == 0
                     gameEnd = player.takeDamage(1, TRUE)
                     if gameEnd == FALSE
                         mobHp -= 1
-                        print("You kill the magician\n")
+                        print("You kill the magician but burning. You just start to hit you to remove the flame.\n")
                     end
                 else
                     gameEnd = player.takeDamage(1, TRUE)
                     if gameEnd == FALSE
-                        print("You miss but the fire ball doesn't. Care!\n")
+                        print("You miss, but the fire ball doesn't. You're on fire! Care!\n")
                     end
                 end
             end
