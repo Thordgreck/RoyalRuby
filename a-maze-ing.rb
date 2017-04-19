@@ -7,10 +7,10 @@ require_relative 'Input.rb'
 
 class Maze
   def initialize(length, height)
-    self.cases = Array.new(length) {Array.new(height)}
+    @cases = Array.new(length) {Array.new(height)}
   end
   def enter()
-    direction = get_direction
+    direction = get_direction()
   end
 end
 
