@@ -18,11 +18,11 @@ class Wall
     end
     
     def describe()
-        print(@desc)
+        print(@desc + "\n")
     end
     
     def help()
-        print(@helpDesc)
+        print(@helpDesc + "\n")
     end
     
     class NormalWall
@@ -34,11 +34,11 @@ class Wall
         end
         
         def describe()
-            print(@desc)
+            print(@desc + "\n")
         end
         
         def help()
-            print(@helpDesc)
+            print(@helpDesc + "\n")
         end
     end
     
@@ -51,11 +51,11 @@ class Wall
         end
         
         def describe()
-            print(@desc)
+            print(@desc + "\n")
         end
         
         def help()
-            print(@helpDesc)
+            print(@helpDesc + "\n")
         end
     end
     
@@ -68,11 +68,11 @@ class Wall
         end
         
         def describe()
-            print(@desc)
+            print(@desc + "\n")
         end
         
         def help()
-            print(@helpDesc)
+            print(@helpDesc + "\n")
         end
     end
 end
