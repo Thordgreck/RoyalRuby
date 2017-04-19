@@ -20,8 +20,9 @@ class Maze
     if (@cases[x][y].nil?)
       @cases[x][y] = Room.new([1])
       puts "Created room at " + x.to_s + " " + y.to_s
-      x = rand(10)
-      if x == 9
+      r = rand(10)
+      # if r == 9
+      if r <= 9
         enemy = Enemy.new()
         enemy.fight()
       end
