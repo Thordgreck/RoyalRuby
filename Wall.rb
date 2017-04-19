@@ -29,7 +29,6 @@ class Wall
             @name = "Wall"
             @desc = "A normal wall."
             @helpDesc = "You realy need help for this?"
-            print("Init Wall\n")
         end
         
         def describe()
@@ -46,7 +45,6 @@ class Wall
             @name = "Skull Wall"
             @desc = "A wall full of skull, they may have some stuff left on them."
             @helpDesc = "Increase your loot chance in the room."
-            print("Init Skull Wall\n")
         end
         
         def describe()
@@ -63,7 +61,6 @@ class Wall
             @name = "Broken Wall"
             @desc = "This wall seems craked, try to use your hammer to break it."
             @helpDesc = "Dwarf hammer! Nothing more to say!"
-            print("Init Broken Wall\n")
         end
         
         def describe()
