@@ -5,8 +5,18 @@ class Player
         @sword = 2
         @hammer = FALSE
         @key = 0
+        @dead = FALSE
+        @won = FALSE
     end
-  
+
+    def isDead()
+      @dead
+    end
+
+    def hasWon()
+      @won
+    end
+
     def takeDamage(dmg, ignorArmor)
         gameEnd = FALSE
         if ignorArmor == TRUE
@@ -22,6 +32,7 @@ class Player
                     print("You lose #{dmg}Hp.\n")
                 else
                     print("You left your wife, your son, your home and this world for a better life...\n")
+                    @dead = TRUE
                     gameEnd = TRUE
                 end
             end

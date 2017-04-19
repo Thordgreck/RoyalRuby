@@ -20,15 +20,15 @@ class Maze
     if (@cases[x][y].nil?)
       @cases[x][y] = Room.new([1])
       puts "Created room at " + x.to_s + " " + y.to_s
-      r = rand(10)
-      # if r == 9
-      if r <= 9
-        enemy = Enemy.new()
-        enemy.fight(player)
-      end
     end
     puts "Went in room " + x.to_s + " " + y.to_s
     @cases[x][y].describe()
+    r = rand(10)
+    # if r == 9
+    if r <= 9
+      enemy = Enemy.new()
+      enemy.fight(player)
+    end
   end
 end
 
@@ -40,9 +40,9 @@ class Game
     @player = player
   end
   def mainloop()
-    @maze.room(@x, @y, @player)
-    game = Rps.new()
-    game.play()
+    while !@player.isDead && !@player.hasWon
+      @maze.room(@x, @y, @player)
+    end
   end
 end
 
@@ -50,4 +50,5 @@ size_tab = ask_param()
 maze = Maze.new(size_tab[0], size_tab[1])
 player = Player.new()
 game = Game.new(maze, player)
+again = TRUE
 game.mainloop()
