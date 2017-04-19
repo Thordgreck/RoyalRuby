@@ -4,10 +4,6 @@ class Direction
         @hash[key]=value
     end
 
-    def Direction.const_missing(key)
-        @hash[key]
-    end
-
     def Direction.each
         @hash.each {|key,value| yield(key,value)}
     end
@@ -17,7 +13,7 @@ class Direction
     end
 
     def Direction.value(key)
-      @hash.value(key)
+      @hash[key]
     end
 
     Direction.add_item :NORTH, 0
