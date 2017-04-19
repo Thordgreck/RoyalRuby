@@ -1,8 +1,8 @@
 class Wall
     def initialize()
-        @name = "Default Wall"
-        @desc = "Default Wall"
-        @helpDesc = "Default Wall"
+        #@name = "Default Wall"
+        #@desc = "Default Wall"
+        #@helpDesc = "Default Wall"
         print("Wall Class\n")
         
         x = rand(10) + 1
@@ -15,21 +15,20 @@ class Wall
         end
     end
     
-    def describe()
-       print(@desc)
-    end
-    
-    def help()
-       print(@helpDesc)
-    end
-    
     class NormalWall
         def initialize()
-            super.name = "Wall"
-            #@name = "Wall"
-            super.desc = "A normal wall."
-            super.helpDesc = "You realy need help for this?"
+            self.name = "Wall"
+            self.desc = "A normal wall."
+            self.helpDesc = "You realy need help for this?"
             print("Init Wall\n")
+        end
+        
+        def describe()
+            print(self.desc)
+        end
+        
+        def help()
+            print(self.helpDesc)
         end
     end
     

@@ -1,5 +1,8 @@
 class Door
     def initialize()
+        @name = "Default Door"
+        @desc = "Default Door"
+        @helpDesc = "Default Door"
         print("Door Class\n")
         
         x = rand(10) + 1

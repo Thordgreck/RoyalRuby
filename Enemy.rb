@@ -1,5 +1,8 @@
 class Enemy
     def initialize()
+        @name = "Default Enemy"
+        @desc = "Default Enemy"
+        @helpDesc = "Default Enemy"
         print("Enemy Class\n")
     end
     
