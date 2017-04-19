@@ -32,15 +32,8 @@ class Game
   end
 end
 
-x_size = 9
-if (!ARGV[0].nil?)
-  x_size = ARGV[0].to_i
-end
-y_size = 9
-if (!ARGV[1].nil?)
-  y_size = ARGV[1].to_i
-end
-maze = Maze.new(x_size, y_size)
+size_tab = ask_param()
+maze = Maze.new(size_tab[0], size_tab[1])
 player = Player.new()
 game = Game.new(maze, player)
 game.mainloop()
