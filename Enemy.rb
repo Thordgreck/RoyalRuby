@@ -28,6 +28,10 @@ class Enemy
         @enemy.help()
     end
     
+    def fight(Player)
+        @enemy.fight(Player)
+    end
+    
     class NoEnemy
         def initialize()
             @name = ""
@@ -41,6 +45,10 @@ class Enemy
         
         def help()
             print(@helpDesc + "\n")
+        end
+        
+        def fight(Player)
+            
         end
     end
     
@@ -58,6 +66,26 @@ class Enemy
         def help()
             print(@helpDesc + "\n")
         end
+        
+        def fight(Player)
+            mobHp = 1
+            game = Rps.new()
+            
+            while mobHp > 0
+                result = game.play()
+                if result == 1
+                    mobHp -= 1
+                    print("You jump on the monster and kill him.")
+                elsif result == 0
+                    Player.takeDamage(1, FALSE)
+                    mobHp -= 1
+                    print("The monster is dead")
+                else
+                    Player.takeDamage(1, FALSE)
+                    print("You miss but the monster don't. Care!")
+                end
+            end
+        end
     end
     
     class Swordman
@@ -73,6 +101,26 @@ class Enemy
         
         def help()
             print(@helpDesc + "\n")
+        end
+        
+        def fight(Player)
+            mobHp = 1
+            game = Rps.new()
+            
+            while mobHp > 0
+                result = game.play()
+                if result == 1
+                    mobHp -= 1
+                    print("You jump on the monster and kill him.")
+                elsif result == 0
+                    Player.takeDamage(2, FALSE)
+                    mobHp -= 1
+                    print("You kill the monster")
+                else
+                    Player.takeDamage(2, FALSE)
+                    print("You miss but the monster don't. Care!")
+                end
+            end
         end
     end
     
@@ -90,6 +138,34 @@ class Enemy
         def help()
             print(@helpDesc + "\n")
         end
+        
+        def fight(Player)
+            mobHp = 2
+            game = Rps.new()
+            
+            while mobHp > 0
+                result = game.play()
+                if result == 1
+                    mobHp -= 1
+                    if mobHp == 0
+                        print("You jump on the monster and kill him.")
+                    else
+                        print("You broke the armor of this Armored Guy, keep fighting!")
+                    end
+                elsif result == 0
+                    Player.takeDamage(1, FALSE)
+                    mobHp -= 1
+                    if mobHp == 0
+                        print("You kill the monster")
+                    else
+                        print("You remove his armor, keep fighting!")
+                    end
+                else
+                    Player.takeDamage(1, FALSE)
+                    print("You miss but the monster don't. Care!")
+                end
+            end
+        end
     end
     
     class Knight
@@ -106,6 +182,34 @@ class Enemy
         def help()
             print(@helpDesc + "\n")
         end
+        
+        def fight(Player)
+            mobHp = 2
+            game = Rps.new()
+            
+            while mobHp > 0
+                result = game.play()
+                if result == 1
+                    mobHp -= 1
+                    if mobHp == 0
+                        print("You jump on the monster and kill him.")
+                    else
+                        print("You broke the armor of the Knight, keep fighting!")
+                    end
+                elsif result == 0
+                    Player.takeDamage(2, FALSE)
+                    mobHp -= 1
+                    if mobHp == 0
+                        print("You kill the monster")
+                    else
+                        print("You remove his armor, keep fighting!")
+                    end
+                else
+                    Player.takeDamage(2, FALSE)
+                    print("You miss but the monster don't. Care!")
+                end
+            end
+        end
     end
     
     class Magician
@@ -121,6 +225,26 @@ class Enemy
         
         def help()
             print(@helpDesc + "\n")
+        end
+        
+        def fight(Player)
+            mobHp = 1
+            game = Rps.new()
+            
+            while mobHp > 0
+                result = game.play()
+                if result == 1
+                    mobHp -= 1
+                    print("You jump on the wizzard and kill him.")
+                elsif result == 0
+                    Player.takeDamage(1, TRUE)
+                    mobHp -= 1
+                    print("You kill the magician")
+                else
+                    Player.takeDamage(1, TRUE)
+                    print("You miss but the fire ball don't. Care!")
+                end
+            end
         end
     end
 end
