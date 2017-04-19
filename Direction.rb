@@ -15,11 +15,11 @@ class Direction
     def Direction.key(value)
       @hash.key(value)
     end
-    
-    Direction.add_item :NORTH, "n"
-    Direction.add_item :EST, "e"
-    Direction.add_item :SOUTH, "s"
-    Direction.add_item :WEST, "w"
+
+    Direction.add_item :NORTH, 0
+    Direction.add_item :EST, 1
+    Direction.add_item :SOUTH, 2
+    Direction.add_item :WEST, 3
 end
 
 #That's it! We can now use our enum :
