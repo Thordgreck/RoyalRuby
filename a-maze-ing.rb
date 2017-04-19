@@ -29,6 +29,7 @@ class Maze
       enemy = Enemy.new()
       enemy.fight(player)
     end
+    p @cases[x][y].move(get_direction())
   end
 end
 

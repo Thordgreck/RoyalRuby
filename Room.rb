@@ -37,4 +37,11 @@ class Room
       puts
     }
   end
+
+  def move(direction)
+    if @doors[Direction.value(direction)] != nil
+      return TRUE
+    end
+    return FALSE
+  end
 end
