@@ -1,10 +1,10 @@
-class rps
+class Rps
   def initialize()
     print("Started a Rock-Paper-Scissors game\n")
   end
 
 	class Weapon
-		
+
 	end
 
 	class Rock<Weapon
@@ -85,28 +85,30 @@ class rps
 		end
 	end
 
+  def play()
+  	puts "Game started"
+  	weaponsTab = ["Scissors", "Rock", "Paper"]
+  	puts "Make your choice between Rock, Paper or Scissors"
+  	weaponChosenName = nil
+  	until weaponsTab.include?(weaponChosenName) do
+  		weaponChosenName = gets.chomp
+  	end
+  	randomWeaponName = weaponsTab[rand(3)]
+  	print "You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n"
 
-	puts "Game started"
-	weaponsTab = ["Scissors", "Rock", "Paper"]
-	puts "Make your choice between Rock, Paper or Scissors"
-	weaponChosenName = nil
-	until weaponsTab.include?(weaponChosenName) do
-		weaponChosenName = gets.chomp
-	end
-	randomWeaponName = weaponsTab[rand(3)]
-	print "You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n"
-
-	weaponChosen = eval(weaponChosenName + ".new")
-	randomWeapon = eval(randomWeaponName + ".new")
+  	weaponChosen = eval(weaponChosenName + ".new")
+  	randomWeapon = eval(randomWeaponName + ".new")
 
 
-	result = weaponChosen.attack(randomWeapon)
-	if result == 0
-		print "It's a tie!\n"
-	elsif result == 1
-		print "You win!\n"
-	else
-		print "Your opponent wins!\n"
-	end
+  	result = weaponChosen.attack(randomWeapon)
+  	if result == 0
+  		print "It's a tie!\n"
+  	elsif result == 1
+  		print "You win!\n"
+  	else
+  		print "Your opponent wins!\n"
+  	end
+    result
+  end
 
 end
