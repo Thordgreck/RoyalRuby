@@ -18,27 +18,27 @@ class Door
         print(@description)
     end
     
-    class door
+    class NormalDoor
         @name = "Door"
         @description = "A normal wood door."
     end
     
-    class brokenDoor
+    class BrokenDoor
         @name = ""
         @description = ""
     end
     
-    class stuckDoor
+    class StuckDoor
         @name = "Stuck door"
         @description = "This door seems to be stuck, if you get closer, you can try to open it."
     end
     
-    class trapDoor
+    class TrapDoor
         @name = "Trap door"
         @description = "There is some trap around the door. Care can hurt !"
     end
     
-    class lockedDoor
+    class LockedDoor
         @name = "Locked door"
         @description = "From the middle of the room you can see a locket and a passcode on this door."
     end

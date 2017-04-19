@@ -16,7 +16,7 @@ class Wall
        print(@description)
     end
     
-    class wall()
+    class NormalWall()
         def initialize()
             @name = "Wall"
             @description = "A normal wall."
@@ -24,7 +24,7 @@ class Wall
         end
     end
     
-    class skullWall()
+    class SkullWall()
         def initialize()
             @name = "Skull Wall"
             @description = "A wall full of skull, they may have some stuff left on them."
@@ -32,7 +32,7 @@ class Wall
         end
     end
     
-    class brokenWall()
+    class BrokenWall()
         def initialize()
             @name = "Broken Wall"
             @description = "This wall seems craked, try to use your hammer to break it."
