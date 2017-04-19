@@ -31,7 +31,7 @@ class Enemy
     
     class Knight
         @name = "Knight"
-        @description = "The knight have a sword and an armor."
+        @description = "Look at his horse! His horse is a-maz-ing! (Armor and sword)"
         @helpDesc = "He tank one of your hit and deals 2Hp damage."
     end
     
