@@ -4,11 +4,11 @@ class Wall
         
         x = rand(10) + 1
         if x <= 6
-            NormalWall.initialize()
+            NormalWall.new()
         elsif x > 6 and x <= 8
-            SkullWall.initialize()
+            SkullWall.new()
         elsif x > 8
-            BrokenWall.initialize()
+            BrokenWall.new()
         end
     end
     

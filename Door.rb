@@ -4,13 +4,13 @@ class Door
         
         x = rand(10) + 1
         if x <= 4
-            NormalDoor.initialize()
+            NormalDoor.new()
         elsif x > 4 and x <= 6
-            StuckDoor.initialize()
+            StuckDoor.new()
         elsif x > 6 and x <= 8
-            TrapDoor.initialize()
+            TrapDoor.new()
         elsif x > 8
-            LockedDoor.initialize()
+            LockedDoor.new()
         end
     end
     
