@@ -53,6 +53,7 @@ class Game
         @cases[x][y].availableDoors()
         direction = get_direction()
         can_move = @cases[x][y].canMove(direction)
+      end
     end
   end
 end
