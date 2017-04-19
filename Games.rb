@@ -92,7 +92,10 @@ class Rps
   	until index != nil do
       puts "Make your choice between Rock (r), Paper (p) or Scissors (s)"
   		weaponChosenName = gets.chomp
-      index = weaponsTab.map { |e|  e[0].upcase}.find_index(weaponChosenName.upcase)
+      index = weaponsTab.find_index(weaponChosenName.downcase().capitalize())
+      if(index == nil)
+        index = weaponsTab.map { |e|  e[0].upcase}.find_index(weaponChosenName.upcase)
+      end
       if(index == nil)
         puts "incorrect input"
       end
