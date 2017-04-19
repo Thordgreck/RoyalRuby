@@ -12,6 +12,10 @@ class Direction
         @hash.each {|key,value| yield(key,value)}
     end
 
+    def Direction.key(value)
+      @hash.key(value)
+    end
+    
     Direction.add_item :NORTH, "n"
     Direction.add_item :EST, "e"
     Direction.add_item :SOUTH, "s"

@@ -2,9 +2,10 @@ require_relative 'Door.rb'
 require_relative 'Wall.rb'
 
 class Room
-  def initialize()
+  def initialize(needed_doors)
     self.walls = Array.new(4) {Wall.new()}
-    self.doors = Array.new(4) {Door.new()}
+    self.doors = Array.new(4)
+    self.searched = False
   end
 
   def describe()
