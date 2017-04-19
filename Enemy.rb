@@ -3,31 +3,41 @@ class Enemy
         print("Enemy Class\n")
     end
     
+    def describe()
+        print(@description)
+    end
+    
     def help()
         print(@helpDesc)
     end
     
     class NormalEnemy
-        @helpDesc = "Just a normal enemy"
+        @name = "Enemy"
+        @description = "A normal enemy."
+        @helpDesc = "Nacked guy, 1Hp and remove 1Hp."
     end
     
-    class SwordMan
-        # Sword
-        @helpDesc = "Soldier with a sword, care his hit remove you 2Hp!"
+    class Swordman
+        @name = "Swordman"
+        @description = "Soldier with a sword."
+        @helpDesc = "Care his hit remove 2Hp!"
     end
     
-    class Armored
-        # Armor
-        @helpDesc = "An armored guy, he tank one of your hit."
+    class ArmoredGuy
+        @name = "Armored guy"
+        @description = "He got an armor."
+        @helpDesc = "He tank one of your hit."
     end
     
     class Knight
-        # Armor + Sword
-        @helpDesc = "This knight have an armor and a sword, he tank one of your hit and deals 2Hp damage."
+        @name = "Knight"
+        @description = "Look at his horse! His horse is a-maz-ing! (Armor and sword)"
+        @helpDesc = "He tank one of your hit and deals 2Hp damage."
     end
     
     class Magician
-        # Use magic spell, ignore players armor
+        @name = "Magician"
+        @description = "Abracadabra!"
         @helpDesc = "Magic spell ignore armor!"
     end
 end
