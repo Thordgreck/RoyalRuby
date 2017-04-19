@@ -3,23 +3,23 @@ class Enemy
         print("Enemy Class\n")
     end
     
-    class NormalEnemy()
+    class NormalEnemy
         
     end
     
-    class SwordMan()
+    class SwordMan
         # Sword
     end
     
-    class Armored()
+    class Armored
         # Armor
     end
     
-    class Knight()
+    class Knight
         # Armor + Sword
     end
     
-    class Magician()
+    class Magician
         # Use magic spell, ignore players armor
     end
 end
