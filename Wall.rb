@@ -1,8 +1,8 @@
 class Wall
     def initialize()
-        #@name = "Default Wall"
-        #@desc = "Default Wall"
-        #@helpDesc = "Default Wall"
+        @name = "Default Wall"
+        @desc = "Default Wall"
+        @helpDesc = "Default Wall"
         print("Wall Class\n")
         
         x = rand(10) + 1
@@ -13,6 +13,14 @@ class Wall
         elsif x > 8
             BrokenWall.new()
         end
+    end
+    
+    def describe()
+        print(@desc)
+    end
+    
+    def help()
+        print(@helpDesc)
     end
     
     class NormalWall
