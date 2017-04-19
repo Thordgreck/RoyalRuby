@@ -5,6 +5,7 @@ require_relative 'Wall.rb'
 require_relative 'Direction.rb'
 require_relative 'Input.rb'
 require_relative 'Player.rb'
+require_relative 'Games.rb'
 
 class Maze
   def initialize(length, height)
