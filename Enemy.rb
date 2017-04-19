@@ -3,50 +3,111 @@ class Enemy
         @name = "Default Enemy"
         @desc = "Default Enemy"
         @helpDesc = "Default Enemy"
-        print("Enemy Class\n")
+        
+        @enemy
     end
     
     def describe()
-        print(@desc)
+        @enemy.describe()
     end
     
     def help()
-        print(@helpDesc)
+        @enemy.help()
     end
     
     class NoEnemy
-       @name = ""
-       @desc = "The room is empty, maybe you can find some items on the ground."
-       @helpDesc = ""
+        def initialize()
+            @name = ""
+            @desc = "The room is empty, maybe you can find some items on the ground."
+            @helpDesc = ""
+        end
+        
+        def describe()
+            print(@desc + "\n")
+        end
+        
+        def help()
+            print(@helpDesc + "\n")
+        end
     end
     
     class NormalEnemy
-        @name = "Enemy"
-        @desc = "A normal enemy."
-        @helpDesc = "Nacked guy, 1Hp and remove 1Hp."
+        def initialize()
+            @name = "Enemy"
+            @desc = "A normal enemy."
+            @helpDesc = "Nacked guy, 1Hp and remove 1Hp."
+        end
+        
+        def describe()
+            print(@desc + "\n")
+        end
+        
+        def help()
+            print(@helpDesc + "\n")
+        end
     end
     
     class Swordman
-        @name = "Swordman"
-        @desc = "Soldier with a sword."
-        @helpDesc = "Care his hit remove 2Hp!"
+        def initialize()
+            @name = "Swordman"
+            @desc = "Soldier with a sword."
+            @helpDesc = "Care his hit remove 2Hp!"
+        end
+        
+        def describe()
+            print(@desc + "\n")
+        end
+        
+        def help()
+            print(@helpDesc + "\n")
+        end
     end
     
     class ArmoredGuy
-        @name = "Armored guy"
-        @desc = "He got an armor."
-        @helpDesc = "He tank one of your hit."
+        def initialize()
+            @name = "Armored guy"
+            @desc = "He got an armor."
+            @helpDesc = "He tank one of your hit."
+        end
+        
+        def describe()
+            print(@desc + "\n")
+        end
+        
+        def help()
+            print(@helpDesc + "\n")
+        end
     end
     
     class Knight
-        @name = "Knight"
-        @desc = "Look at his horse! His horse is a-maz-ing! (Armor and sword)"
-        @helpDesc = "He tank one of your hit and deals 2Hp damage."
+        def initialize()
+            @name = "Knight"
+            @desc = "Look at his horse! His horse is a-maz-ing! (Armor and sword)"
+            @helpDesc = "He tank one of your hit and deals 2Hp damage."
+        end
+        
+        def describe()
+            print(@desc + "\n")
+        end
+        
+        def help()
+            print(@helpDesc + "\n")
+        end
     end
     
     class Magician
-        @name = "Magician"
-        @desc = "Abracadabra!"
-        @helpDesc = "Magic spell ignore armor!"
+        def initialize()
+            @name = "Magician"
+            @desc = "Abracadabra!"
+            @helpDesc = "Magic spell ignore armor!"
+        end
+        
+        def describe()
+            print(@desc + "\n")
+        end
+        
+        def help()
+            print(@helpDesc + "\n")
+        end
     end
 end
