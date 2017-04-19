@@ -1,5 +1,8 @@
 class Item
     def initialize()
+        @name = "Default Item"
+        @desc = "Default Item"
+        @helpDesc = "Default Item"
         print("Item Class\n")
     end
     

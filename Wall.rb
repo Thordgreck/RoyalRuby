@@ -25,9 +25,10 @@ class Wall
     
     class NormalWall
         def initialize()
-            @name = "Wall"
-            @desc = "A normal wall."
-            @helpDesc = "You realy need help for this?"
+            super.name = "Wall"
+            #@name = "Wall"
+            super.desc = "A normal wall."
+            super.helpDesc = "You realy need help for this?"
             print("Init Wall\n")
         end
     end
