@@ -32,7 +32,7 @@ class Item
     class Hammer
         @name = "Hammer"
         @desc = "Hammer! Dwarf hammer!"
-        @helpDesc = "A dwarf hammer, what better than that to break a wall? A guy named Donald want to build a wall once "
+        @helpDesc = "A dwarf hammer, what better than that to break a wall? A guy want to build a wall once, he receive some dwarf's hammer on the head (And some dwarf too)."
     end
     
     class Compass
@@ -50,6 +50,6 @@ class Item
     class Potion
         @name = "Potion"
         @desc = ""
-        @helpDesc = "+1Hp, haha cool na ?"
+        @helpDesc = "+1Hp, haha cool na?"
     end
 end

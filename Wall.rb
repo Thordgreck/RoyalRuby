@@ -1,5 +1,8 @@
 class Wall
     def initialize()
+        @name = "Default Wall"
+        @desc = "Default Wall"
+        @helpDesc = "Default Wall"
         print("Wall Class\n")
         
         x = rand(10) + 1
