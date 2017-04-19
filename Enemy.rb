@@ -82,7 +82,7 @@ class Enemy
                     print("The monster is dead\n")
                 else
                     player.takeDamage(1, FALSE)
-                    print("You miss but the monster don't. Care!\n")
+                    print("You miss but the monster doesn't. Care!\n")
                 end
             end
         end
@@ -118,7 +118,7 @@ class Enemy
                     print("You kill the monster\n")
                 else
                     player.takeDamage(2, FALSE)
-                    print("You miss but the monster don't. Care!\n")
+                    print("You miss but the monster doesn't. Care!\n")
                 end
             end
         end
@@ -162,7 +162,7 @@ class Enemy
                     end
                 else
                     player.takeDamage(1, FALSE)
-                    print("You miss but the monster don't. Care!\n")
+                    print("You miss but the monster doesn't. Care!\n")
                 end
             end
         end
@@ -206,7 +206,7 @@ class Enemy
                     end
                 else
                     player.takeDamage(2, FALSE)
-                    print("You miss but the monster don't. Care!\n")
+                    print("You miss but the monster doesn't. Care!\n")
                 end
             end
         end
@@ -242,7 +242,7 @@ class Enemy
                     print("You kill the magician\n")
                 else
                     player.takeDamage(1, TRUE)
-                    print("You miss but the fire ball don't. Care!\n")
+                    print("You miss but the fire ball doesn't. Care!\n")
                 end
             end
         end

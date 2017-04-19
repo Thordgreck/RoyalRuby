@@ -25,6 +25,6 @@ class Player
                 end
             end
         end
-        print("#{@hp}Hp left!")
+        print("#{@hp}Hp left!\n")
     end
 end
