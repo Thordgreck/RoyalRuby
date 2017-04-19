@@ -7,12 +7,14 @@ class Wall
         
         x = rand(10) + 1
         if x <= 6
-            NormalWall.new()
+            wall = NormalWall.new()
         elsif x > 6 and x <= 8
-            SkullWall.new()
+            wall = SkullWall.new()
         elsif x > 8
-            BrokenWall.new()
+            wall = BrokenWall.new()
         end
+        
+        wall
     end
     
     def describe()
