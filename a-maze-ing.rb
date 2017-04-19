@@ -18,7 +18,7 @@ class Maze
 
   def room(x, y, player)
     if (@cases[x][y].nil?)
-      @cases[x][y] = Room.new([1])
+      @cases[x][y] = Room.new([0, 1], [2, 3])
       puts "Created room at " + x.to_s + " " + y.to_s
     end
     puts "Went in room " + x.to_s + " " + y.to_s
