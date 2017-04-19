@@ -24,7 +24,7 @@ class Maze
       # if r == 9
       if r <= 9
         enemy = Enemy.new()
-        enemy.fight()
+        enemy.fight(player)
       end
     end
     puts "Went in room " + x.to_s + " " + y.to_s
