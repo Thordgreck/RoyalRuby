@@ -75,14 +75,14 @@ class Enemy
                 result = game.play()
                 if result == 1
                     mobHp -= 1
-                    print("You jump on the monster and kill him.")
+                    print("You jump on the monster and kill him.\n")
                 elsif result == 0
                     player.takeDamage(1, FALSE)
                     mobHp -= 1
-                    print("The monster is dead")
+                    print("The monster is dead\n")
                 else
                     player.takeDamage(1, FALSE)
-                    print("You miss but the monster don't. Care!")
+                    print("You miss but the monster don't. Care!\n")
                 end
             end
         end
@@ -111,14 +111,14 @@ class Enemy
                 result = game.play()
                 if result == 1
                     mobHp -= 1
-                    print("You jump on the monster and kill him.")
+                    print("You jump on the monster and kill him.\n")
                 elsif result == 0
                     player.takeDamage(2, FALSE)
                     mobHp -= 1
-                    print("You kill the monster")
+                    print("You kill the monster\n")
                 else
                     player.takeDamage(2, FALSE)
-                    print("You miss but the monster don't. Care!")
+                    print("You miss but the monster don't. Care!\n")
                 end
             end
         end
@@ -148,21 +148,21 @@ class Enemy
                 if result == 1
                     mobHp -= 1
                     if mobHp == 0
-                        print("You jump on the monster and kill him.")
+                        print("You jump on the monster and kill him.\n")
                     else
-                        print("You broke the armor of this Armored Guy, keep fighting!")
+                        print("You broke the armor of this Armored Guy, keep fighting!\n")
                     end
                 elsif result == 0
                     player.takeDamage(1, FALSE)
                     mobHp -= 1
                     if mobHp == 0
-                        print("You kill the monster")
+                        print("You kill the monster\n")
                     else
-                        print("You remove his armor, keep fighting!")
+                        print("You remove his armor, keep fighting!\n")
                     end
                 else
                     player.takeDamage(1, FALSE)
-                    print("You miss but the monster don't. Care!")
+                    print("You miss but the monster don't. Care!\n")
                 end
             end
         end
@@ -192,21 +192,21 @@ class Enemy
                 if result == 1
                     mobHp -= 1
                     if mobHp == 0
-                        print("You jump on the monster and kill him.")
+                        print("You jump on the monster and kill him.\n")
                     else
-                        print("You broke the armor of the Knight, keep fighting!")
+                        print("You broke the armor of the Knight, keep fighting!\n")
                     end
                 elsif result == 0
                     player.takeDamage(2, FALSE)
                     mobHp -= 1
                     if mobHp == 0
-                        print("You kill the monster")
+                        print("You kill the monster\n")
                     else
-                        print("You remove his armor, keep fighting!")
+                        print("You remove his armor, keep fighting!\n")
                     end
                 else
                     player.takeDamage(2, FALSE)
-                    print("You miss but the monster don't. Care!")
+                    print("You miss but the monster don't. Care!\n")
                 end
             end
         end
@@ -235,14 +235,14 @@ class Enemy
                 result = game.play()
                 if result == 1
                     mobHp -= 1
-                    print("You jump on the wizzard and kill him.")
+                    print("You jump on the wizzard and kill him.\n")
                 elsif result == 0
                     player.takeDamage(1, TRUE)
                     mobHp -= 1
-                    print("You kill the magician")
+                    print("You kill the magician\n")
                 else
                     player.takeDamage(1, TRUE)
-                    print("You miss but the fire ball don't. Care!")
+                    print("You miss but the fire ball don't. Care!\n")
                 end
             end
         end
