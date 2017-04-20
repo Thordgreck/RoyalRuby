@@ -45,6 +45,10 @@ class NoDoor < Door
         @open = FALSE
         @block = FALSE
     end
+    
+    def tryMove(player)
+        FALSE
+    end
 end
 
 class NormalDoor < Door
@@ -55,6 +59,10 @@ class NormalDoor < Door
         @open = FALSE
         @block = FALSE
     end
+
+    def tryMove(player)
+        TRUE
+    end
 end
 
 class BrokenDoor < Door
@@ -64,6 +72,19 @@ class BrokenDoor < Door
         @helpDesc = ""
         @open = FALSE
         @block = FALSE
+    end
+    
+    def tryMove(player)
+        if @open == FALSE
+            breakWall = player.useHammer()
+            @open = breakWall
+        end
+        
+        if @open == TRUE
+            TRUE
+        else
+            FALSE
+        end
     end
 end
 
@@ -103,20 +124,16 @@ class TrapDoor < Door
         @block = FALSE
     end
     
-    def tryMove()
+    def tryMove(player)
         if @open == TRUE
             TRUE
-            elsif @block == TRUE
-            FALSE
-            else
+        else
+            @open = TRUE
             x = rand(2)
             if x == 0
-                @block = TRUE
-                FALSE
-                else
-                @open = TRUE
-                TRUE
+                player.takeDamage(1, TRUE)
             end
+            TRUE
         end
     end
 end
@@ -126,5 +143,11 @@ class LockedDoor < Door
         @name = "Locked door"
         @desc = "From the middle of the room, you can see a locket and a passcode on this door."
         @helpDesc = "If you have a key, you can use it to open the door. Or you can try to find the passcode for the door."
+        @open = FALSE
+        @block = FALSE
+    end
+    
+    def tryMove(player)
+        
     end
 end
