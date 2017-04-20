@@ -33,7 +33,7 @@ class Door
     end
     
     def tryMove(player)
-        TRUE
+        
     end
 end
 
