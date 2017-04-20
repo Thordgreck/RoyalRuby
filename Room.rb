@@ -3,7 +3,7 @@ require_relative 'Wall.rb'
 
 class Room
   def initialize(needed_doors, blocked_doors)
-    @walls = Array.new(4) {Wall.new()}
+    @walls = Array.new(4) {WallFactory.new()}
     @doors = Array.new(4)
     fulfil_needed = FALSE
     @doors.each_with_index{ |door, i|

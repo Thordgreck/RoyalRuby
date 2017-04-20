@@ -26,7 +26,7 @@ class Maze
     r = rand(3)
     # if r == 3
     if r <= 3
-      enemy = Enemy.new()
+      enemy = EnemyFactory.new()
       enemy.fight(player)
     end
     if player.isDead

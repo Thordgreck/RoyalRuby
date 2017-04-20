@@ -3,10 +3,11 @@ class Rps
     print("Fight versus a monster begin!\n")
   end
 
-	class Weapon # \o/
-	end
+	class Weapon
+	
+    end
 
-	class Rock<Weapon
+	class Rock < Weapon
 		def initialize
 		  @name = "Rock"
 		end
@@ -32,7 +33,7 @@ class Rps
 		end
 	end
 
-	class Paper<Weapon
+	class Paper < Weapon
 		def initialize
 		  @name = "Paper"
 		end
@@ -58,7 +59,7 @@ class Rps
 		end
 	end
 
-	class Scissors<Weapon
+	class Scissors < Weapon
 		def initialize
 		  @name = "Scissors"
 		end
@@ -99,20 +100,20 @@ class Rps
         puts "incorrect input"
       end
   	end
+    
   	randomWeaponName = weaponsTab[rand(3)]
   	print("You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n")
-
   	weaponChosen = eval(weaponsTab[index] + ".new")
   	randomWeapon = eval(randomWeaponName + ".new")
 
   	result = weaponChosen.attack(randomWeapon)
-  	# if result == 0
-  	# 	print ("It's a tie!\n")
-  	# elsif result == 1
-  	# 	print ("You win!\n")
-  	# else
-  	# 	print ("Your opponent wins!\n")
-  	# end
+  	if result == 0
+        print ("It's a tie!\n")
+  	elsif result == 1
+        print ("You win!\n")
+  	else
+        print ("You lose!\n")
+  	end
     result
   end
 
