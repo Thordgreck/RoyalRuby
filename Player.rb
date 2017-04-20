@@ -2,8 +2,8 @@ class Player
     def initialize()
         @hp = 10
         @armor = FALSE
-        @sword = 2
-        @hammer = FALSE
+        @sword = 0
+        @hammer = 0
         @key = 0
         @dead = FALSE
         @won = FALSE
