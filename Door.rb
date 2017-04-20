@@ -1,13 +1,13 @@
 class DoorFactory
-    def DoorFactory.newDoor() # That's how you do a Factory (biatch) #guigui
+    def DoorFactory.newDoor()
         x = rand(10) + 1
-        if x <= 4
+        if x <= 4 # 4/10
             NormalDoor.new()
-        elsif x > 4 and x <= 6
+        elsif x <= 6 # 2/10
             StuckDoor.new()
-        elsif x > 6 and x <= 8
+        elsif x <= 8 # 2/10
             TrapDoor.new()
-        elsif x > 8
+        elsif x <= 10 # 2/10
             LockedDoor.new()
         end
     end

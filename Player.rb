@@ -1,9 +1,11 @@
 class Player
     def initialize()
         @hp = 10
+        @maxHp = 10
         @armor = FALSE
-        @sword = 0 # 2 MAX
-        @hammer = 0 # 1 MAX
+        @spike = FALSE
+        @sword = 0 # MAX = 2 / If poison MAX = 3
+        @hammer = 0 # 1 MAX A VOIR SI REPARATION ITEM
         @key = 0
         @dead = FALSE
         @won = FALSE
@@ -28,14 +30,18 @@ class Player
                 @dead = TRUE
                 gameEnd = TRUE
            end
-        elsif
+        else
             if @armor == TRUE
-                @armor = FALSE
-                print("Your armor break\n")
+                if @spike == TRUE
+                    @spike = FALSE
+                else
+                    @armor = FALSE
+                    print("Your armor break.\n")
+                end
             else
                 @hp -= dmg
                 if @hp > 0
-                    print("You lose #{dmg}Hp.\n")
+                    print("-#{dmg}Hp.\n")
                 else
                     print("You left your wife, your son, your home and this world for a better life...\n")
                     @dead = TRUE
@@ -43,8 +49,8 @@ class Player
                 end
             end
         end
-        if gameEnd == FALSE
-            print("#{@hp}Hp left!\n")
+        if gameEnd == FALSE and @hp < @maxHp
+            print("#{@hp}/#{@maxHp}Hp left!\n")
         end
         return(gameEnd)
     end
@@ -56,5 +62,17 @@ class Player
         else
             FALSE
         end
+    end
+    
+    def swordUsage()
+        @sword
+    end
+    
+    def useSword()
+        @sword -= 1
+    end
+    
+    def haveSpike()
+        @spike
     end
 end

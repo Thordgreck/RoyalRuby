@@ -1,20 +1,24 @@
 class ItemFactory
     def ItemFactory.new()
-        x = rand(11) + 1
-        if x <= 2
+        x = rand(20) + 1
+        if x <= 3 # 3/20
             Armor.new()
-        elsif x > 2 and x <= 4
+        elsif x <= 6 # 3/20
             Sword.new()
-        elsif x > 4 and x <= 7
+        elsif x <= 9 # 3/20
             Hammer.new()
-        elsif x == 8
+        elsif x == 10 # 1/20
             Compass.new()
-        elsif x == 9
+        elsif x <= 12 # 2/20
             Key.new()
-        elsif x == 10
+        elsif x <= 15 # 3/20
             Potion.new()
-        elsif x == 11
+        elsif x <= 17 # 2/20
+            Poison.new()
+        elsif x <= 19 # 2/20
             MysteriousPot.new()
+        elsif x == 20 # 1/20
+            Spike.new()
         end
     end
 end
@@ -93,10 +97,34 @@ class Potion < Item
     end
 end
 
+class Poison < Item
+    def initialize()
+        @name = "Poison"
+        @desc = "Magician don't like it and monsters too."
+        @helpDesc = "-1Hp, haha not cool na? Can be use to improve sword efficiency (Sword = 3 use)."
+    end
+end
+
 class MysteriousPot < Item
     def initialize()
         @name = "Mysterious potion"
         @desc = "Can heal you or kill you, pray god more often!"
         @helpDesc = "Health 2Hp or remove 1."
+    end
+end
+
+class MegaPotion < Item
+    def initialize()
+        @name = "Mega potion"
+        @desc = "You try to mix potion like your magician's friend do and you succeed good job!"
+        @helpDesc = "Full Hp, nice potion!"
+    end
+end
+
+class Spike < Item
+    def initialize()
+        @name = "Spike"
+        @desc = "If it was on your armor it can give you a lot of style."
+        @helpDesc = "Try to use them on your armor, deal damage to enemies when they hit you. Care they can break."
     end
 end

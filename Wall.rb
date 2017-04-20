@@ -1,11 +1,11 @@
 class WallFactory
     def WallFactory.new()
         x = rand(10) + 1
-        if x <= 6
+        if x <= 6 # 6/10
             NormalWall.new()
-        elsif x > 6 and x <= 8
+        elsif x <= 8 # 2/10
             SkullWall.new()
-        elsif x > 8
+        elsif x <= 10 # 2/10
             BrokenWall.new()
         end
     end
