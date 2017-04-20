@@ -148,6 +148,6 @@ class LockedDoor < Door
     end
     
     def tryMove(player)
-        
+        FALSE
     end
 end
