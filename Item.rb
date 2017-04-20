@@ -1,18 +1,22 @@
 class ItemFactory
     def ItemFactory.new()
-        x = rand(10) + 1
+        x = rand(12) + 1
         if x <= 2
             Armor.new()
-            elsif x > 2 and x <= 4
+        elsif x > 2 and x <= 4
             Sword.new()
-            elsif x > 4 and x <= 7
+        elsif x > 4 and x <= 7
             Hammer.new()
-            elsif x == 8
+        elsif x == 8
             Compass.new()
-            elsif x == 9
+        elsif x == 9
             Key.new()
-            elsif x == 10
+        elsif x == 10
             Potion.new()
+        elsif x == 11
+            Poison.new()
+        elsif x == 12
+            MysteriousPot.new()
         end
     end
 end
@@ -88,5 +92,21 @@ class Potion < Item
         @name = "Potion"
         @desc = "Wizards create weird things to drink."
         @helpDesc = "+1Hp, haha cool na?"
+    end
+end
+
+class Poison < Item
+    def initialize()
+        @name = "Poison"
+        @desc = "I hope you didn't drink that."
+        @helpDesc = "-1Hp, haha not cool na?"
+    end
+end
+
+class MysteriousPot < Item
+    def initialize()
+        @name = "Mysterious potion"
+        @desc = "Can heal you or kill you, pray god more often!"
+        @helpDesc = "Health 2Hp or remove 1."
     end
 end
