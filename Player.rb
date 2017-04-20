@@ -50,11 +50,11 @@ class Player
     end
 
     def useHammer()
-      if @hammer > 0
-        @hammer--
-        TRUE
-      else
-        FALSE
-      end
+        if @hammer > 0
+            @hammer -= 1
+            TRUE
+        else
+            FALSE
+        end
     end
 end
