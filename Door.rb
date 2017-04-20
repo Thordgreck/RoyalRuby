@@ -17,6 +17,8 @@ class Door
     @name
     @desc
     @helpDesc
+    @open
+    @block
     
     def name()
         @name
@@ -30,7 +32,7 @@ class Door
         print(@helpDesc + "\n")
     end
     
-    def tryMove()
+    def tryMove(player)
         TRUE
     end
 end
@@ -40,6 +42,8 @@ class NoDoor < Door
         @name = ""
         @desc = ""
         @helpDesc = ""
+        @open = FALSE
+        @block = FALSE
     end
 end
 
@@ -48,6 +52,8 @@ class NormalDoor < Door
         @name = "Door"
         @desc = "A normal wood door."
         @helpDesc = "Just a normal door, nothing more."
+        @open = FALSE
+        @block = FALSE
     end
 end
 
@@ -56,6 +62,8 @@ class BrokenDoor < Door
         @name = ""
         @desc = ""
         @helpDesc = ""
+        @open = FALSE
+        @block = FALSE
     end
 end
 
@@ -64,6 +72,25 @@ class StuckDoor < Door
         @name = "Stuck door"
         @desc = "This door seems to be stuck, if you get closer, you can try to open it."
         @helpDesc = "Launch a coin flip when you try to pass, if you lose, the door stay stuck."
+        @open = FALSE
+        @block = FALSE
+    end
+    
+    def tryMove(player)
+        if @open == TRUE
+            TRUE
+        elsif @block == TRUE
+            FALSE
+        else
+            x = rand(2)
+            if x == 0
+                @block = TRUE
+                FALSE
+            else
+                @open = TRUE
+                TRUE
+            end
+        end
     end
 end
 
@@ -72,6 +99,25 @@ class TrapDoor < Door
         @name = "Trap door"
         @desc = "There is some trap around the door. Care, can hurt!"
         @helpDesc = "Launch a coin flip when you pass through, if you lose: -1Hp."
+        @open = FALSE
+        @block = FALSE
+    end
+    
+    def tryMove()
+        if @open == TRUE
+            TRUE
+            elsif @block == TRUE
+            FALSE
+            else
+            x = rand(2)
+            if x == 0
+                @block = TRUE
+                FALSE
+                else
+                @open = TRUE
+                TRUE
+            end
+        end
     end
 end
 

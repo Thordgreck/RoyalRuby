@@ -42,7 +42,7 @@ class Maze
       direction = get_direction()
       can_move = @cases[x][y].canMove(direction)
     end
-    can_move = @cases[x][y].tryMove(direction)
+    can_move = @cases[x][y].tryMove(direction, player)
     direction
   end
 end

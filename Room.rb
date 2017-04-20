@@ -56,7 +56,7 @@ class Room
     return FALSE
   end
 
-  def tryMove(direction)
-    @doors[Direction.value(direction)].tryMove()
+  def tryMove(direction, player)
+    @doors[Direction.value(direction)].tryMove(player)
   end
 end
