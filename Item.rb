@@ -1,6 +1,6 @@
 class ItemFactory
     def ItemFactory.new()
-        x = rand(12) + 1
+        x = rand(11) + 1
         if x <= 2
             Armor.new()
         elsif x > 2 and x <= 4
@@ -14,8 +14,6 @@ class ItemFactory
         elsif x == 10
             Potion.new()
         elsif x == 11
-            Poison.new()
-        elsif x == 12
             MysteriousPot.new()
         end
     end
@@ -51,7 +49,7 @@ class Armor < Item
     def initialize()
         @name = "Armor"
         @desc = "Shiny armor, you look like a vampire from a bad film."
-        @helpDesc = "This light armor prevent you to lose Hp when a monster hit you. Care magician enemies ignore your armor! Light armor but you are too weak to take two of them (Only 1 use per armor)."
+        @helpDesc = "This light armor prevent you to lose Hp when a monster hit you. Care magician enemies ignore your armor! Light armor but you are too weak to take two of them but you have the Jean-Claude Van Damme's magic bag with you where you can stock any items you want (Only 1 use per armor)."
     end
 end
 
@@ -59,7 +57,7 @@ class Sword < Item
     def initialize()
         @name = "Sword"
         @desc = "Look like a paper knife, but size doesn't matter."
-        @helpDesc = "The sword makes you automatically win a fight. Don't go insane if you find two swords, you can only carry one of them (Only 2 use per sword, you can choose to use it or not)."
+        @helpDesc = "The sword makes you automatically win a fight. Don't go insane if you find two swords, you can only carry one of them, the second one goes in your magical bag (Only 2 use per sword, you can choose to use it or not)."
     end
 end
 
@@ -92,14 +90,6 @@ class Potion < Item
         @name = "Potion"
         @desc = "Wizards create weird things to drink."
         @helpDesc = "+1Hp, haha cool na?"
-    end
-end
-
-class Poison < Item
-    def initialize()
-        @name = "Poison"
-        @desc = "I hope you didn't drink that."
-        @helpDesc = "-1Hp, haha not cool na?"
     end
 end
 
