@@ -48,4 +48,13 @@ class Player
         end
         return(gameEnd)
     end
+
+    def useHamer(){
+      if @hammer > 0
+        @hammer--
+        TRUE
+      else
+        FALSE
+      end
+    }
 end
