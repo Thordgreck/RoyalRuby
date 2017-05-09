@@ -71,7 +71,7 @@ class Game
       end
       r = rand(3)
       fought_monster = FALSE
-      if r > 3
+      if r < 2
         enemy = EnemyFactory.new()
         enemy.fight(@player)
         fought_monster = TRUE
@@ -81,7 +81,9 @@ class Game
       end
       puts "You look around in the room, maybe you will find something?".yellow()
       @current.loot(@player, fought_monster)
+      puts
       @player.inventory()
+      puts
       can_move = FALSE
       direction = nil
       while !can_move

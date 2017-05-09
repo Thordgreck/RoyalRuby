@@ -118,7 +118,7 @@ end
 class Poison < Item
     def initialize()
         @name = "Poison"
-        @desc = "Neither Magicians and monsters like it"
+        @desc = "Neither Magicians nor monsters like it"
         @helpDesc = "-1Hp, saaaad :'( Can be use to improve sword efficiency (Sword = 3 use)."
         @discovery = "a "+@name
     end

@@ -47,7 +47,7 @@ class Room
       puts @walls[i].describe().green()
       if (!@doors[i].nil?)
         print("    You can also see a door:\n      ".green())
-        @doors[i].describe().green()
+        puts @doors[i].describe().green()
       end
       puts
     }
