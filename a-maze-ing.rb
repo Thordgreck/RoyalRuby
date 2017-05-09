@@ -7,6 +7,7 @@ require_relative 'Input.rb'
 require_relative 'Player.rb'
 require_relative 'Games.rb'
 require_relative 'Enemy.rb'
+require_relative 'colorize.rb'
 
 class Game
   def initialize(player)
