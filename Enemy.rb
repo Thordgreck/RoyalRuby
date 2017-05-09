@@ -73,7 +73,7 @@ class NormalEnemy < Enemy
     def initialize()
         @name = "Enemy"
         @desc = "A normal enemy."
-        @helpDesc = "Nacked guy, 1Hp and remove 1Hp."
+        @helpDesc = "Naked guy, 1Hp and remove 1Hp."
     end
     
     def fight(player)
