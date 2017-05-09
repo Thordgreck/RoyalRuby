@@ -97,7 +97,7 @@ class Potion < Item
     def initialize()
         @name = "Potion"
         @desc = "Wizards create weird things to drink."
-        @helpDesc = "+1Hp, haha cool na?"
+        @helpDesc = "+1Hp, haha cool right? You can combine 5 potions to create a MegaPotion that fully heal you."
     end
     
     def drink(player)
@@ -109,7 +109,7 @@ class Poison < Item
     def initialize()
         @name = "Poison"
         @desc = "Neither Magicians and monsters like it"
-        @helpDesc = "-1Hp, haha not cool na? Can be use to improve sword efficiency (Sword = 3 use)."
+        @helpDesc = "-1Hp, saaaad :'( Can be use to improve sword efficiency (Sword = 3 use)."
     end
     
     def drink(player)
