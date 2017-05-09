@@ -24,13 +24,20 @@ class Player
       r = Float(rand(100)) + 1.0
       if (r <= proba)
         item = ItemFactory.new()
-        print("You found #{item.discovery}")
+        print("You found #{item.discovery}\n")
         @inventory << item
       end
     end
 
     def inventory()
-      p @inventory
+      if !@inventory.empty?
+        puts("In your inventory, you have the following items:")
+        @inventory.each_with_index { |item, i|
+          puts("[#{i}]: #{item.discovery} (#{item.describe})")
+        }
+      else
+        puts("Your inventory is empty.")
+      end
     end
 
     def takeDamage(dmg, ignorArmor)
