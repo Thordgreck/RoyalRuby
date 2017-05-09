@@ -61,7 +61,7 @@ class Game
       puts "Went in room " + @x.to_s + " " + @y.to_s
       @current.describe()
       if @dragon >= 1
-        @dragon--
+        @dragon -= 1
         puts "The dragon attacks you!!!"
         @player.takeDamage(1, TRUE)
       end
