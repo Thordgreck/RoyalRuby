@@ -148,6 +148,16 @@ class LockedDoor < Door
     end
     
     def tryMove(player)
-        FALSE
+        if @open == TRUE
+            TRUE
+        elsif player.haveKey() > 0
+            player.useKey()
+            print("You use a key and pass succeed to open this door. #{player.haveKey()} key left.\n")
+            @open = TRUE
+            TRUE
+        else
+            print("You don't have any key, you may look for one or choose another direction\n")
+            FALSE
+        end
     end
 end

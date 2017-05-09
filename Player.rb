@@ -75,4 +75,12 @@ class Player
     def haveSpike()
         @spike
     end
+    
+    def haveKey()
+        @key
+    end
+    
+    def useKey()
+        @key -= 1
+    end
 end
