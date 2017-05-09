@@ -39,6 +39,10 @@ class Item
     def help()
         print(@helpDesc + "\n")
     end
+    
+    def drink(player)
+        
+    end
 end
 
 class NoItem < Item
@@ -93,15 +97,23 @@ class Potion < Item
     def initialize()
         @name = "Potion"
         @desc = "Wizards create weird things to drink."
-        @helpDesc = "+1Hp, haha cool na?"
+        @helpDesc = "+1Hp, haha cool right? You can combine 5 potions to create a MegaPotion that fully heal you."
+    end
+    
+    def drink(player)
+        player.heal(1)
     end
 end
 
 class Poison < Item
     def initialize()
         @name = "Poison"
-        @desc = "Magician don't like it and monsters too."
-        @helpDesc = "-1Hp, haha not cool na? Can be use to improve sword efficiency (Sword = 3 use)."
+        @desc = "Neither Magicians and monsters like it"
+        @helpDesc = "-1Hp, saaaad :'( Can be use to improve sword efficiency (Sword = 3 use)."
+    end
+    
+    def drink(player)
+        player.heal(-1)
     end
 end
 
@@ -111,6 +123,15 @@ class MysteriousPot < Item
         @desc = "Can heal you or kill you, pray god more often!"
         @helpDesc = "Health 2Hp or remove 1."
     end
+    
+    def drink(player)
+        x = rand(2)
+        if x == 0
+            player.heal(2)
+        else
+            player.heal(-1)
+        end
+    end
 end
 
 class MegaPotion < Item
@@ -118,6 +139,10 @@ class MegaPotion < Item
         @name = "Mega potion"
         @desc = "You try to mix potion like your magician's friend do and you succeed good job!"
         @helpDesc = "Full Hp, nice potion!"
+    end
+    
+    def drink(player)
+        player.heal(player.getMaxHp())
     end
 end
 
