@@ -19,13 +19,13 @@ class Game
 
   def getRoom(x, y, dir)
     if !dir.nil?
-      if dir == Direction::NORTH
+      if Direction.value(dir) == Direction::NORTH
         y += 1
-      elsif dir == Direction::SOUTH
+      elsif Direction.value(dir) == Direction::SOUTH
         y -= 1
-      elsif dir == Direction::EAST
+      elsif Direction.value(dir) == Direction::EAST
         x += 1
-      elsif dir == Direction::WEST
+      elsif Direction.value(dir) == Direction::WEST
         x -= 1
       end
     end
@@ -53,9 +53,9 @@ class Game
   def mainloop()
     while !@player.isDead && !@player.hasWon
       if (@current.nil?)
+        puts "Created room at " + @x.to_s + " " + @y.to_s
         @current = Room.new(@x, @y, getRoomParams())
         @rooms << @current
-        puts "Created room at " + @x.to_s + " " + @y.to_s
       end
       puts "Went in room " + @x.to_s + " " + @y.to_s
       @current.describe()
@@ -80,6 +80,15 @@ class Game
         end
       end
       @current = getRoom(@x, @y, direction)
+      if Direction.value(direction) == Direction::NORTH
+        @y += 1
+      elsif Direction.value(direction) == Direction::SOUTH
+        @y -= 1
+      elsif Direction.value(direction) == Direction::EAST
+        @x += 1
+      elsif Direction.value(direction) == Direction::WEST
+        @x -= 1
+      end
     end
   end
 end

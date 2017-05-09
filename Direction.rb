@@ -21,7 +21,7 @@ class Direction
   end
 
   Direction.add_item :NORTH, 0
-  Direction.add_item :EST, 1
+  Direction.add_item :EAST, 1
   Direction.add_item :SOUTH, 2
   Direction.add_item :WEST, 3
 end

@@ -10,8 +10,8 @@ class Room
     @doors = Array.new(4) {nil}
     rooms.each_with_index { |room, i|
       if !room.nil?
-        walls[i] = room[0]
-        doors[i] = room[1]
+        @walls[i] = room[0]
+        @doors[i] = room[1]
       end
     }
     @walls.each_with_index{ |wall, i|
@@ -36,7 +36,7 @@ class Room
   end
 
   def getInitParams(dir)
-    [@walls[(Direction.value(direction) + 2) % 4], @doors[(Direction.value(direction) + 2) % 4]]
+    [@walls[(Direction.value(dir) + 2) % 4], @doors[(Direction.value(dir) + 2) % 4]]
   end
 
   def describe()
