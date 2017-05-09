@@ -15,6 +15,7 @@ class Game
     @player = player
     @rooms = Array.new
     @current = nil
+    @dragon = 0
   end
 
   def getRoom(x, y, dir)
@@ -59,16 +60,26 @@ class Game
       end
       puts "Went in room " + @x.to_s + " " + @y.to_s
       @current.describe()
-      r = rand(3)
-      # if r == 3
-      if r <= 3
-        enemy = EnemyFactory.new()
-        enemy.fight(@player)
+      if @dragon >= 1
+        @dragon--
+        puts "The dragon attacks you!!!"
+        @player.takeDamage(1, TRUE)
       end
       if @player.isDead
         return
       end
-      #loot
+      r = rand(3)
+      fought_monster = FALSE
+      if r <= 3
+        enemy = EnemyFactory.new()
+        enemy.fight(@player)
+        fought_monster = TRUE
+      end
+      if @player.isDead
+        return
+      end
+      @current.loot(@player, fought_monster)
+      @player.inventory()
       can_move = FALSE
       direction = nil
       while !can_move
