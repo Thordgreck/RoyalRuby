@@ -12,27 +12,33 @@ class WallFactory
 end
 
 class Wall
+  @name
+  @desc
+  @helpDesc
+
+  def initialize()
+    @name = "Wall"
+    @loot_probability = 0.0
+  end
+
+  def name()
     @name
-    @desc
-    @helpDesc
-    attr_reader :loot_probability
+  end
 
-    def initialize()
-        @name = "Wall"
-        @loot_probability = 0.0
-    end
+  def describe()
+    print(@desc + "\n")
+  end
 
-    def name()
-        @name
-    end
+  def help()
+    print(@helpDesc + "\n")
+  end
 
-    def describe()
-        print(@desc + "\n")
+  def get_loot_probability()
+    if @loot_probability.nil?
+      @loot_probability = 0
     end
-
-    def help()
-        print(@helpDesc + "\n")
-    end
+    @loot_probability
+  end
 end
 
 class NormalWall < Wall

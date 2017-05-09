@@ -70,7 +70,7 @@ class Game
       end
       r = rand(3)
       fought_monster = FALSE
-      if r <= 3
+      if r > 3
         enemy = EnemyFactory.new()
         enemy.fight(@player)
         fought_monster = TRUE

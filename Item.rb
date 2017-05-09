@@ -43,6 +43,10 @@ class Item
     def drink(player)
 
     end
+
+    def discovery()
+      @discovery
+    end
 end
 
 class NoItem < Item

@@ -80,7 +80,7 @@ class Room
       @is_loot = TRUE
       player.add_item(1.0/7.0*100.0)
       @walls.each{ |wall|
-        player.add_item(wall.loot_probability)
+        player.add_item(wall.get_loot_probability())
       }
     end
     if(monster_killed)

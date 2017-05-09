@@ -20,17 +20,18 @@ class Player
       @won
     end
 
-    def add_item(proba) #probability in % (0 - 100)
+    def add_item(proba) #probability in float % (0 - 100)
       r = Float(rand(100)) + 1.0
       if (r <= proba)
         item = ItemFactory.new()
-        print("You found #{discovery}")
+        print("You found #{item.discovery}")
+        @inventory << item
       end
     end
 
-
-
-
+    def inventory()
+      p @inventory
+    end
 
     def takeDamage(dmg, ignorArmor)
         gameEnd = FALSE
