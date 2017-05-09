@@ -9,6 +9,7 @@ class Player
         @key = 0
         @dead = FALSE
         @won = FALSE
+        @inventory = []
     end
 
     def isDead()
@@ -18,6 +19,18 @@ class Player
     def hasWon()
       @won
     end
+
+    def add_item(proba) #probability in % (0 - 100)
+      r = Float(rand(100)) + 1.0
+      if (r <= proba)
+        item = ItemFactory.new()
+        print("You found #{discovery}")
+      end
+    end
+
+
+
+
 
     def takeDamage(dmg, ignorArmor)
         gameEnd = FALSE
@@ -63,31 +76,31 @@ class Player
             FALSE
         end
     end
-    
+
     def swordUsage()
         @sword
     end
-    
+
     def useSword()
         @sword -= 1
     end
-    
+
     def haveSpike()
         @spike
     end
-    
+
     def haveKey()
         @key
     end
-    
+
     def useKey()
         @key -= 1
     end
-    
+
     def getMaxHp()
         @maxHp
     end
-    
+
     def heal(hp)
         @hp += hp
         if @hp > @maxHp

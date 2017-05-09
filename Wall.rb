@@ -15,15 +15,21 @@ class Wall
     @name
     @desc
     @helpDesc
-    
+    attr_reader :loot_probability
+
+    def initialize()
+        @name = "Wall"
+        @loot_probability = 0.0
+    end
+
     def name()
         @name
     end
-    
+
     def describe()
         print(@desc + "\n")
     end
-    
+
     def help()
         print(@helpDesc + "\n")
     end
@@ -42,6 +48,7 @@ class SkullWall < Wall
         @name = "Skull Wall"
         @desc = "A wall full of skulls, they may have some stuff left on them."
         @helpDesc = "Increase your loot chance in the room."
+        @loot_probability = 2.0/7.0*100.0
     end
 end
 

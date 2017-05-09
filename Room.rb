@@ -29,6 +29,7 @@ class Room
         puts 'Created door ' + i.to_s
       end
     }
+    @is_loot = FALSE
   end
 
   def hasCoord(x, y)
@@ -72,5 +73,18 @@ class Room
 
   def tryMove(direction, player)
     @doors[direction].tryMove(player)
+  end
+
+  def loot(player, monster_killed)
+    if(!@is_loot)
+      @is_loot = TRUE
+      player.add_item(1.0/7.0*100.0)
+      @walls.each{ |wall|
+        player.add_item(wall.loot_probability)
+      }
+    end
+    if(monster_killed)
+      player.add_item(4.0/7.0*100.0)
+    end
   end
 end
