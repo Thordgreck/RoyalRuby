@@ -55,15 +55,15 @@ class Game
   def mainloop()
     while !@player.isDead && !@player.hasWon
       if (@current.nil?)
-        puts "Created room at " + @x.to_s + " " + @y.to_s
+        puts ("Created room at " + @x.to_s + " " + @y.to_s).blue()
         @current = Room.new(@x, @y, getRoomParams())
         @rooms << @current
       end
-      puts "Went in room " + @x.to_s + " " + @y.to_s
+      puts ("Went in room " + @x.to_s + " " + @y.to_s).blue()
       @current.describe()
       if @dragon >= 1
         @dragon -= 1
-        puts "The dragon attacks you!!!"
+        puts "The dragon attacks you!!!".red()
         @player.takeDamage(1, TRUE)
       end
       if @player.isDead
@@ -79,6 +79,7 @@ class Game
       if @player.isDead
         return
       end
+      puts "You look around in the room, maybe you will find something?".yellow()
       @current.loot(@player, fought_monster)
       @player.inventory()
       can_move = FALSE

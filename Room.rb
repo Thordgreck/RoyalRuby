@@ -26,7 +26,7 @@ class Room
       end
       if rand(3) < 2
         @doors[i] = DoorFactory.newDoor()
-        puts 'Created door ' + i.to_s
+        puts ('Created door ' + i.to_s).grey()
       end
     }
     @is_loot = FALSE
@@ -58,7 +58,7 @@ class Room
     dirs = ["north", "east", "south", "west"]
     dirs.each_with_index{ |direction, i|
       if (!@doors[i].nil?)
-        puts @doors[i].name() + " in the " + direction + " (guess what letter you should type!) (hint: " + direction[0] + ")"
+        puts @doors[i].name() + " in the " + direction + " (hint: " + direction[0] + ")"
       end
     }
     puts
@@ -86,5 +86,6 @@ class Room
     if(monster_killed)
       player.add_item(4.0/7.0*100.0)
     end
+    puts "You've searched everywhere."
   end
 end
