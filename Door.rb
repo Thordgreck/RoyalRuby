@@ -101,14 +101,17 @@ class StuckDoor < Door
         if @open == TRUE
             TRUE
         elsif @block == TRUE
+            print("This door is block. Choose another door.")
             FALSE
         else
             x = rand(2)
             if x == 0
                 @block = TRUE
+                print("You try to open the door but it seems stuck, try another way.")
                 FALSE
             else
                 @open = TRUE
+                print("Oh you open the door.")
                 TRUE
             end
         end

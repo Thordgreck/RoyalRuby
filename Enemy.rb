@@ -92,7 +92,7 @@ class NormalEnemy < Enemy
                 gameEnd = player.takeDamage(1, FALSE)
                 if spike == TRUE
                     spike = FALSE
-                    mobHp -= 1
+                    mobHp -= 2
                     if mobHp > 0
                         print("The monster broke your spike, but he take damage.\n")
                     else
@@ -151,7 +151,7 @@ class Swordman < Enemy
                 gameEnd = player.takeDamage(2, FALSE)
                 if spike == TRUE
                     spike = FALSE
-                    mobHp -= 1
+                    mobHp -= 2
                     if mobHp > 0
                         print("The monster broke your spike, but he take damage.\n")
                     else
@@ -206,7 +206,7 @@ class ArmoredGuy < Enemy
                 gameEnd = player.takeDamage(1, FALSE)
                 if spike == TRUE
                     spike = FALSE
-                    mobHp -= 1
+                    mobHp -= 2
                     if mobHp > 0
                         print("The monster broke your spike, but he take damage.\n")
                     else
@@ -265,7 +265,7 @@ class Knight < Enemy
                 gameEnd = player.takeDamage(2, FALSE)
                 if spike == TRUE
                     spike = FALSE
-                    mobHp -= 1
+                    mobHp -= 2
                     if mobHp > 0
                         print("The monster broke your spike, but he take damage.\n")
                     else
