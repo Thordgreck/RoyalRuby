@@ -113,7 +113,7 @@ class NormalEnemy < Enemy
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
-                    print("You miss, but the monster doesn't. Care!\n".red())
+                    print("You miss, but the monster doesn't!\n".red())
                 end
             end
         end
@@ -223,7 +223,7 @@ class ArmoredGuy < Enemy
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
-                    print("You miss, but the monster doesn't. Care!\n".red())
+                    print("You miss, but the monster doesn't!\n".red())
                 end
             end
         end
@@ -282,7 +282,7 @@ class Knight < Enemy
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
-                    print("You miss, but the monster doesn't. Care!\n".red())
+                    print("You miss, but the monster doesn't!\n".red())
                 end
             end
         end
@@ -316,7 +316,7 @@ class Magician < Enemy
                 else
                 gameEnd = player.takeDamage(1, TRUE)
                 if gameEnd == FALSE
-                    print("You miss, but the fire ball doesn't. You're on fire! Care!\n".red())
+                    print("You miss, but the fire ball doesn't. You're on fire!\n".red())
                 end
             end
         end
