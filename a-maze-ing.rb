@@ -8,65 +8,86 @@ require_relative 'Player.rb'
 require_relative 'Games.rb'
 require_relative 'Enemy.rb'
 
-class Maze
-  def initialize(length, height)
-    @cases = Array.new(length) {Array.new(height) {nil}}
-    @length = length
-    @height = height
-    puts 'Created maze of width ' + length.to_s + " and height " + height.to_s
-  end
-
-  def room(x, y, player)
-    if (@cases[x][y].nil?)
-      @cases[x][y] = Room.new([0, 1], [2, 3])
-      puts "Created room at " + x.to_s + " " + y.to_s
-    end
-    puts "Went in room " + x.to_s + " " + y.to_s
-    @cases[x][y].describe()
-    r = rand(3)
-    # if r == 3
-    if r <= 3
-      enemy = EnemyFactory.new()
-      enemy.fight(player)
-    end
-    if player.isDead
-      p "témor, salu"
-      return nil
-    end
-    #loot
-    can_move = FALSE
-    direction = nil
-    while !can_move
-      puts "Select a direction in the availables: "
-      @cases[x][y].availableDoors()
-      direction = get_direction()
-      can_move = @cases[x][y].canMove(direction)
-    end
-    can_move = @cases[x][y].tryMove(direction, player)
-    direction
-  end
-end
-
 class Game
-  def initialize(maze, player)
+  def initialize(player)
     @x = 0
     @y = 0
-    @maze = maze
     @player = player
+    @rooms = Array.new
+    @current = nil
   end
+
+  def getRoom(x, y, dir)
+    if !dir.nil?
+      if dir == Direction::NORTH
+        y += 1
+      elsif dir == Direction::SOUTH
+        y -= 1
+      elsif dir == Direction::EAST
+        x += 1
+      elsif dir == Direction::WEST
+        x -= 1
+      end
+    end
+    @rooms.each{ |room|
+      if room.hasCoord(x, y)
+        return room
+      end
+    }
+    nil
+  end
+
+  def getRoomParams()
+    retval = Array.new
+    Direction.each do |key_, value|
+      room = getRoom(@x, @y, key_)
+      if room.nil?
+        retval << nil
+      else
+        retval << room.getInitParams(key_)
+      end
+    end
+    retval
+  end
+
   def mainloop()
     while !@player.isDead && !@player.hasWon
-      @maze.room(@x, @y, @player)
+      if (@current.nil?)
+        @current = Room.new(@x, @y, getRoomParams())
+        @rooms << @current
+        puts "Created room at " + @x.to_s + " " + @y.to_s
+      end
+      puts "Went in room " + @x.to_s + " " + @y.to_s
+      @current.describe()
+      r = rand(3)
+      # if r == 3
+      if r <= 3
+        enemy = EnemyFactory.new()
+        enemy.fight(@player)
+      end
+      if @player.isDead
+        return
+      end
+      #loot
+      can_move = FALSE
+      direction = nil
+      while !can_move
+        puts "Select a direction in the availables: "
+        @current.availableDoors()
+        direction = get_direction()
+        if @current.canMove(direction)
+          can_move = @current.tryMove(direction, @player)
+        end
+      end
+      @current = getRoom(@x, @y, direction)
     end
   end
 end
 
-size_tab = ask_param()
-maze = Maze.new(size_tab[0], size_tab[1])
 again = TRUE
 while again
   player = Player.new()
-  game = Game.new(maze, player)
+  game = Game.new(player)
   game.mainloop()
   again = ask_new_game()
 end

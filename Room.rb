@@ -2,27 +2,41 @@ require_relative 'Door.rb'
 require_relative 'Wall.rb'
 
 class Room
-  def initialize(needed_doors, blocked_doors)
-    @walls = Array.new(4) {WallFactory.new()}
-    @doors = Array.new(4)
-    fulfil_needed = FALSE
-    @doors.each_with_index{ |door, i|
-      if blocked_doors.include? i
-        next
-      end
-      x = rand(3)
-      if x < 2 || (i == needed_doors.last && fulfil_needed == FALSE)
-        @doors[i] = DoorFactory.newDoor()
-        puts 'Created door ' + i.to_s
-        if needed_doors.include? i
-          fulfil_needed = TRUE
-        end
+  def initialize(x, y, rooms)
+    @x = x
+    @y = y
+    @searched = FALSE
+    @walls = Array.new(4) {nil}
+    @doors = Array.new(4) {nil}
+    rooms.each_with_index { |room, i|
+      if !room.nil?
+        walls[i] = room[0]
+        doors[i] = room[1]
       end
     }
-    if !fulfil_needed
-      puts "!!!\n!!!\n ERROR: Needed doors error, using " + needed_doors.to_s + " and " + blocked_doors.to_s + "\n!!!\n!!!"
-    end
-    @searched = FALSE
+    @walls.each_with_index{ |wall, i|
+      if !wall.nil?
+        next
+      end
+      @walls[i] = WallFactory.new()
+    }
+    @doors.each_with_index{ |door, i|
+      if !door.nil?
+        next
+      end
+      if rand(3) < 2
+        @doors[i] = DoorFactory.newDoor()
+        puts 'Created door ' + i.to_s
+      end
+    }
+  end
+
+  def hasCoord(x, y)
+    x == @x && y == @y
+  end
+
+  def getInitParams(dir)
+    [@walls[(Direction.value(direction) + 2) % 4], @doors[(Direction.value(direction) + 2) % 4]]
   end
 
   def describe()
