@@ -83,4 +83,15 @@ class Player
     def useKey()
         @key -= 1
     end
+    
+    def getMaxHp()
+        @maxHp
+    end
+    
+    def heal(hp)
+        @hp += hp
+        if @hp > @maxHp
+            @hp = @maxHp
+        end
+    end
 end
