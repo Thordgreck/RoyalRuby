@@ -33,11 +33,11 @@ class Item
     end
 
     def describe()
-        print(@desc + "\n")
+        @desc
     end
 
     def help()
-        print(@helpDesc + "\n")
+        @helpDesc
     end
 
     def drink(player)
@@ -45,7 +45,7 @@ class Item
     end
 
     def discovery()
-      @discovery
+      @discovery.yellow()
     end
 end
 

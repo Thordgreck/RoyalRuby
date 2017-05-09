@@ -31,12 +31,12 @@ class Player
 
     def inventory()
       if !@inventory.empty?
-        puts("In your inventory, you have the following items:")
+        puts("In your inventory, you have the following items:".yellow())
         @inventory.each_with_index { |item, i|
           puts("[#{i}]: #{item.discovery} (#{item.describe})")
         }
       else
-        puts("Your inventory is empty.")
+        puts("Your inventory is empty.".yellow())
       end
     end
 
@@ -45,7 +45,7 @@ class Player
         if ignorArmor == TRUE
            @hp -= dmg
            if @hp > 0
-               print("A fire ball hit you, you lose Hp.\n")
+               print("A fire ball hit you, you lose Hp.\n".red())
            else
                 print("You left your wife, your son, your home and this world for a better life...\n")
                 @dead = TRUE
@@ -57,12 +57,12 @@ class Player
                     @spike = FALSE
                 else
                     @armor = FALSE
-                    print("Your armor break.\n")
+                    print("Your armor break.\n".red())
                 end
             else
                 @hp -= dmg
                 if @hp > 0
-                    print("-#{dmg}Hp.\n")
+                    print("You lost #{dmg}Hp.\n".red())
                 else
                     print("You left your wife, your son, your home and this world for a better life...\n")
                     @dead = TRUE
@@ -71,7 +71,7 @@ class Player
             end
         end
         if gameEnd == FALSE and @hp < @maxHp
-            print("#{@hp}/#{@maxHp}Hp left!\n")
+            print("Hp remaining: #{@hp}/#{@maxHp}!\n".red())
         end
         return(gameEnd)
     end

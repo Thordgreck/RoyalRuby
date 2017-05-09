@@ -19,21 +19,21 @@ class Door
     @helpDesc
     @open
     @block
-    
+
     def name()
         @name
     end
-    
+
     def describe()
-        print(@desc + "\n")
+        @desc
     end
-    
+
     def help()
-        print(@helpDesc + "\n")
+        @helpDesc
     end
-    
+
     def tryMove(player)
-        
+
     end
 end
 
@@ -45,7 +45,7 @@ class NoDoor < Door
         @open = FALSE
         @block = FALSE
     end
-    
+
     def tryMove(player)
         FALSE
     end
@@ -73,13 +73,13 @@ class BrokenDoor < Door
         @open = FALSE
         @block = FALSE
     end
-    
+
     def tryMove(player)
         if @open == FALSE
             breakWall = player.useHammer()
             @open = breakWall
         end
-        
+
         if @open == TRUE
             TRUE
         else
@@ -96,7 +96,7 @@ class StuckDoor < Door
         @open = FALSE
         @block = FALSE
     end
-    
+
     def tryMove(player)
         if @open == TRUE
             TRUE
@@ -126,7 +126,7 @@ class TrapDoor < Door
         @open = FALSE
         @block = FALSE
     end
-    
+
     def tryMove(player)
         if @open == TRUE
             TRUE
@@ -149,7 +149,7 @@ class LockedDoor < Door
         @open = FALSE
         @block = FALSE
     end
-    
+
     def tryMove(player)
         if @open == TRUE
             TRUE

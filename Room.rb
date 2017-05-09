@@ -43,11 +43,11 @@ class Room
   def describe()
     dirs = ["north", "east", "south", "west"]
     dirs.each_with_index{ |direction, i|
-      print "In the " + direction + " of the room you can see a wall:\n\t"
-      @walls[i].describe()
+      print(("In the " + direction + " of the room you can see a wall:\n\t").green())
+      puts @walls[i].describe().green()
       if (!@doors[i].nil?)
-        print "    You can also see a door:\n      "
-        @doors[i].describe()
+        print("    You can also see a door:\n      ".green())
+        @doors[i].describe().green()
       end
       puts
     }
@@ -86,6 +86,6 @@ class Room
     if(monster_killed)
       player.add_item(4.0/7.0*100.0)
     end
-    puts "You've searched everywhere."
+    puts "You've searched everywhere.".yellow()
   end
 end

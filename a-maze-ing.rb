@@ -55,11 +55,11 @@ class Game
   def mainloop()
     while !@player.isDead && !@player.hasWon
       if (@current.nil?)
-        puts ("Created room at " + @x.to_s + " " + @y.to_s).blue()
+        puts ("Created room at " + @x.to_s + " " + @y.to_s).grey()
         @current = Room.new(@x, @y, getRoomParams())
         @rooms << @current
       end
-      puts ("Went in room " + @x.to_s + " " + @y.to_s).blue()
+      puts ("Went in room " + @x.to_s + " " + @y.to_s).grey()
       @current.describe()
       if @dragon >= 1
         @dragon -= 1
@@ -85,7 +85,7 @@ class Game
       can_move = FALSE
       direction = nil
       while !can_move
-        puts "Select a direction in the availables: "
+        puts "Select a direction in the availables: ".magenta()
         @current.availableDoors()
         direction = get_direction()
         if @current.canMove(direction)

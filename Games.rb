@@ -1,10 +1,10 @@
 class Rps
   def initialize()
-    print("Fight versus a monster begin!\n")
+    print("Fight versus a monster begin!\n".cyan())
   end
 
 	class Weapon
-	
+
     end
 
 	class Rock < Weapon
@@ -90,29 +90,29 @@ class Rps
 
     index = nil
   	until index != nil do
-      puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :"
+      puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :".magenta()
       weaponChosenName = gets.chomp
       index = weaponsTab.find_index(weaponChosenName.downcase().capitalize())
       if(index == nil)
         index = weaponsTab.map { |e|  e[0].upcase}.find_index(weaponChosenName.upcase)
       end
       if(index == nil)
-        puts "incorrect input"
+        puts "Incorrect input!!!"
       end
   	end
-    
+
   	randomWeaponName = weaponsTab[rand(3)]
-  	print("You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n")
+  	print("You chose #{weaponChosenName}, your opponent chose #{randomWeaponName}\n".red())
   	weaponChosen = eval(weaponsTab[index] + ".new")
   	randomWeapon = eval(randomWeaponName + ".new")
 
   	result = weaponChosen.attack(randomWeapon)
   	if result == 0
-        print ("It's a tie!\n")
+        print ("It's a tie!\n".grey())
   	elsif result == 1
-        print ("You win!\n")
+        print ("You win!\n".grey())
   	else
-        print ("You lose!\n")
+        print ("You lose!\n".grey())
   	end
     result
   end

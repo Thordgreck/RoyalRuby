@@ -26,11 +26,11 @@ class Wall
   end
 
   def describe()
-    print(@desc + "\n")
+    @desc
   end
 
   def help()
-    print(@helpDesc + "\n")
+    @helpDesc
   end
 
   def get_loot_probability()

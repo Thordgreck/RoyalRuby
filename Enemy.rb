@@ -23,23 +23,23 @@ class Enemy
     @name
     @desc
     @helpDesc
-    
+
     def name()
         @name
     end
-    
+
     def describe()
-        print(@desc + "\n")
+        @desc
     end
-    
+
     def help()
-        print(@helpDesc + "\n")
+        @helpDesc
     end
-    
+
     def fight(player)
-        
+
     end
-    
+
     def playerSword(mobHp, player)
         s = player.swordUsage()
         if s > 0
@@ -47,16 +47,16 @@ class Enemy
             player.useSword()
             mobHp = 0
             if s > 0
-                print("You use your sword to kill the monster, #{s} utilisation left.\n")
+                print("You use your sword to kill the monster, #{s} utilisation left.\n".red())
             else
-                print("You have killed the monster but your sword broke down.\n")
+                print("You have killed the monster but your sword broke down.\n".red())
             end
         end
         mobHp
     end
-    
+
     def playerSpike(mobHp, player)
-        
+
         mobHp
     end
 end
@@ -75,32 +75,32 @@ class NormalEnemy < Enemy
         @desc = "A normal enemy."
         @helpDesc = "Naked guy, 1Hp and remove 1Hp."
     end
-    
+
     def fight(player)
         mobHp = 1
         mobHp = playerSword(mobHp, player)
         spike = player.haveSpike()
         gameEnd = FALSE
         game = Rps.new()
-        
+
         while mobHp > 0 and gameEnd == FALSE
             result = game.play()
             if result == 1
                 mobHp -= 1
-                print("You jump to dodge monster's attack and kill him.\n")
+                print("You jump to dodge monster's attack and kill him.\n".red())
             elsif result == 0
                 gameEnd = player.takeDamage(1, FALSE)
                 if spike == TRUE
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
                     mobHp -= 1
-                    print("Your leg hurt a bit, but the monster is dead. Maybe it's time to find a potion or something...\n")
+                    print("Your leg hurt a bit, but the monster is dead. Maybe it's time to find a potion or something...\n".red())
                 end
             else
                 gameEnd = player.takeDamage(1, FALSE)
@@ -108,12 +108,12 @@ class NormalEnemy < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
-                    print("You miss, but the monster doesn't. Care!\n")
+                    print("You miss, but the monster doesn't. Care!\n".red())
                 end
             end
         end
@@ -126,40 +126,32 @@ class Swordman < Enemy
         @desc = "Soldier with a sword."
         @helpDesc = "Care his hit remove 2Hp!"
     end
-    
-    def describe()
-        print(@desc + "\n")
-    end
-    
-    def help()
-        print(@helpDesc + "\n")
-    end
-    
+
     def fight(player)
         mobHp = 1
         mobHp = playerSword(mobHp, player)
         spike = player.haveSpike()
         game = Rps.new()
         gameEnd = FALSE
-        
+
         while mobHp > 0 and gameEnd == FALSE
             result = game.play()
             if result == 1
                 mobHp -= 1
-                print("You jump to dodge monster's attack and kill him.\n")
+                print("You jump to dodge monster's attack and kill him.\n".red())
             elsif result == 0
                 gameEnd = player.takeDamage(2, FALSE)
                 if spike == TRUE
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
                     mobHp -= 1
-                    print("You kill the monster.\n")
+                    print("You kill the monster.\n".red())
                 end
             else
                 gameEnd = player.takeDamage(2, FALSE)
@@ -167,12 +159,12 @@ class Swordman < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
-                    print("You miss, but the monster doesn't. Care!\n")
+                    print("You miss, but the monster doesn't. Care!\n".red())
                 end
             end
         end
@@ -185,22 +177,22 @@ class ArmoredGuy < Enemy
         @desc = "He got an armor."
         @helpDesc = "He tank one of your hit."
     end
-    
+
     def fight(player)
         mobHp = 2
         mobHp = playerSword(mobHp, player)
         spike = player.haveSpike()
         game = Rps.new()
         gameEnd = FALSE
-        
+
         while mobHp > 0 and gameEnd == FALSE
             result = game.play()
             if result == 1
                 mobHp -= 1
                 if mobHp == 0
-                    print("You jump to dodge monster's attack and kill him.\n")
+                    print("You jump to dodge monster's attack and kill him.\n".red())
                 else
-                    print("You hit the monster but only broke his armor, keep fighting!\n")
+                    print("You hit the monster but only broke his armor, keep fighting!\n".red())
                 end
             elsif result == 0
                 gameEnd = player.takeDamage(1, FALSE)
@@ -208,16 +200,16 @@ class ArmoredGuy < Enemy
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
                     mobHp -= 1
                     if mobHp == 0
-                        print("You need to find some Magician's drinks. The monster is dead.\n")
+                        print("You need to find some Magician's drinks. The monster is dead.\n".red())
                     else
-                        print("You hit the monster but only broke his armor, keep fighting!\n")
+                        print("You hit the monster but only broke his armor, keep fighting!\n".red())
                     end
                 end
             else
@@ -226,12 +218,12 @@ class ArmoredGuy < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
-                    print("You miss, but the monster doesn't. Care!\n")
+                    print("You miss, but the monster doesn't. Care!\n".red())
                 end
             end
         end
@@ -244,22 +236,22 @@ class Knight < Enemy
         @desc = "Look at his horse! His horse is a-maz-ing!"
         @helpDesc = "He tank one of your hit and deals 2Hp damage (Armor + sword)."
     end
-    
+
     def fight(player)
         mobHp = 2
         mobHp = playerSword(mobHp, player)
         spike = player.haveSpike()
         game = Rps.new()
         gameEnd = FALSE
-        
+
         while mobHp > 0 and gameEnd == FALSE
             result = game.play()
             if result == 1
                 mobHp -= 1
                 if mobHp == 0
-                    print("You jump to dodge monster's attack and kill him.\n")
+                    print("You jump to dodge monster's attack and kill him.\n".red())
                 else
-                    print("You broke the armor of the Knight, keep fighting!\n")
+                    print("You broke the armor of the Knight, keep fighting!\n".red())
                 end
             elsif result == 0
                 gameEnd = player.takeDamage(2, FALSE)
@@ -267,16 +259,16 @@ class Knight < Enemy
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
                     mobHp -= 1
                     if mobHp == 0
-                        print("You start to cry : \"MEDIC!!!! Oh no, wrong game... Damn knight...\"\n\n")
+                        print("You start to cry : \"MEDIC!!!! Oh no, wrong game... Damn knight...\"\n\n".red())
                     else
-                        print("You broke the armor of the Knight, keep fighting!\n")
+                        print("You broke the armor of the Knight, keep fighting!\n".red())
                     end
                 end
             else
@@ -285,12 +277,12 @@ class Knight < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n")
+                        print("The monster broke your spike, but he take damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n")
+                        print("The monster kill hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
-                    print("You miss, but the monster doesn't. Care!\n")
+                    print("You miss, but the monster doesn't. Care!\n".red())
                 end
             end
         end
@@ -303,28 +295,28 @@ class Magician < Enemy
         @desc = "Abracadabra!"
         @helpDesc = "Magic spell ignore armor!"
     end
-    
+
     def fight(player)
         mobHp = 1
         mobHp = playerSword(mobHp, player)
         game = Rps.new()
         gameEnd = FALSE
-        
+
         while mobHp > 0 and gameEnd == FALSE
             result = game.play()
             if result == 1
                 mobHp -= 1
-                print("You dodge the first fire ball, jump over the second one and cut the wizard's head. You found his hat really nice, but you have more important stuffs to carry...\n")
+                print("You dodge the first fire ball, jump over the second one and cut the wizard's head. You found his hat really nice, but you have more important stuffs to carry...\n".red())
                 elsif result == 0
                 gameEnd = player.takeDamage(1, TRUE)
                 if gameEnd == FALSE
                     mobHp -= 1
-                    print("You kill the magician but burning. You just start to hit you to remove the flame.\n")
+                    print("You kill the magician but burning. You just start to hit you to remove the flame.\n".red())
                 end
                 else
                 gameEnd = player.takeDamage(1, TRUE)
                 if gameEnd == FALSE
-                    print("You miss, but the fire ball doesn't. You're on fire! Care!\n")
+                    print("You miss, but the fire ball doesn't. You're on fire! Care!\n".red())
                 end
             end
         end
@@ -337,9 +329,9 @@ class Goblin < Enemy
         @desc = "This sneaky green goblin can steal you stuff, look around!"
         @helpDesc = "Goblin can steal you stuff from your Jean-Claude Van Damme's magical bag."
     end
-    
+
     def fight(player)
-        
+
     end
 end
 
@@ -349,8 +341,8 @@ class Giant < Enemy
         @desc = "Don't make him angry, he has enougth strength to throw you away."
         @helpDesc = "If you lose 3 times versus the giant, he throw you in the start's room of the maze."
     end
-    
+
     def fight(player)
-        
+
     end
 end
