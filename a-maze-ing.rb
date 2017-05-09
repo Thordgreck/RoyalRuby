@@ -19,13 +19,13 @@ class Game
 
   def getRoom(x, y, dir)
     if !dir.nil?
-      if Direction.value(dir) == Direction::NORTH
+      if dir == Direction::NORTH
         y += 1
-      elsif Direction.value(dir) == Direction::SOUTH
+      elsif dir == Direction::SOUTH
         y -= 1
-      elsif Direction.value(dir) == Direction::EAST
+      elsif dir == Direction::EAST
         x += 1
-      elsif Direction.value(dir) == Direction::WEST
+      elsif dir == Direction::WEST
         x -= 1
       end
     end
@@ -80,13 +80,13 @@ class Game
         end
       end
       @current = getRoom(@x, @y, direction)
-      if Direction.value(direction) == Direction::NORTH
+      if direction == Direction::NORTH
         @y += 1
-      elsif Direction.value(direction) == Direction::SOUTH
+      elsif direction == Direction::SOUTH
         @y -= 1
-      elsif Direction.value(direction) == Direction::EAST
+      elsif direction == Direction::EAST
         @x += 1
-      elsif Direction.value(direction) == Direction::WEST
+      elsif direction == Direction::WEST
         @x -= 1
       end
     end

@@ -3,12 +3,12 @@ require_relative('Direction.rb')
 def get_direction()
   puts("Where do you wan to go ?")
   a = ["n", "e", "s", "w"]
-  direction = Direction.key(a.index(gets.chomp.downcase))
+  direction = a.index(gets.chomp.downcase)
   while direction == nil
     puts "Not a good direction"
-    direction = Direction.key(a.index(gets.chomp.downcase))
+    direction = a.index(gets.chomp.downcase)
   end
-  puts "You want to go to "+direction.to_s.downcase
+  puts "You want to go to "+Direction.key(direction).to_s.downcase
   direction
 end
 

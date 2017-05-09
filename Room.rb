@@ -64,13 +64,13 @@ class Room
   end
 
   def canMove(direction)
-    if @doors[Direction.value(direction)] != nil
+    if @doors[direction] != nil
       return TRUE
     end
     return FALSE
   end
 
   def tryMove(direction, player)
-    @doors[Direction.value(direction)].tryMove(player)
+    @doors[direction].tryMove(player)
   end
 end
