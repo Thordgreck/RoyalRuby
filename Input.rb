@@ -17,8 +17,7 @@ def ask_param()
   result # If true -> Player / If false -> IA
 end
 
-def ask_new_game()
-  print("\nReady for another game? (y/N): ")
+def ask_yes_not()
   result = nil
   while result == nil
     r = gets.chomp.downcase
@@ -32,4 +31,9 @@ def ask_new_game()
     end
   end
   result
+end
+
+def ask_new_game()
+  print("\nReady for another game? (y/N): ")
+  ask_yes_not()
 end

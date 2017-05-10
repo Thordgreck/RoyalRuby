@@ -1,5 +1,11 @@
+require_relative 'Item.rb'
+
 class Player
+
+    attr_accessor :inventory
     def initialize()
+
+
         @hp = 10
         @maxHp = 10
         @armor = FALSE
@@ -29,7 +35,7 @@ class Player
       end
     end
 
-    def inventory()
+    def use_inventory()
       if !@inventory.empty?
         puts("In your inventory, you have the following items:".yellow())
         @inventory.each_with_index { |item, i|
@@ -132,6 +138,10 @@ class Player
       puts ("You want to go to "+Direction.key(direction).to_s.downcase).green()
       direction
     end
+
+    def removeItem(index)
+        @inventory.delete_at(index)
+    end
 end
 
 class IA < Player
@@ -139,40 +149,68 @@ class IA < Player
     # Each turn the IA check his inventory and use items
     def equip()
         if @armor == FALSE
-            # Equip armor
+            if @inventory.include? Armor
+                @inventory.delete_at(@inventory.index(Armor))
+                @armor = TRUE
+            end
         end
 
-        if @spike == FALSE
-            # Combine armor + spike
+        if @armor == TRUE and @spike == FALSE
+            if @inventory.include? Spike
+                @inventory.delete_at(@inventory.index(Spike))
+                @spike = TRUE
+            end
         end
 
         if @sword == 0
-            # Equip sword
+            if @inventory.include? Sword
+                @inventory.delete_at(@inventory.index(Sword))
+                @sword = 2
+            end
         end
 
         if @sword == 1
-            # Combine sword + poison
+            if @inventory.include? Poison
+                @inventory.delete_at(@inventory.index(Poison))
+                @sword = 3
+            end
         end
 
         if @hammer == 0
-            # Equip hammer
+            if @inventory.include? Hammer
+                @inventory.delete_at(@inventory.index(Hammer))
+                @hammer = 1
+            end
         end
 
-        # If potion in inventory >= 5 then create MegaPotion
-        # if potion >= 5
-        #   Create MegaPotion
-        # end
+        if @inventory.count(Potion) >= 5
+            x = 0
+            while x < 5
+                @inventory.delete_at(@inventory.index(Potion))
+                x += 1
+            end
+            @inventory.push(MegaPotion)
+        end
 
         if @hp <= 5
-            # Use MegaPotion
+            if @inventory.include? MegaPotion
+                @inventory.delete_at(@inventory.index(MegaPotion))
+                MegaPotion.drink()
+            end
         end
 
-        if @hp < @maxHp
-            # Use Potion
+        if @hp < 3
+            if @inventory.include? Potion
+                @inventory.delete_at(@inventory.index(Potion))
+                Potion.drink()
+            end
         end
 
         if @hp <= 5
-            # Use Mysterious Potion
+            if @inventory.include? MysteriousPotion
+                @inventory.delete_at(@inventory.index(MysteriousPotion))
+                MysteriousPotion.drink()
+            end
         end
     end
 
