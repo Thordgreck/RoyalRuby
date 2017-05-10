@@ -126,6 +126,8 @@ class Player
 end
 
 class IA < Player
+    
+    # Each turn the IA check his inventory and use items
     def equip()
         if @armor == FALSE
             # Equip armor
@@ -164,4 +166,5 @@ class IA < Player
             # Use Mysterious Potion
         end
     end
+    
 end
