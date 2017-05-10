@@ -55,11 +55,11 @@ class Game
   def mainloop()
     while !@player.isDead && !@player.hasWon
       if (@current.nil?)
-        puts ("Created room at " + @x.to_s + " " + @y.to_s).grey()
+        puts ("Created room at " + @x.to_s + " " + @y.to_s).white()
         @current = RoomFactory.newRoom(@x, @y, getRoomParams())
         @rooms << @current
       end
-      puts ("Went in room " + @x.to_s + " " + @y.to_s).grey()
+      puts ("Went in room " + @x.to_s + " " + @y.to_s).white()
       @current.describe()
       if @dragon >= 1
         @dragon -= 1
@@ -82,7 +82,7 @@ class Game
       puts "You look around in the room, maybe you will find something?".yellow()
       @current.loot(@player, fought_monster)
       if(!@player.inventory.empty?)
-        puts "Do you want to see your inventory ?"
+        puts "Do you want to see your inventory (y/N)?"
         if (result = ask_yes_not())
           puts
           @player.use_inventory()
