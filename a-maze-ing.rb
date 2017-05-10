@@ -109,6 +109,7 @@ class Game
 end
 
 again = TRUE
+print("INTRO TEXT")
 while again
   player = Player.new()
   game = Game.new(player)
