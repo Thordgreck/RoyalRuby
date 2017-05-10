@@ -133,6 +133,10 @@ class Player
     def equip()
         
     end
+    
+    def removeItem(index)
+        @inventory.delete_at(index)
+    end
 end
 
 class IA < Player
