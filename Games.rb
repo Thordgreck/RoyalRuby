@@ -107,11 +107,11 @@ class Rps
 
   	result = weaponChosen.attack(randomWeapon)
   	if result == 0
-        print ("It's a tie!\n".grey())
+        print ("It's a tie!\n".white())
   	elsif result == 1
-        print ("You win!\n".grey())
+        print ("You win!\n".white())
   	else
-        print ("You lose!\n".grey())
+        print ("You lose!\n".white())
   	end
     result
   end

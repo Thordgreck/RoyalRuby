@@ -46,7 +46,7 @@ class Room
       end
       if rand(3) < 2
         @doors[i] = DoorFactory.newDoor()
-        puts ('Created door ' + i.to_s).grey()
+        puts ('Created door ' + i.to_s).white()
       end
     }
     @is_loot = FALSE
