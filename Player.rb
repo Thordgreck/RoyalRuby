@@ -41,6 +41,13 @@ class Player
         @inventory.each_with_index { |item, i|
           puts("[#{i}]: #{item.discovery} (#{item.describe})")
         }
+        
+        print("Do you want to use some items ? (y/N)\n".magenta())
+        result = ask_yes_not
+        if result == TRUE
+            equip()
+        end
+        
       else
         puts("Your inventory is empty.".yellow())
       end
@@ -144,7 +151,7 @@ class Player
     end
     
     def equip()
-        a = FASLE
+        a = FALSE
         sp = FALSE
         s = FALSE
         ps = FALSE
@@ -157,7 +164,7 @@ class Player
         
         if @armor == FALSE
             if @inventory.include? Armor
-                print("You can equip an armor, do you want to equip it? (a / armor)").magenta()
+                print("You can equip an armor, do you want to equip it? (a / armor)".magenta())
                 a = TRUE
                 choice += " [a / armor]"
             end
@@ -165,7 +172,7 @@ class Player
         
         if @armor == TRUE and @spike == FALSE
             if @inventory.include? Spike
-                print("You have some spike, do you want to conbine them with your armor? (sp / spike)").magenta()
+                print("You have some spike, do you want to conbine them with your armor? (sp / spike)".magenta())
                 sp = TRUE
                 choice += " [sp / spike]"
             end
@@ -173,7 +180,7 @@ class Player
         
         if @sword == 0
             if @inventory.include? Sword
-                print("You have a sword in your magical bag. Do you want to take it? (s / sword)").magenta()
+                print("You have a sword in your magical bag. Do you want to take it? (s / sword)".magenta())
                 s = TRUE
                 choice += " [s / sword]"
             end
@@ -181,7 +188,7 @@ class Player
         
         if @sword < 3
             if @inventory.include? Poison
-                print("You have some poison, do you want to conbine it with your sword? (ps / poison)").magenta()
+                print("You have some poison, do you want to conbine it with your sword? (ps / poison)".magenta())
                 ps = TRUE
                 choice += " [ps / poison]"
             end
@@ -189,80 +196,96 @@ class Player
         
         if @hammer == 0
             if @inventory.include? Hammer
-                print("You have a hammer in your bag, do you want to take it? (h / hammer)").magenta()
+                print("You have a hammer in your bag, do you want to take it? (h / hammer)".magenta())
                 h = TRUE
                 choice += " [h / hammer]"
             end
         end
         
         if @inventory.count(Potion) >= 5
-            print("You have 5 potion in your bag, do you want to create a mega potion? (cmp / create)").magenta()
+            print("You have 5 potion in your bag, do you want to create a mega potion? (cmp / create)".magenta())
             cmp = TRUE
             choice += " [cmp / create]"
         end
         
         if @hp < @maxHp
             if @inventory.include? MegaPotion
-                print("You have a mega potion, do you want to use it? (mp / mega)").magenta()
+                print("You have a mega potion, do you want to use it? (mp / mega)".magenta())
                 mp = TRUE
                 choice += " [mp / mega]"
             end
             
             if @inventory.include? Potion
-                print("You have potion, do you want to use it? (p / potion)").magenta()
+                print("You have potion, do you want to use it? (p / potion)".magenta())
                 p = TRUE
                 choice += " [p / potion]"
             end
             
-            if @inventory.include? MysteriousPotion
-                print("YOu have a mysterious potion in your bag, it can be dangerous but do you want to use it? (myst / mysterious)").magenta()
+            if @inventory.include? MysteriousPot
+                print("YOu have a mysterious potion in your bag, it can be dangerous but do you want to use it? (myst / mysterious)".magenta())
                 myst = TRUE
                 choice += " [myst / mysterious]"
             end
         end
         
-        print(choice + "\n")
-        result = nil
-        while result == nil
-            r = gets.chomp.downcase
-            if (a == TRUE and r == "a" || a == TRUE and r == "armor")
-                @inventory.delete_at(@inventory.index(Armor))
-                @armor = TRUE
-                print("Armor on!")
-            elsif (a == TRUE and r == "sp" || a == TRUE and r == "spike")
-                @inventory.delete_at(@inventory.index(Spike))
-                @spike = TRUE
-                print("Spiked armor ready!")
-            elsif (sp == TRUE and r == "s" || sp == TRUE and r == "sword")
-                @inventory.delete_at(@inventory.index(Sword))
-                @sword = 2
-            elsif (ps == TRUE and r == "ps" || ps == TRUE and r == "poison")
-                @inventory.delete_at(@inventory.index(Poison))
-                @sword = 3
-            elsif (h == TRUE and r == "h" || h == TRUE and r == "hammer")
-                @inventory.delete_at(@inventory.index(Hammer))
-                @hammer = 1
-            elsif (cmp == TRUE and r == "cmp" || cmp == TRUE and r == "create")
-                x = 0
-                while x < 5
+        if (a == FALSE and sp == FALSE and s == FALSE and ps == FALSE and h == FALSE and cmp == FALSE and mp == FALSE and p == FALSE and myst == FALSE)
+            print("You can do nothing.\n")
+        else
+            print(choice + " [c / close]\n")
+            result = nil
+            while result == nil
+                r = gets.chomp.downcase
+                if (a == TRUE and r == "a" || a == TRUE and r == "armor")
+                    result = TRUE
+                    @inventory.delete_at(@inventory.index(Armor))
+                    @armor = TRUE
+                    print("Armor on!")
+                elsif (sp == TRUE and r == "sp" || sp == TRUE and r == "spike")
+                    result = TRUE
+                    @inventory.delete_at(@inventory.index(Spike))
+                    @spike = TRUE
+                    print("Spiked armor ready!")
+                elsif (s == TRUE and r == "s" || s == TRUE and r == "sword")
+                    result = TRUE
+                    @inventory.delete_at(@inventory.index(Sword))
+                    @sword = 2
+                elsif (ps == TRUE and r == "ps" || ps == TRUE and r == "poison")
+                    result = TRUE
+                    @inventory.delete_at(@inventory.index(Poison))
+                    @sword = 3
+                elsif (h == TRUE and r == "h" || h == TRUE and r == "hammer")
+                    result = TRUE
+                    @inventory.delete_at(@inventory.index(Hammer))
+                    @hammer = 1
+                elsif (cmp == TRUE and r == "cmp" || cmp == TRUE and r == "create")
+                    result = TRUE
+                    x = 0
+                    while x < 5
+                        @inventory.delete_at(@inventory.index(Potion))
+                        x += 1
+                    end
+                    @inventory.push(MegaPotion)
+                elsif (mp == TRUE and r == "mp" || mp == TRUE and r == "mega")
+                    result = TRUE
+                    @inventory.delete_at(@inventory.index(MegaPotion))
+                    MegaPotion.drink()
+                elsif (p == TRUE and r == "p" || p == TRUE and r == "potion")
+                    result = TRUE
                     @inventory.delete_at(@inventory.index(Potion))
-                    x += 1
+                    Potion.drink()
+                elsif (myst == TRUE and r == "myst" || myst == TRUE and r == "mysterious")
+                    result = TRUE
+                    @inventory.delete_at(@inventory.index(MysteriousPot))
+                    MysteriousPot.drink()
+                elsif (r == "c" || r == "close")
+                    result = FALSE
                 end
-                @inventory.push(MegaPotion)
-            elsif (mp == TRUE and r == "mp" || mp == TRUE and r == "mega")
-                @inventory.delete_at(@inventory.index(MegaPotion))
-                MegaPotion.drink()
-            elsif (p == TRUE and r == "p" || p == TRUE and r == "potion")
-                @inventory.delete_at(@inventory.index(Potion))
-                Potion.drink()
-            elsif (myst == TRUE and r == "myst" || myst == TRUE and r == "mysterious")
-                @inventory.delete_at(@inventory.index(MysteriousPotion))
-                MysteriousPotion.drink()
-            elsif (r == "close")
-                # CLOSE YOUR BAG
+                if (result == nil)
+                    print("Incorrect input\n")
+                end
             end
-            if (result == nil)
-                print("Incorrect input\n")
+            if result == TRUE
+                equip()
             end
         end
     end
@@ -331,9 +354,9 @@ class IA < Player
         end
 
         if @hp <= 5
-            if @inventory.include? MysteriousPotion
-                @inventory.delete_at(@inventory.index(MysteriousPotion))
-                MysteriousPotion.drink()
+            if @inventory.include? MysteriousPot
+                @inventory.delete_at(@inventory.index(MysteriousPot))
+                MysteriousPot.drink()
             end
         end
     end
