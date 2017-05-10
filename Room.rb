@@ -115,10 +115,10 @@ end
 
 
 
-class ExitRoom
+class ExitRoom < Room
 
 end
 
-class TreasureRoom
+class TreasureRoom < Room
 
 end
