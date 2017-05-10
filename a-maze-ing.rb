@@ -42,7 +42,7 @@ class Game
   def getRoomParams()
     retval = Array.new
     Direction.each do |key_, value|
-      room = getRoom(@x, @y, key_)
+      room = getRoom(@x, @y, value)
       if room.nil?
         retval << nil
       else
