@@ -1,7 +1,11 @@
 require_relative 'Item.rb'
 
 class Player
+
+    attr_accessor :inventory
     def initialize()
+
+
         @hp = 10
         @maxHp = 10
         @armor = FALSE
@@ -31,7 +35,7 @@ class Player
       end
     end
 
-    def inventory()
+    def use_inventory()
       if !@inventory.empty?
         puts("In your inventory, you have the following items:".yellow())
         @inventory.each_with_index { |item, i|
@@ -117,13 +121,13 @@ class Player
             @hp = @maxHp
         end
     end
-    
+
     def chooseWeapon()
-        
+
     end
-    
+
     def chooseDirection()
-        
+
     end
     
     def equip()
@@ -132,7 +136,7 @@ class Player
 end
 
 class IA < Player
-    
+
     # Each turn the IA check his inventory and use items
     def equip()
         if @armor == FALSE
@@ -148,21 +152,21 @@ class IA < Player
                 @spike = TRUE
             end
         end
-        
+
         if @sword == 0
             if @inventory.include? Sword
                 @inventory.delete_at(@inventory.index(Sword))
                 @sword = 2
             end
         end
-        
+
         if @sword == 1
             if @inventory.include? Poison
                 @inventory.delete_at(@inventory.index(Poison))
                 @sword = 3
             end
         end
-        
+
         if @hammer == 0
             if @inventory.include? Hammer
                 @inventory.delete_at(@inventory.index(Hammer))
@@ -185,14 +189,14 @@ class IA < Player
                 MegaPotion.drink()
             end
         end
-        
+
         if @hp < 3
             if @inventory.include? Potion
                 @inventory.delete_at(@inventory.index(Potion))
                 Potion.drink()
             end
         end
-        
+
         if @hp <= 5
             if @inventory.include? MysteriousPotion
                 @inventory.delete_at(@inventory.index(MysteriousPotion))
@@ -200,5 +204,5 @@ class IA < Player
             end
         end
     end
-    
+
 end
