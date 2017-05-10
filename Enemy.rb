@@ -94,7 +94,7 @@ class NormalEnemy < Enemy
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
@@ -108,7 +108,7 @@ class NormalEnemy < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
@@ -145,7 +145,7 @@ class Swordman < Enemy
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
@@ -159,7 +159,7 @@ class Swordman < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
@@ -200,7 +200,7 @@ class ArmoredGuy < Enemy
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
                         print("The monster kill hisself on your spike but broke them.\n".red())
                     end
@@ -218,9 +218,9 @@ class ArmoredGuy < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n".red())
+                        print("The monster kills hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
                     print("You miss, but the monster doesn't!\n".red())
@@ -259,9 +259,9 @@ class Knight < Enemy
                     spike = FALSE
                     mobHp -= 2
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n".red())
+                        print("The monster kills hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
                     mobHp -= 1
@@ -277,9 +277,9 @@ class Knight < Enemy
                     spike = FALSE
                     mobHp -= 1
                     if mobHp > 0
-                        print("The monster broke your spike, but he take damage.\n".red())
+                        print("The monster broke your spike, but he takes damage.\n".red())
                     else
-                        print("The monster kill hisself on your spike but broke them.\n".red())
+                        print("The monster kills hisself on your spike but broke them.\n".red())
                     end
                 elsif gameEnd == FALSE
                     print("You miss, but the monster doesn't!\n".red())
@@ -331,9 +331,58 @@ class Goblin < Enemy
     end
 
     def fight(player)
+		isThief = rand(2)
+		if isThief == 0
+			if player.inventory.size >= 0
+				index = rand(player.inventory.size)
+				nameObj = player.inventory[index].name()
+				print("You are unlucky! The goblin stole your " + nameObj + ".\n").yellow()			
+				player.removeItem(index).rb
+			end
+		end
 
+		mobHp = 1
+        mobHp = playerSword(mobHp, player)
+        spike = player.haveSpike()
+        gameEnd = FALSE
+        game = Rps.new()
+
+        while mobHp > 0 and gameEnd == FALSE
+            result = game.play()
+            if result == 1
+                mobHp -= 1
+                print("You jump to dodge monster's attack and kill him.\n".red())
+            elsif result == 0
+                gameEnd = player.takeDamage(1, FALSE)
+                if spike == TRUE
+                    spike = FALSE
+                    mobHp -= 2
+                    print("The goblin kills hisself on your spike but broke them.\n".red())
+                elsif gameEnd == FALSE
+                    mobHp -= 1
+                    print("Your arm is bleeding, but the goblin is dead. Try do find a potion to heal!\n".red())
+                end
+            else
+                gameEnd = player.takeDamage(1, FALSE)
+                if spike == TRUE
+                    spike = FALSE
+                    mobHp -= 1
+                    print("The goblin kills hisself on your spike but broke them. Not very clever for a goblin.\n".red())
+                elsif gameEnd == FALSE
+                    print("You miss, but the goblin doesn't!\n".red())
+                end
+            end
+		end
     end
+
+
 end
+
+
+		
+
+
+
 
 class Giant < Enemy
     def initialize()
@@ -342,7 +391,62 @@ class Giant < Enemy
         @helpDesc = "If you lose 3 times versus the giant, he throw you in the start's room of the maze."
     end
 
-    def fight(player)
 
+
+    def fight(player)
+		mobHp = 3
+		mobHp = playerSword(mobHp, player)
+		spike = player.haveSpike()
+		gameEnd = FALSE
+		game = Rps.new()
+		monsterNervous = 0
+		
+		while mobHp > 0 and gameEnd == FALSE
+			result = game.play()
+			if result == 1
+				mobHp -= 1
+				if rand(2) == 1
+					monsterNervous += 1
+					puts ("Don't get angry the giant too much! You could have many regrets").red()
+				end
+				
+				print("You jump to dodge monster's attack and hurt him!".red())
+			elsif result == 0
+				gameEnd = player.takeDamage(1, FALSE)
+				if rand(2) == 1
+					monsterNervous += 1
+					puts ("Don't get angry the giant too much! You could have many regrets").red()
+				end
+                if spike == TRUE
+                    spike = FALSE
+                    mobHp -= 2
+                    if mobHp > 0
+                        print("The giant broke your spike, but he takes damage.\n".red())
+                    else
+                        print("The giant kills hisself on your spike but broke them.\n".red())
+                    end
+                elsif gameEnd == FALSE
+                    mobHp -= 1
+                    print("The giant gave you several blows, but he is dead. You will be short-lived if you don't find a potion quicky...\n".red())
+            	end
+			else
+				gameEnd = player.takeDamage(1, FALSE)
+                if spike == TRUE
+                    spike = FALSE
+                    mobHp -= 1
+                    if mobHp > 0
+                        print("The giant broke your spike, but he takes damage.\n".red())
+                    else
+                        print("The giant kills hisself on your spike but broke them.\n".red())
+                    end
+                elsif gameEnd == FALSE
+                    print("You miss, but the monster doesn't!\n".red())
+                end
+			end
+			if monsterNervous == 2
+				# TO DO
+				puts ("Oh dear... The giant is so angry on you! He makes you return to the first room").red()
+			end			
+		end
     end
 end
