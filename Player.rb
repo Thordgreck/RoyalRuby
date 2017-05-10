@@ -115,4 +115,53 @@ class Player
             @hp = @maxHp
         end
     end
+    
+    def chooseWeapon()
+        
+    end
+    
+    def chooseDirection()
+        
+    end
+end
+
+class IA < Player
+    def equip()
+        if @armor == FALSE
+            # Equip armor
+        end
+        
+        if @spike == FALSE
+            # Combine armor + spike
+        end
+        
+        if @sword == 0
+            # Equip sword
+        end
+        
+        if @sword == 1
+            # Combine sword + poison
+        end
+        
+        if @hammer == 0
+            # Equip hammer
+        end
+        
+        # If potion in inventory >= 5 then create MegaPotion
+        # if potion >= 5
+        #   Create MegaPotion
+        # end
+        
+        if @hp <= 5
+            # Use MegaPotion
+        end
+        
+        if @hp < @maxHp
+            # Use Potion
+        end
+        
+        if @hp <= 5
+            # Use Mysterious Potion
+        end
+    end
 end
