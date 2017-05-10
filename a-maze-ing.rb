@@ -56,7 +56,7 @@ class Game
     while !@player.isDead && !@player.hasWon
       if (@current.nil?)
         puts ("Created room at " + @x.to_s + " " + @y.to_s).grey()
-        @current = Room.new(@x, @y, getRoomParams())
+        @current = RoomFactory.newRoom(@x, @y, getRoomParams())
         @rooms << @current
       end
       puts ("Went in room " + @x.to_s + " " + @y.to_s).grey()
