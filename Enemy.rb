@@ -84,7 +84,7 @@ class NormalEnemy < Enemy
         game = Rps.new()
 
         while mobHp > 0 and gameEnd == FALSE
-            result = game.play()
+            result = game.play(player)
             if result == 1
                 mobHp -= 1
                 print("You jump to dodge monster's attack and kill him.\n".red())
@@ -135,7 +135,7 @@ class Swordman < Enemy
         gameEnd = FALSE
 
         while mobHp > 0 and gameEnd == FALSE
-            result = game.play()
+            result = game.play(player)
             if result == 1
                 mobHp -= 1
                 print("You jump to dodge monster's attack and kill him.\n".red())
@@ -186,7 +186,7 @@ class ArmoredGuy < Enemy
         gameEnd = FALSE
 
         while mobHp > 0 and gameEnd == FALSE
-            result = game.play()
+            result = game.play(player)
             if result == 1
                 mobHp -= 1
                 if mobHp == 0
@@ -245,7 +245,7 @@ class Knight < Enemy
         gameEnd = FALSE
 
         while mobHp > 0 and gameEnd == FALSE
-            result = game.play()
+            result = game.play(player)
             if result == 1
                 mobHp -= 1
                 if mobHp == 0
@@ -303,7 +303,7 @@ class Magician < Enemy
         gameEnd = FALSE
 
         while mobHp > 0 and gameEnd == FALSE
-            result = game.play()
+            result = game.play(player)
             if result == 1
                 mobHp -= 1
                 print("You dodge the first fire ball, jump over the second one and cut the wizard's head. You found his hat really nice, but you have more important stuffs to carry...\n".red())

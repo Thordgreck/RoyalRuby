@@ -1,6 +1,26 @@
 require_relative 'Door.rb'
 require_relative 'Wall.rb'
 
+class RoomFactory
+
+  def initialize()
+    @@is_treasure_room = FALSE
+  end
+  def RoomFactory.newRoom(x, y, rooms)
+    r = rand(60) + 1
+    if (r == 60)
+      if @is_treasure_room
+        ExitRoom.new(x, y, rooms)
+      else
+        TreasureRoom.new(x, y, rooms)
+        @@is_treasure_room = TRUE
+      end
+    end
+    Room.new(x, y, rooms)
+
+  end
+end
+
 class Room
   def initialize(x, y, rooms)
     @x = x
@@ -26,13 +46,14 @@ class Room
       end
       if rand(3) < 2
         @doors[i] = DoorFactory.newDoor()
-        puts ('Created door ' + i.to_s).grey()
+        puts ('Created door ' + i.to_s).white()
       end
     }
     @is_loot = FALSE
   end
 
   def hasCoord(x, y)
+    # puts @x, @y
     x == @x && y == @y
   end
 
@@ -55,13 +76,16 @@ class Room
 
   def availableDoors()
     puts
+    avail = []
     dirs = ["north", "east", "south", "west"]
     dirs.each_with_index{ |direction, i|
       if (!@doors[i].nil?)
-        puts @doors[i].name() + " in the " + direction + " (hint: " + direction[0] + ")"
+        puts @doors[i].name() + " in the " + direction + " (press: " + direction[0] + ")"
+        avail << i
       end
     }
     puts
+    avail
   end
 
   def canMove(direction)
@@ -88,4 +112,16 @@ class Room
     end
     puts "You've searched everywhere.".yellow()
   end
+end
+
+
+
+class ExitRoom < Room
+
+end
+
+class TreasureRoom < Room
+    def describe()
+      puts "you are in the TreasureRoom".cyan()
+    end
 end
