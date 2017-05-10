@@ -3,7 +3,7 @@ require_relative 'Wall.rb'
 
 class RoomFactory
 
-  def initialize
+  def initialize()
     @@is_treasure_room = FALSE
   end
   def RoomFactory.newRoom(x, y, rooms)
@@ -53,6 +53,7 @@ class Room
   end
 
   def hasCoord(x, y)
+    # puts @x, @y
     x == @x && y == @y
   end
 
