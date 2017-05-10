@@ -120,5 +120,7 @@ class ExitRoom < Room
 end
 
 class TreasureRoom < Room
-
+    def describe()
+      puts "you are in the TreasureRoom".cyan()
+    end
 end
