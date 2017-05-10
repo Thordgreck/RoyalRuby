@@ -14,50 +14,18 @@ class Game
     @x = 0
     @y = 0
     @player = player
-    @rooms = Array.new
     @current = nil
     @dragon = 0
   end
 
-  def getRoom(x, y, dir)
-    if !dir.nil?
-      if dir == Direction::NORTH
-        y += 1
-      elsif dir == Direction::SOUTH
-        y -= 1
-      elsif dir == Direction::EAST
-        x += 1
-      elsif dir == Direction::WEST
-        x -= 1
-      end
-    end
-    @rooms.each{ |room|
-      if room.hasCoord(x, y)
-        return room
-      end
-    }
-    nil
-  end
 
-  def getRoomParams()
-    retval = Array.new
-    Direction.each do |key_, value|
-      room = getRoom(@x, @y, value)
-      if room.nil?
-        retval << nil
-      else
-        retval << room.getInitParams(key_)
-      end
-    end
-    retval
-  end
 
   def mainloop()
     while !@player.isDead && !@player.hasWon
       if (@current.nil?)
         puts ("Created room at " + @x.to_s + " " + @y.to_s).white()
-        @current = RoomFactory.newRoom(@x, @y, getRoomParams())
-        @rooms << @current
+        @current = RoomFactory.newRoom(@x, @y)
+        RoomFactory.add_room(@current)
       end
       puts ("Went in room " + @x.to_s + " " + @y.to_s).white()
       @current.describe()
@@ -98,7 +66,7 @@ class Game
           can_move = @current.tryMove(direction, @player)
         end
       end
-      @current = getRoom(@x, @y, direction)
+      @current = RoomFactory.getRoom(@x, @y, direction)
       if direction == Direction::NORTH
         @y += 1
       elsif direction == Direction::SOUTH

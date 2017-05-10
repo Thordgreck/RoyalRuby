@@ -2,33 +2,74 @@ require_relative 'Door.rb'
 require_relative 'Wall.rb'
 
 class RoomFactory
-
+  @@is_treasure_room = FALSE
+  @@rooms = Array.new
   def initialize()
-    @@is_treasure_room = FALSE
+
   end
-  def RoomFactory.newRoom(x, y, rooms)
+  def RoomFactory.newRoom(x, y)
+    room_params = getRoomParams(x, y)
     r = rand(60) + 1
     if (r == 60)
       if @is_treasure_room
-        ExitRoom.new(x, y, rooms)
+        ExitRoom.new(x, y, room_params)
       else
-        TreasureRoom.new(x, y, rooms)
+        TreasureRoom.new(x, y, room_params)
         @@is_treasure_room = TRUE
       end
     end
-    Room.new(x, y, rooms)
+    Room.new(x, y, room_params)
+  end
 
+  def RoomFactory.getRoom(x, y, dir)
+    if !dir.nil?
+      if dir == Direction::NORTH
+        y += 1
+      elsif dir == Direction::SOUTH
+        y -= 1
+      elsif dir == Direction::EAST
+        x += 1
+      elsif dir == Direction::WEST
+        x -= 1
+      end
+    end
+    @@rooms.each{ |room|
+      if room.hasCoord(x, y)
+        return room
+      end
+    }
+    nil
+  end
+
+  def RoomFactory.add_room(room)
+    @@rooms << room
+  end
+
+  def RoomFactory.getRoomParams(x, y)
+    retval = Array.new
+    Direction.each do |key_, value|
+      room = getRoom(x, y, value)
+      if room.nil?
+        retval << nil
+      else
+        retval << room.getInitParams(key_)
+      end
+    end
+    retval
   end
 end
 
 class Room
-  def initialize(x, y, rooms)
+  attr_accessor :x
+  attr_accessor :y
+
+  def initialize(x, y, room_params)
     @x = x
     @y = y
     @searched = FALSE
     @walls = Array.new(4) {nil}
     @doors = Array.new(4) {nil}
-    rooms.each_with_index { |room, i|
+    room_params.each_with_index { |room, i|
       if !room.nil?
         @walls[i] = room[0]
         @doors[i] = room[1]
@@ -58,7 +99,7 @@ class Room
   end
 
   def getInitParams(dir)
-    [@walls[(Direction.value(dir) + 2) % 4], @doors[(Direction.value(dir) + 2) % 4]]
+    [@walls[(Direction.value(dir) + 2) % 4], @doors[(Direction.value(dir) + 2) % 4]] #return the wall and door in commum with the room on the opposite direction of @dir
   end
 
   def describe()
