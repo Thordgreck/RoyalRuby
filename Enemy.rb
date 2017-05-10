@@ -371,27 +371,21 @@ class Giant < Enemy
     end
 
     def angry(spike)
-        if spike
-            if rand(2) == 1
-                monsterNervous += 1
-                if monsterNervous == 2
-                    # TO DO -> GO BACK TO THE START
-                    puts ("Oh dear... The giant is so angry on you! He makes you return to the first room").red()
-                else
-                    puts ("The giant hurt himself on your spike and broke them. Don't make him angry too much! You could have many regrets").red()
-                end
+        if rand(2) == 1
+            monsterNervous += 1
+            if monsterNervous == 2
+                # TO DO -> GO BACK TO THE START
+                puts ("Oh dear... The giant is so angry on you! He makes you return to the first room").red()
             else
-                print("The giant broke your spike, but he takes damage.\n".red())
-            end
-        else
-            if rand(2) == 1
-                monsterNervous += 1
-                if monsterNervous == 2
-                    # TO DO -> GO BACK TO THE START
-                    puts ("Oh dear... The giant is so angry on you! He makes you return to the first room").red()
+                if spike
+                    puts ("The giant hurt himself on your spike and broke them. Don't make him angry too much! You could have many regrets").red()
                 else
                     puts ("You hurt the giant and he gets angry! Don't make him angry too much! You could have many regrets").red()
                 end
+            end
+        else
+            if spike
+                print("The giant broke your spike, but he takes damage.\n".red())
             else
                 print("You hurt the giant, keep fighting!\n".red())
             end
