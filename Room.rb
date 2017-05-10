@@ -4,21 +4,35 @@ require_relative 'Wall.rb'
 class RoomFactory
   @@is_treasure_room = FALSE
   @@rooms = Array.new
+  @@number_of_free_door = 1
   def initialize()
 
   end
   def RoomFactory.newRoom(x, y)
+    @@number_of_free_door -= 1
     room_params = getRoomParams(x, y)
     r = rand(60) + 1
-    if (r == 60)
-      if @is_treasure_room
-        ExitRoom.new(x, y, room_params)
+    room = nil
+    while room == nil
+      if (r == 60)
+        if @is_treasure_room
+          ExitRoom.new(x, y, room_params)
+        else
+          @@is_treasure_room = TRUE
+          room = TreasureRoom.new(x, y, room_params)
+        end
       else
-        TreasureRoom.new(x, y, room_params)
-        @@is_treasure_room = TRUE
+        room = Room.new(x, y, room_params)
+      end
+      if @@number_of_free_door == 0
+        room = nil
       end
     end
-    Room.new(x, y, room_params)
+    room
+  end
+
+  def RoomFactory.add_free_doors(nb)
+    @@number_of_free_door += nb
   end
 
   def RoomFactory.getRoom(x, y, dir)
@@ -73,6 +87,7 @@ class Room
       if !room.nil?
         @walls[i] = room[0]
         @doors[i] = room[1]
+        RoomFactory.add_free_doors(-@doors[i].free_door())
       end
     }
     @walls.each_with_index{ |wall, i|
@@ -87,6 +102,7 @@ class Room
       end
       if rand(3) < 2
         @doors[i] = DoorFactory.newDoor()
+        RoomFactory.add_free_doors(@doors[i].free_door())
         puts ('Created door ' + i.to_s).white()
       end
     }

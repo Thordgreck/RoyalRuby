@@ -35,6 +35,10 @@ class Door
     def tryMove(player)
 
     end
+
+    def free_door()
+      1
+    end
 end
 
 class NoDoor < Door
@@ -95,6 +99,10 @@ class StuckDoor < Door
         @helpDesc = "Launch a coin flip when you try to pass, if you lose, the door stay stuck."
         @open = FALSE
         @block = FALSE
+    end
+
+    def free_door()
+      0
     end
 
     def tryMove(player)
