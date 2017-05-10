@@ -55,13 +55,16 @@ class Room
 
   def availableDoors()
     puts
+    avail = []
     dirs = ["north", "east", "south", "west"]
     dirs.each_with_index{ |direction, i|
       if (!@doors[i].nil?)
-        puts @doors[i].name() + " in the " + direction + " (hint: " + direction[0] + ")"
+        puts @doors[i].name() + " in the " + direction + " (press: " + direction[0] + ")"
+        avail << i
       end
     }
     puts
+    avail
   end
 
   def canMove(direction)

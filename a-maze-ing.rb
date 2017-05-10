@@ -88,8 +88,7 @@ class Game
       direction = nil
       while !can_move
         puts "Select a direction in the availables: ".magenta()
-        @current.availableDoors()
-        direction = get_direction()
+        direction = @player.chooseDirection(@current.availableDoors())
         if @current.canMove(direction)
           can_move = @current.tryMove(direction, @player)
         end

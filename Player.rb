@@ -115,56 +115,65 @@ class Player
             @hp = @maxHp
         end
     end
-    
+
     def chooseWeapon()
-        
+      puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :".magenta()
+      gets.chomp
     end
-    
-    def chooseDirection()
-        
+
+    def chooseDirection(dir_list)
+      puts("Where do you wan to go ?".magenta())
+      a = ["n", "e", "s", "w"]
+      direction = a.index(gets.chomp.downcase)
+      while (direction == nil || !(dir_list.include? direction))
+        puts "Not a good direction"
+        direction = a.index(gets.chomp.downcase)
+      end
+      puts ("You want to go to "+Direction.key(direction).to_s.downcase).green()
+      direction
     end
 end
 
 class IA < Player
-    
+
     # Each turn the IA check his inventory and use items
     def equip()
         if @armor == FALSE
             # Equip armor
         end
-        
+
         if @spike == FALSE
             # Combine armor + spike
         end
-        
+
         if @sword == 0
             # Equip sword
         end
-        
+
         if @sword == 1
             # Combine sword + poison
         end
-        
+
         if @hammer == 0
             # Equip hammer
         end
-        
+
         # If potion in inventory >= 5 then create MegaPotion
         # if potion >= 5
         #   Create MegaPotion
         # end
-        
+
         if @hp <= 5
             # Use MegaPotion
         end
-        
+
         if @hp < @maxHp
             # Use Potion
         end
-        
+
         if @hp <= 5
             # Use Mysterious Potion
         end
     end
-    
+
 end
