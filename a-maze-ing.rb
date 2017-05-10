@@ -81,8 +81,13 @@ class Game
       end
       puts "You look around in the room, maybe you will find something?".yellow()
       @current.loot(@player, fought_monster)
-      puts
-      @player.inventory()
+      if(!@player.inventory.empty?)
+        puts "Do you want to see your inventory ?"
+        if (result = ask_yes_not())
+          puts
+          @player.use_inventory()
+        end
+      end
       puts
       can_move = FALSE
       direction = nil

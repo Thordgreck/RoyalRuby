@@ -1,5 +1,9 @@
 class Player
+
+    attr_accessor :inventory
     def initialize()
+
+
         @hp = 10
         @maxHp = 10
         @armor = FALSE
@@ -29,7 +33,7 @@ class Player
       end
     end
 
-    def inventory()
+    def use_inventory()
       if !@inventory.empty?
         puts("In your inventory, you have the following items:".yellow())
         @inventory.each_with_index { |item, i|
@@ -115,56 +119,56 @@ class Player
             @hp = @maxHp
         end
     end
-    
+
     def chooseWeapon()
-        
+
     end
-    
+
     def chooseDirection()
-        
+
     end
 end
 
 class IA < Player
-    
+
     # Each turn the IA check his inventory and use items
     def equip()
         if @armor == FALSE
             # Equip armor
         end
-        
+
         if @spike == FALSE
             # Combine armor + spike
         end
-        
+
         if @sword == 0
             # Equip sword
         end
-        
+
         if @sword == 1
             # Combine sword + poison
         end
-        
+
         if @hammer == 0
             # Equip hammer
         end
-        
+
         # If potion in inventory >= 5 then create MegaPotion
         # if potion >= 5
         #   Create MegaPotion
         # end
-        
+
         if @hp <= 5
             # Use MegaPotion
         end
-        
+
         if @hp < @maxHp
             # Use Potion
         end
-        
+
         if @hp <= 5
             # Use Mysterious Potion
         end
     end
-    
+
 end
