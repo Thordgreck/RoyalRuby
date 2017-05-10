@@ -121,11 +121,10 @@ class Room
   def describe()
     dirs = ["north", "east", "south", "west"]
     dirs.each_with_index{ |direction, i|
-      print(("In the " + direction + " of the room you can see a wall:\n\t").green())
-      puts @walls[i].describe().green()
+      print("In the ".green() + direction.blue() + " of the room you can see a ".green()+@walls[i].name().white())
       if (!@doors[i].nil?)
-        print("    You can also see a door:\n      ".green())
-        puts @doors[i].describe().green()
+        print(" with a ".green())
+        print @doors[i].name().white()
       end
       puts
     }
