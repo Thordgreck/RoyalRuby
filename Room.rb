@@ -97,7 +97,9 @@ class Room
       if !room.nil?
         @walls[i] = room[0]
         @doors[i] = room[1]
-        RoomFactory.add_free_doors(-@doors[i].free_door())
+        if !@doors[i].nil?
+          RoomFactory.add_free_doors(-2 *@doors[i].free_door())
+        end
       end
     }
     @walls.each_with_index{ |wall, i|
