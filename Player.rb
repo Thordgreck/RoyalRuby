@@ -36,8 +36,8 @@ class Player
     def initialize()
 
 
-        @hp = 10
-        @maxHp = 10
+        @hp = 100
+        @maxHp = 100
         @armor = FALSE
         @spike = FALSE
         @sword = 0 # MAX = 2 / If poison MAX = 3
@@ -161,16 +161,30 @@ class Player
 
     def chooseWeapon()
       puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :".magenta()
-      gets.chomp
+      possibilities = ["r", "p", "s"]
+      input = gets.chomp.downcase
+      if (input == "")
+        return possibilities[rand(possibilities.size)]
+      end
+      input
     end
 
     def chooseDirection(dir_list)
-      puts("Where do you wan to go ?".magenta())
+      list_avail = ""
+      dir_list.each { |dir|
+        list_avail += " " + String(Direction.key(dir))
+      }
+      puts "Where do you wan to go ? ".magenta() + list_avail.blue()
       a = ["n", "e", "s", "w"]
-      direction = a.index(gets.chomp.downcase)
+      input = gets.chomp.downcase
+      if (input == "")
+        return dir_list[rand(dir_list.size)]
+      end
+      direction = a.index(input)
       while (direction == nil || !(dir_list.include? direction))
         puts "Not a good direction"
-        direction = a.index(gets.chomp.downcase)
+        input = gets.chomp.downcase
+        direction = a.index(input)
       end
       puts ("You want to go to "+Direction.key(direction).to_s.downcase).green()
       direction
@@ -194,7 +208,7 @@ class Player
 
         if @armor == FALSE
             if @inventory.includesType? Armor
-                print("You can equip an armor, do you want to equip it? (a / armor)".magenta())
+                puts("You can equip an armor, do you want to equip it? (a / armor)".magenta())
                 a = TRUE
                 choice += " [a / armor]"
             end
@@ -202,7 +216,7 @@ class Player
 
         if @armor == TRUE && @spike == FALSE
             if @inventory.includesType? Spike
-                print("You have some spike, do you want to conbine them with your armor? (sp / spike)".magenta())
+                puts("You have some spike, do you want to conbine them with your armor? (sp / spike)".magenta())
                 sp = TRUE
                 choice += " [sp / spike]"
             end
@@ -210,7 +224,7 @@ class Player
 
         if @sword == 0
             if @inventory.includesType? Sword
-                print("You have a sword in your magical bag. Do you want to take it? (s / sword)".magenta())
+                puts("You have a sword in your magical bag. Do you want to take it? (s / sword)".magenta())
                 s = TRUE
                 choice += " [s / sword]"
             end
@@ -218,7 +232,7 @@ class Player
 
         if @sword < 3
             if @inventory.includesType? Poison
-                print("You have some poison, do you want to conbine it with your sword? (ps / poison)".magenta())
+                puts("You have some poison, do you want to conbine it with your sword? (ps / poison)".magenta())
                 ps = TRUE
                 choice += " [ps / poison]"
             end
@@ -226,33 +240,33 @@ class Player
 
         if @hammer == 0
             if @inventory.includesType? Hammer
-                print("You have a hammer in your bag, do you want to take it? (h / hammer)".magenta())
+                puts("You have a hammer in your bag, do you want to take it? (h / hammer)".magenta())
                 h = TRUE
                 choice += " [h / hammer]"
             end
         end
 
         if @inventory.countType(Potion) >= 5
-            print("You have 5 potion in your bag, do you want to create a mega potion? (cmp / create)".magenta())
+            puts("You have 5 potion in your bag, do you want to create a mega potion? (cmp / create)".magenta())
             cmp = TRUE
             choice += " [cmp / create]"
         end
 
         if @hp < @maxHp
             if @inventory.includesType? MegaPotion
-                print("You have a mega potion, do you want to use it? (mp / mega)".magenta())
+                puts("You have a mega potion, do you want to use it? (mp / mega)".magenta())
                 mp = TRUE
                 choice += " [mp / mega]"
             end
 
             if @inventory.includesType? Potion
-                print("You have potion, do you want to use it? (p / potion)".magenta())
+                puts("You have potion, do you want to use it? (p / potion)".magenta())
                 p = TRUE
                 choice += " [p / potion]"
             end
 
             if @inventory.includesType? MysteriousPot
-                print("YOu have a mysterious potion in your bag, it can be dangerous but do you want to use it? (myst / mysterious)".magenta())
+                puts("You have a mysterious potion in your bag, it can be dangerous but do you want to use it? (myst / mysterious)".magenta())
                 myst = TRUE
                 choice += " [myst / mysterious]"
             end
@@ -294,19 +308,19 @@ class Player
                         @inventory.delete_at(@inventory.indexOfType(Potion))
                         x += 1
                     end
-                    @inventory.push(MegaPotion)
+                    @inventory.push(MegaPotion.new())
                 elsif (mp == TRUE && r == "mp" || mp == TRUE && r == "mega")
                     result = TRUE
+                    MegaPotion.drink(self)
                     @inventory.delete_at(@inventory.indexOfType(MegaPotion))
-                    MegaPotion.drink()
                 elsif (p == TRUE && r == "p" || p == TRUE && r == "potion")
                     result = TRUE
+                    Potion.drink(self)
                     @inventory.delete_at(@inventory.indexOfType(Potion))
-                    Potion.drink()
                 elsif (myst == TRUE && r == "myst" || myst == TRUE && r == "mysterious")
                     result = TRUE
+                    MysteriousPot.drink(self)
                     @inventory.delete_at(@inventory.indexOfType(MysteriousPot))
-                    MysteriousPot.drink()
                 elsif (r == "c" || r == "close")
                     result = FALSE
                 end
