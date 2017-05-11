@@ -1,5 +1,35 @@
 require_relative 'Item.rb'
 
+class Array
+  def includesType?(type)
+    self.each { |elem|
+      if elem.class == type
+        return TRUE
+      end
+    }
+    FALSE
+  end
+
+  def countType(type)
+    i = 0
+    self.each { |elem|
+      if elem.class == type
+        i += 1
+      end
+    }
+    i
+  end
+
+  def indexOfType(type)
+    self.each_with_index { |elem, i|
+      if elem.class == type
+        return i
+      end
+    }
+    nil
+  end
+end
+
 class Player
 
     attr_accessor :inventory
@@ -163,7 +193,7 @@ class Player
         choice = "Possible choice :"
 
         if @armor == FALSE
-            if @inventory.include? Armor
+            if @inventory.includesType? Armor
                 print("You can equip an armor, do you want to equip it? (a / armor)".magenta())
                 a = TRUE
                 choice += " [a / armor]"
@@ -171,7 +201,7 @@ class Player
         end
 
         if @armor == TRUE && @spike == FALSE
-            if @inventory.include? Spike
+            if @inventory.includesType? Spike
                 print("You have some spike, do you want to conbine them with your armor? (sp / spike)".magenta())
                 sp = TRUE
                 choice += " [sp / spike]"
@@ -179,7 +209,7 @@ class Player
         end
 
         if @sword == 0
-            if @inventory.include? Sword
+            if @inventory.includesType? Sword
                 print("You have a sword in your magical bag. Do you want to take it? (s / sword)".magenta())
                 s = TRUE
                 choice += " [s / sword]"
@@ -187,7 +217,7 @@ class Player
         end
 
         if @sword < 3
-            if @inventory.include? Poison
+            if @inventory.includesType? Poison
                 print("You have some poison, do you want to conbine it with your sword? (ps / poison)".magenta())
                 ps = TRUE
                 choice += " [ps / poison]"
@@ -195,33 +225,33 @@ class Player
         end
 
         if @hammer == 0
-            if @inventory.include? Hammer
+            if @inventory.includesType? Hammer
                 print("You have a hammer in your bag, do you want to take it? (h / hammer)".magenta())
                 h = TRUE
                 choice += " [h / hammer]"
             end
         end
 
-        if @inventory.count(Potion) >= 5
+        if @inventory.countType(Potion) >= 5
             print("You have 5 potion in your bag, do you want to create a mega potion? (cmp / create)".magenta())
             cmp = TRUE
             choice += " [cmp / create]"
         end
 
         if @hp < @maxHp
-            if @inventory.include? MegaPotion
+            if @inventory.includesType? MegaPotion
                 print("You have a mega potion, do you want to use it? (mp / mega)".magenta())
                 mp = TRUE
                 choice += " [mp / mega]"
             end
 
-            if @inventory.include? Potion
+            if @inventory.includesType? Potion
                 print("You have potion, do you want to use it? (p / potion)".magenta())
                 p = TRUE
                 choice += " [p / potion]"
             end
 
-            if @inventory.include? MysteriousPot
+            if @inventory.includesType? MysteriousPot
                 print("YOu have a mysterious potion in your bag, it can be dangerous but do you want to use it? (myst / mysterious)".magenta())
                 myst = TRUE
                 choice += " [myst / mysterious]"
@@ -237,45 +267,45 @@ class Player
                 r = gets.chomp.downcase
                 if (a == TRUE && r == "a" || a == TRUE && r == "armor")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(Armor))
+                    @inventory.delete_at(@inventory.indexOfType(Armor))
                     @armor = TRUE
                     print("Armor on!")
                 elsif (sp == TRUE && r == "sp" || sp == TRUE && r == "spike")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(Spike))
+                    @inventory.delete_at(@inventory.indexOfType(Spike))
                     @spike = TRUE
                     print("Spiked armor ready!")
                 elsif (s == TRUE && r == "s" || s == TRUE && r == "sword")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(Sword))
+                    @inventory.delete_at(@inventory.indexOfType(Sword))
                     @sword = 2
                 elsif (ps == TRUE && r == "ps" || ps == TRUE && r == "poison")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(Poison))
+                    @inventory.delete_at(@inventory.indexOfType(Poison))
                     @sword = 3
                 elsif (h == TRUE && r == "h" || h == TRUE && r == "hammer")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(Hammer))
+                    @inventory.delete_at(@inventory.indexOfType(Hammer))
                     @hammer = 1
                 elsif (cmp == TRUE && r == "cmp" || cmp == TRUE && r == "create")
                     result = TRUE
                     x = 0
                     while x < 5
-                        @inventory.delete_at(@inventory.index(Potion))
+                        @inventory.delete_at(@inventory.indexOfType(Potion))
                         x += 1
                     end
                     @inventory.push(MegaPotion)
                 elsif (mp == TRUE && r == "mp" || mp == TRUE && r == "mega")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(MegaPotion))
+                    @inventory.delete_at(@inventory.indexOfType(MegaPotion))
                     MegaPotion.drink()
                 elsif (p == TRUE && r == "p" || p == TRUE && r == "potion")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(Potion))
+                    @inventory.delete_at(@inventory.indexOfType(Potion))
                     Potion.drink()
                 elsif (myst == TRUE && r == "myst" || myst == TRUE && r == "mysterious")
                     result = TRUE
-                    @inventory.delete_at(@inventory.index(MysteriousPot))
+                    @inventory.delete_at(@inventory.indexOfType(MysteriousPot))
                     MysteriousPot.drink()
                 elsif (r == "c" || r == "close")
                     result = FALSE
@@ -296,66 +326,66 @@ class IA < Player
     # Each turn the IA check his inventory and use items
     def equip()
         if @armor == FALSE
-            if @inventory.include? Armor
-                @inventory.delete_at(@inventory.index(Armor))
+            if @inventory.includesType? Armor
+                @inventory.delete_at(@inventory.indexOfType(Armor))
                 @armor = TRUE
             end
         end
 
         if @armor == TRUE && @spike == FALSE
-            if @inventory.include? Spike
-                @inventory.delete_at(@inventory.index(Spike))
+            if @inventory.includesType? Spike
+                @inventory.delete_at(@inventory.indexOfType(Spike))
                 @spike = TRUE
             end
         end
 
         if @sword == 0
-            if @inventory.include? Sword
-                @inventory.delete_at(@inventory.index(Sword))
+            if @inventory.includesType? Sword
+                @inventory.delete_at(@inventory.indexOfType(Sword))
                 @sword = 2
             end
         end
 
         if @sword == 1
-            if @inventory.include? Poison
-                @inventory.delete_at(@inventory.index(Poison))
+            if @inventory.includesType? Poison
+                @inventory.delete_at(@inventory.indexOfType(Poison))
                 @sword = 3
             end
         end
 
         if @hammer == 0
-            if @inventory.include? Hammer
-                @inventory.delete_at(@inventory.index(Hammer))
+            if @inventory.includesType? Hammer
+                @inventory.delete_at(@inventory.indexOfType(Hammer))
                 @hammer = 1
             end
         end
 
-        if @inventory.count(Potion) >= 5
+        if @inventory.countType(Potion) >= 5
             x = 0
             while x < 5
-                @inventory.delete_at(@inventory.index(Potion))
+                @inventory.delete_at(@inventory.indexOfType(Potion))
                 x += 1
             end
             @inventory.push(MegaPotion)
         end
 
         if @hp <= 5
-            if @inventory.include? MegaPotion
-                @inventory.delete_at(@inventory.index(MegaPotion))
+            if @inventory.includesType? MegaPotion
+                @inventory.delete_at(@inventory.indexOfType(MegaPotion))
                 MegaPotion.drink()
             end
         end
 
         if @hp < 3
-            if @inventory.include? Potion
-                @inventory.delete_at(@inventory.index(Potion))
+            if @inventory.includesType? Potion
+                @inventory.delete_at(@inventory.indexOfType(Potion))
                 Potion.drink()
             end
         end
 
         if @hp <= 5
-            if @inventory.include? MysteriousPot
-                @inventory.delete_at(@inventory.index(MysteriousPot))
+            if @inventory.includesType? MysteriousPot
+                @inventory.delete_at(@inventory.indexOfType(MysteriousPot))
                 MysteriousPot.drink()
             end
         end
