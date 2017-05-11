@@ -40,7 +40,7 @@ class Item
         @helpDesc
     end
 
-    def drink(player)
+    def Item.drink(player)
 
     end
 
@@ -110,7 +110,7 @@ class Potion < Item
         @discovery = "a "+@name
     end
 
-    def drink(player)
+    def Potion.drink(player)
         player.heal(1)
     end
 end
@@ -123,7 +123,7 @@ class Poison < Item
         @discovery = "a "+@name
     end
 
-    def drink(player)
+    def Poison.drink(player)
         player.heal(-1)
     end
 end
@@ -136,7 +136,7 @@ class MysteriousPot < Item
         @discovery = "a "+@name
     end
 
-    def drink(player)
+    def MysteriousPot.drink(player)
         x = rand(2)
         if x == 0
             player.heal(2)
@@ -154,7 +154,7 @@ class MegaPotion < Item
         @discovery = "a "+@name
     end
 
-    def drink(player)
+    def MegaPotion.drink(player)
         player.heal(player.getMaxHp())
     end
 end

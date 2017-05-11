@@ -63,11 +63,12 @@ class Game
       direction = nil
       avail = @current.availableDoors()
       while !can_move
-        puts "Select a direction in the availables: ".magenta()
+        puts "Select a direction in the availables:".magenta()
         direction = @player.chooseDirection(avail)
         if @current.canMove(direction)
           can_move = @current.tryMove(direction, @player)
         end
+        avail.delete_at(avail.index(direction))
       end
       @current = RoomFactory.getRoom(@x, @y, direction)
       if direction == Direction::NORTH
