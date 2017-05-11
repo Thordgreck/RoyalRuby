@@ -178,15 +178,16 @@ class Player
       a = ["n", "e", "s", "w"]
       input = gets.chomp.downcase
       if (input == "")
-        return dir_list[rand(dir_list.size)]
+        direction = dir_list[rand(dir_list.size)]
+      else
+        direction = a.index(input)
       end
-      direction = a.index(input)
       while (direction == nil || !(dir_list.include? direction))
         puts "Not a good direction"
         input = gets.chomp.downcase
         direction = a.index(input)
       end
-      puts ("You want to go to "+Direction.key(direction).to_s.downcase).green()
+      puts ("You want to go toward the " + Direction.key(direction).to_s.downcase).green()
       direction
     end
 
