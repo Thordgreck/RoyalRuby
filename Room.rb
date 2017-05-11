@@ -5,6 +5,7 @@ class RoomFactory
   @@is_treasure_room = FALSE
   @@rooms = Array.new
   @@number_of_free_door = 1
+  @@treasure_room = nil
   def initialize()
 
   end
@@ -20,17 +21,26 @@ class RoomFactory
         else
           @@is_treasure_room = TRUE
           room = TreasureRoom.new(x, y, room_params)
+          if @@number_of_free_door == 0
+            room = nil
+          else
+            @@treasure_room = room
+          end
         end
       else
         room = Room.new(x, y, room_params)
+        if @@number_of_free_door == 0
+          room = nil
+        end
       end
-      if @@number_of_free_door == 0
-        room = nil
-      end
+
     end
     room
   end
 
+  def RoomFactory.get_treasure_room()
+    @@treasure_room
+  end
   def RoomFactory.add_free_doors(nb)
     @@number_of_free_door += nb
   end
@@ -109,6 +119,10 @@ class Room
     @is_loot = FALSE
   end
 
+  def wakes_dragon()
+    FALSE
+  end
+
   def hasCoord(x, y)
     # puts @x, @y
     x == @x && y == @y
@@ -173,11 +187,23 @@ end
 
 
 class ExitRoom < Room
-
+  def describe()
+    puts "You win !!!!!!!!!!!!!".bold_cyan()
+    exit()
+  end
 end
 
 class TreasureRoom < Room
     def describe()
-      puts "you are in the TreasureRoom".cyan()
+      puts "You are in the TreasureRoom".bold_cyan()
+    end
+
+    def wakes_dragon()
+        r = rand(5) + 1
+        if r == 1
+          TRUE
+        else
+          FALSE
+        end
     end
 end
