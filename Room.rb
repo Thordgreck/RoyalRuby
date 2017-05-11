@@ -16,8 +16,8 @@ class RoomFactory
     room = nil
     while room == nil
       if (r == 60)
-        if @is_treasure_room
-          ExitRoom.new(x, y, room_params)
+        if @@is_treasure_room
+          room =ExitRoom.new(x, y, room_params)
         else
           @@is_treasure_room = TRUE
           room = TreasureRoom.new(x, y, room_params)
