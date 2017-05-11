@@ -311,7 +311,7 @@ class Goblin < Enemy
     def fight(player)
       isThief = rand(2)
       if isThief == 0
-        if player.inventory.size >= 0
+        if player.inventory.size > 0
           index = rand(player.inventory.size)
           nameObj = player.inventory[index].name()
           print(("You are unlucky! The goblin stole your " + nameObj + ".\n").yellow())
