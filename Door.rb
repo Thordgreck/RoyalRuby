@@ -71,9 +71,9 @@ end
 
 class BrokenDoor < Door
     def initialize()
-        @name = ""
-        @desc = ""
-        @helpDesc = ""
+        @name = "Crack"
+        @desc = "There seems to be a crack in this wall, with the correct tools you may open it."
+        @helpDesc = "Use a hammer to break it!"
         @open = FALSE
         @block = FALSE
     end
@@ -82,6 +82,9 @@ class BrokenDoor < Door
         if @open == FALSE
             breakWall = player.useHammer()
             @open = breakWall
+            @name = "Big hole"
+            @desc = "You already broke this wall, you can pass easily."
+            @helpDesc = "Just pass"
         end
 
         if @open == TRUE
