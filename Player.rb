@@ -36,8 +36,8 @@ class Player
     def initialize()
 
 
-        @hp = 100
-        @maxHp = 100
+        @hp = 30
+        @maxHp = 30
         @armor = FALSE
         @spike = FALSE
         @sword = 0 # MAX = 2 / If poison MAX = 3
