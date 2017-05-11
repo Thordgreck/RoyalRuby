@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative 'Room.rb'
 require_relative 'Item.rb'
 require_relative 'Door.rb'
@@ -59,9 +61,10 @@ class Game
       puts
       can_move = FALSE
       direction = nil
+      avail = @current.availableDoors()
       while !can_move
         puts "Select a direction in the availables: ".magenta()
-        direction = @player.chooseDirection(@current.availableDoors())
+        direction = @player.chooseDirection(avail)
         if @current.canMove(direction)
           can_move = @current.tryMove(direction, @player)
         end
