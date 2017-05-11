@@ -15,7 +15,7 @@ class RoomFactory
     r = rand(60) + 1
     room = nil
     while room == nil
-      if (r == 60)
+      if (r <= 10)
         if @@is_treasure_room
           room =ExitRoom.new(x, y, room_params)
         else
