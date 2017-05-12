@@ -53,44 +53,43 @@ class Game
             end
             r = rand(3)
             fought_monster = FALSE
+            giantThrow = nil
             if r == 2
                 enemy = EnemyFactory.new()
-                enemy.fight(player)
+                giantThrow = enemy.fight(player)
                 fought_monster = TRUE
             end
             if player.isDead
                 return
             end
-            puts "You look around in the room, maybe you will find something?".yellow()
-            @@current.loot(player, fought_monster)
-            if(!player.inventory.empty?)
-                puts "Do you want to see your inventory (y/N)?".magenta()
-                if (result = ask_yes_not())
-                    puts
-                    player.use_inventory()
+            if giantThrow == nil
+                puts "You look around in the room, maybe you will find something?".yellow()
+                @@current.loot(player, fought_monster)
+                if(!player.inventory.empty?)
+                  player.use_inventory()
                 end
-            end
-            puts
-            can_move = FALSE
-            direction = nil
-            avail = @@current.availableDoors()
-            while !can_move
-                puts "Select a direction in the availables:".magenta()
-                direction = player.chooseDirection(avail)
-                if @@current.canMove(direction)
-                    can_move = @@current.tryMove(direction, player)
+                puts
+                can_move = FALSE
+                direction = nil
+                avail = @@current.availableDoors()
+                while !can_move
+                    puts "Select a direction in the availables:".magenta()
+                    direction = player.chooseDirection(avail)
+                    if @@current.canMove(direction)
+                        can_move = @@current.tryMove(direction, player)
+                    end
+                    avail.delete_at(avail.index(direction))
                 end
-                avail.delete_at(avail.index(direction))
-            end
-            @@current = RoomFactory.getRoom(@@x, @@y, direction)
-            if direction == Direction::NORTH
-                @@y += 1
-                elsif direction == Direction::SOUTH
-                @@y -= 1
-                elsif direction == Direction::EAST
-                @@x += 1
-                elsif direction == Direction::WEST
-                @@x -= 1
+                @@current = RoomFactory.getRoom(@@x, @@y, direction)
+                if direction == Direction::NORTH
+                    @@y += 1
+                    elsif direction == Direction::SOUTH
+                    @@y -= 1
+                    elsif direction == Direction::EAST
+                    @@x += 1
+                    elsif direction == Direction::WEST
+                    @@x -= 1
+                end
             end
         end
     end
@@ -100,6 +99,8 @@ class Game
     end
 
     def Game.setCurrent(x, y)
-        @@current = @@current.getRoom(0,0)
+        @@current = RoomFactory.getRoom(x,y, nil)
+        @@x = x
+        @@y = y
     end
 end

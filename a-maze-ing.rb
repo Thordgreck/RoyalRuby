@@ -9,7 +9,7 @@ print("---> INTRO TEXT\n")
 while again
   begin
     Game.reset()
-    Game.mainloop(Player.new())
+    Game.mainloop(IA.new())
   rescue WonGame => e
     puts "You win !!!!!!!!!!!!!".bold_cyan()
   rescue LooseGame => e
