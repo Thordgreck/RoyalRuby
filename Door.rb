@@ -5,9 +5,9 @@ class DoorFactory
             NormalDoor.new()
         elsif x <= 6 # 2/10
             StuckDoor.new()
-        elsif x <= 8 # 2/10
+        elsif x <= 9 # 3/10
             TrapDoor.new()
-        elsif x <= 10 # 2/10
+        elsif x <= 10 # 1/10
             LockedDoor.new()
         end
     end
