@@ -87,8 +87,8 @@ end
 class Compass < Item
     def initialize()
         @name = "Compass"
-        @desc = "A beautiful old compass slot in the rock, you can't pick it but it shows you a direction."
-        @helpDesc = "Show you the direction of the treasure room."
+        @desc = "A beautiful old compass slot in the rock."
+        @helpDesc = "Increase the chance to discover the treasure room or exit room."
         @discovery = "a "+@name
     end
 end

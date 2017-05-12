@@ -6,9 +6,8 @@ class RoomFactory
   @@rooms = Array.new
   @@number_of_free_door = 1
   @@treasure_room = nil
-  def initialize()
+  @@proba_special_room = 1
 
-  end
   def RoomFactory.newRoom(x, y)
     room = nil
     if (x == 0 && y == 0)
@@ -16,10 +15,10 @@ class RoomFactory
     end
     @@number_of_free_door -= 1
     room_params = getRoomParams(x, y)
-    r = rand(60) + 1
+    r = rand(20) + 1
 
     while room == nil
-      if (r <= 10)
+      if (r <= @@proba_special_room)
         if @@is_treasure_room
           room =ExitRoom.new(x, y, room_params)
         else
@@ -40,6 +39,10 @@ class RoomFactory
 
     end
     room
+  end
+
+  def RoomFactory.increase_probability_special_room()
+    @@proba_special_room +=1
   end
 
   def RoomFactory.get_treasure_room()
