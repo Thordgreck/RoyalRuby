@@ -155,7 +155,7 @@ end
 class LockedDoor < Door
     def initialize()
         @name = "Locked door"
-        @desc = "From the middle of the room, you can see a locket and a passcode on this door."
+        @desc = "From the middle of the room, you can see a locket on this door."
         @helpDesc = "If you have a key, you can use it to open the door. Or you can try to find the passcode for the door."
         @open = FALSE
         @block = FALSE
@@ -168,6 +168,9 @@ class LockedDoor < Door
             player.useKey()
             print("You use a key and pass succeed to open this door. #{player.haveKey()} key left.\n")
             @open = TRUE
+            @name = "Unocked door"
+            @desc = "From the middle of the room, you can see a locket on this opened door."
+            @helpDesc = "It's open, just go!"
             TRUE
         else
             print("You don't have any key, you may look for one or choose another direction\n")
