@@ -57,11 +57,7 @@ class Game
             puts "You look around in the room, maybe you will find something?".yellow()
             @@current.loot(player, fought_monster)
             if(!player.inventory.empty?)
-                puts "Do you want to see your inventory (y/N)?".magenta()
-                if (result = ask_yes_not())
-                    puts
-                    player.use_inventory()
-                end
+                player.use_inventory()
             end
             puts
             can_move = FALSE

@@ -76,20 +76,24 @@ class Player
     end
 
     def use_inventory()
-      if !@inventory.empty?
-        puts("In your inventory, you have the following items:".yellow())
-        @inventory.each_with_index { |item, i|
-          puts("[#{i}]: #{item.discovery} (#{item.describe})")
-        }
+      puts "Do you want to see your inventory (y/N)?".magenta()
+      if (result = ask_yes_not())
+          puts
+          if !@inventory.empty?
+            puts("In your inventory, you have the following items:".yellow())
+            @inventory.each_with_index { |item, i|
+              puts("[#{i}]: #{item.discovery} (#{item.describe})")
+            }
 
-        print("Do you want to use some items ? (y/N)\n".magenta())
-        result = ask_yes_not
-        if result == TRUE
-            equip()
-        end
+            print("Do you want to use some items ? (y/N)\n".magenta())
+            result = ask_yes_not
+            if result == TRUE
+                equip()
+            end
 
-      else
-        puts("Your inventory is empty.".yellow())
+          else
+            puts("Your inventory is empty.".yellow())
+          end
       end
     end
 
@@ -410,21 +414,21 @@ class IA < Player
         if @hp <= 5
             if @inventory.includesType? MegaPotion
                 @inventory.delete_at(@inventory.indexOfType(MegaPotion))
-                MegaPotion.drink()
+                MegaPotion.drink(self)
             end
         end
 
         if @hp < 3
             if @inventory.includesType? Potion
                 @inventory.delete_at(@inventory.indexOfType(Potion))
-                Potion.drink()
+                Potion.drink(self)
             end
         end
 
         if @hp <= 5
             if @inventory.includesType? MysteriousPot
                 @inventory.delete_at(@inventory.indexOfType(MysteriousPot))
-                MysteriousPot.drink()
+                MysteriousPot.drink(self)
             end
         end
     end
@@ -433,6 +437,12 @@ class IA < Player
       puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :".magenta()
       possibilities = ["r", "p", "s"]
       return possibilities[rand(possibilities.size)]
+    end
+
+    def use_inventory()
+      if !@inventory.empty?
+        equip()
+      end
     end
 
     def chooseDirection(dir_list)
@@ -445,7 +455,7 @@ class IA < Player
       a = ["n", "e", "s", "w"]
       direction = nil
       dir_list.each { |dir|
-        rs = RoomFactory.getRoom(Game.current.x, Game.current.y, dir)
+        rs = RoomFactory.getRoom(Game.getCurrent.x, Game.getCurrent().y, dir)
         if rs.nil?
           dir = rs
           break
@@ -453,16 +463,16 @@ class IA < Player
       }
       if direction.nil?
         dir_list.each { |dir|
-          rs = RoomFactory.getRoom(Game.current.x, Game.current.y, dir)
+          rs = RoomFactory.getRoom(Game.getCurrent().x, Game.getCurrent().y, dir)
           if !rs.nil?
-            if rs = list_room_visited[list_room_visited.size -1]
+            if rs = @list_room_visited[@list_room_visited.size() -1]
               direction = dir
               break
             end
           end
         }
       else
-        list_room_visited << Game.current
+        @list_room_visited << Game.getCurrent()
       end
       if direction.nil?
         direction = dir_list[rand(dir_list.size)]
