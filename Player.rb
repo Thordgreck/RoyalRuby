@@ -423,4 +423,9 @@ class IA < Player
         end
     end
 
+    def chooseWeapon()
+      puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :".magenta()
+      possibilities = ["r", "p", "s"]
+      return possibilities[rand(possibilities.size)]
+    end
 end
