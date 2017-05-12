@@ -15,6 +15,6 @@ require_relative 'colorize.rb'
 again = TRUE
 print("---> INTRO TEXT\n")
 while again
-  Game.mainloop(Player.new())
+  Game.mainloop(IA.new())
   again = ask_new_game()
 end

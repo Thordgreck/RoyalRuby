@@ -1,4 +1,5 @@
 require_relative 'Item.rb'
+require_relative 'Game.rb'
 
 class Array
   def includesType?(type)
@@ -355,6 +356,10 @@ end
 
 class IA < Player
 
+  def initialize()
+    @list_room_visited = []
+    super()
+  end
     # Each turn the IA check his inventory and use items
     def equip()
         if @armor == FALSE
@@ -427,5 +432,42 @@ class IA < Player
       puts "Make your choice between Rock (r), Paper (p) or Scissors (s) :".magenta()
       possibilities = ["r", "p", "s"]
       return possibilities[rand(possibilities.size)]
+    end
+
+    def chooseDirection(dir_list)
+      list_avail = ""
+
+      dir_list.each { |dir|
+        list_avail += " " + String(Direction.key(dir))
+      }
+      puts "Where do you wan to go ? ".magenta() + list_avail.blue()
+      a = ["n", "e", "s", "w"]
+      direction = nil
+      dir_list.each { |dir|
+        rs = RoomFactory.getRoom(Game.current.x, Game.current.y, dir)
+        if rs.nil?
+          dir = rs
+          break
+        end
+      }
+      if direction.nil?
+        dir_list.each { |dir|
+          rs = RoomFactory.getRoom(Game.current.x, Game.current.y, dir)
+          if !rs.nil?
+            if rs = list_room_visited[list_room_visited.size -1]
+              direction = dir
+              break
+            end
+          end
+        }
+      else
+        list_room_visited << Game.current
+      end
+      if direction.nil?
+        direction = dir_list[rand(dir_list.size)]
+      end
+
+      puts ("You want to go toward the " + Direction.key(direction).to_s.downcase).green()
+      direction
     end
 end
