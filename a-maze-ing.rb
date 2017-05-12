@@ -27,10 +27,16 @@ class Game
       if (@current.nil?)
         puts ("Created room at " + @x.to_s + " " + @y.to_s).white()
         @current = RoomFactory.newRoom(@x, @y)
+        if @current.wakes_dragon()
+          @dragon = 10
+        end
       end
       puts ("Went in room " + @x.to_s + " " + @y.to_s).white()
       @current.describe()
-      if @dragon >= 1
+      if @dragon == 10
+        puts "You woke the dragon!!!".red()
+        @player.takeDamage(1, TRUE)
+      elsif @dragon >= 1
         @dragon -= 1
         puts "The dragon attacks you!!!".red()
         @player.takeDamage(1, TRUE)
