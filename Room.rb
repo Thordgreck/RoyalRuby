@@ -10,10 +10,14 @@ class RoomFactory
 
   end
   def RoomFactory.newRoom(x, y)
+    room = nil
+    if (x == 0 && y == 0)
+      room = Room.new(x, y, Array.new(4) {[NormalWall.new(), NormalDoor.new()]})
+    end
     @@number_of_free_door -= 1
     room_params = getRoomParams(x, y)
     r = rand(60) + 1
-    room = nil
+
     while room == nil
       if (r <= 10)
         if @@is_treasure_room
@@ -103,6 +107,9 @@ class Room
         next
       end
       @walls[i] = WallFactory.new()
+      if @walls[i].class == BrokenWall
+        @doors[i] = BrokenDoor.new()
+      end
     }
     @doors.each_with_index{ |door, i|
       if !door.nil?
