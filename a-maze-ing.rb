@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative 'Player.rb'
+require_relative 'IA.rb'
 require_relative 'Game.rb'
 require_relative 'Exception.rb'
 
