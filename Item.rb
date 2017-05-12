@@ -143,8 +143,8 @@ class MysteriousPot < Item
             if player.getHp() > 0
                 print("You use a Mysterious potion and loose 1hp.\n")
             else
-                print("You'r dead...\n")
-                # TODO PLAYER DEAD HERE
+                print("Oh shit, that was poison...\n")
+                raise LooseGame.new()
             end
         end
     end
