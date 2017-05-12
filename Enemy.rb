@@ -368,8 +368,9 @@ class Giant < Enemy
     def angry(spike)
         if rand(2) == 1
             @monsterNervous += 1
-            if @monsterNervous == 2
-                # TO DO -> GO BACK TO THE START
+            if @monsterNervous >= 2
+                Game.setCurrent(0, 0)
+                @mobHp = 0
                 puts ("Oh dear... The giant is so angry on you! He makes you return to the first room").red()
             else
                 if spike
@@ -392,7 +393,6 @@ class Giant < Enemy
       spike = player.haveSpike()
       gameEnd = FALSE
       game = Rps.new()
-      @monsterNervous = 0
 
       while @mobHp > 0 and gameEnd == FALSE
         result = game.play(player)
@@ -435,9 +435,9 @@ class Giant < Enemy
             print("You miss, but the giant doesn't!\n".red())
           end
         end
-        if @monsterNervous == 2
-            Game.setCurrent(0, 0)
-        end
+      end
+      if @monsterNervous >= 2
+          TRUE
       end
     end
   end
