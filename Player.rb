@@ -72,6 +72,9 @@ class Player
         elsif item.class == Hammer
           print("The hammer you just found goes to your toolbox!\n")
           @hammer += 1
+        elsif item.class == Key
+          print("The key you just found goes to your keyring!\n")
+          @key += 1
         else
           @inventory << item
         end
