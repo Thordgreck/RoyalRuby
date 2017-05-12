@@ -143,6 +143,10 @@ class Player
         end
     end
 
+    def validate_move()
+        @sword
+    end
+
     def swordUsage()
         @sword
     end
@@ -363,6 +367,7 @@ class IA < Player
 
   def initialize()
     @list_room_visited = []
+    @need_save_room = FALSE
     super()
   end
     # Each turn the IA check his inventory and use items
@@ -455,9 +460,9 @@ class IA < Player
       a = ["n", "e", "s", "w"]
       direction = nil
       dir_list.each { |dir|
-        rs = RoomFactory.getRoom(Game.getCurrent.x, Game.getCurrent().y, dir)
+        rs = RoomFactory.getRoom(Game.getCurrent().x, Game.getCurrent().y, dir)
         if rs.nil?
-          dir = rs
+          direction = dir
           break
         end
       }
@@ -470,15 +475,21 @@ class IA < Player
               break
             end
           end
+          @need_save_room = FALSE
         }
       else
-        @list_room_visited << Game.getCurrent()
+        @need_save_room = TRUE
       end
-      if direction.nil?
-        direction = dir_list[rand(dir_list.size)]
-      end
+
 
       puts ("You want to go toward the " + Direction.key(direction).to_s.downcase).green()
       direction
     end
+
+    def validate_move()
+      if (@need_save_room)
+        @list_room_visited << Game.getCurrent()
+      end
+    end
+
 end

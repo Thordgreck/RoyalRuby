@@ -80,6 +80,7 @@ class Game
                     end
                     avail.delete_at(avail.index(direction))
                 end
+                player.validate_move()
                 @@current = RoomFactory.getRoom(@@x, @@y, direction)
                 if direction == Direction::NORTH
                     @@y += 1
