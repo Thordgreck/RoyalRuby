@@ -14,6 +14,7 @@ class Game
       @@y = 0
       @@current = nil
       @@dragon = 0
+      RoomFactory.reset()
     end
 
     def Game.mainloop(player)

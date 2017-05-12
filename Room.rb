@@ -9,6 +9,14 @@ class RoomFactory
   @@treasure_room = nil
   @@proba_special_room = 1
 
+  def RoomFactory.reset()
+    @@is_treasure_room = FALSE
+    @@rooms = Array.new
+    @@number_of_free_door = 1
+    @@treasure_room = nil
+    @@proba_special_room = 1
+  end
+
   def RoomFactory.newRoom(x, y)
     room = nil
     if (x == 0 && y == 0)
