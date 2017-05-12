@@ -4,6 +4,7 @@ class IA < Player
 
   def initialize()
     @list_room_visited = []
+    @list_room_visited_2 = []
     @need_save_room = FALSE
     super()
   end
@@ -109,15 +110,19 @@ class IA < Player
           if !rs.nil?
             if rs == @list_room_visited[@list_room_visited.size() -1]
               direction = dir
+              @list_room_visited.delete_at(@list_room_visited.size() -1)
               break
             end
           end
-          @need_save_room = FALSE
         }
+        @need_save_room = FALSE
       else
         @need_save_room = TRUE
       end
-
+      if (direction.nil ?)
+        print @list_room_visited
+        print @list_room_visited_2
+      end
 
       puts ("You want to go toward the " + Direction.key(direction).to_s.downcase).green()
       direction
@@ -126,6 +131,7 @@ class IA < Player
     def validate_move()
       if (@need_save_room)
         @list_room_visited << Game.getCurrent()
+        @list_room_visited_2 << Game.getCurrent()
       end
     end
 
