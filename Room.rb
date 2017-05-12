@@ -1,5 +1,6 @@
 require_relative 'Door.rb'
 require_relative 'Wall.rb'
+require_relative 'Direction.rb'
 
 class RoomFactory
   @@is_treasure_room = FALSE
@@ -196,8 +197,7 @@ end
 
 class ExitRoom < Room
   def describe()
-    puts "You win !!!!!!!!!!!!!".bold_cyan()
-    exit()
+    raise WonGame.new()
   end
 end
 

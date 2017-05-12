@@ -1,4 +1,5 @@
 require_relative 'Game.rb'
+require_relative 'Rps.rb'
 
 class EnemyFactory
     def EnemyFactory.new()

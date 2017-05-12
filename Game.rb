@@ -1,9 +1,14 @@
+require_relative 'colorize.rb'
+require_relative 'Room.rb'
+require_relative 'Enemy.rb'
+require_relative 'Input.rb'
+
 class Game
     @@x = 0
     @@y = 0
     @@current = nil
     @@dragon = 0
-    
+
     def Game.mainloop(player)
         while !player.isDead && !player.hasWon
             if (@@current.nil?)
@@ -85,11 +90,11 @@ class Game
             end
         end
     end
-    
+
     def Game.getCurrent()
         @@current
     end
-    
+
     def Game.setCurrent(x, y)
         @@current = RoomFactory.getRoom(x,y, nil)
         @@x = x
