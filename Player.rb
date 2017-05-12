@@ -67,8 +67,11 @@ class Player
         item = ItemFactory.new()
         print("You found #{item.discovery}\n")
         if item.class == Compass
-          print("the compass is used, now you have more chance to discover the treasure room or the exit room\n")
+          print("The compass is used, now you have more chance to discover the treasure room or the exit room\n")
           RoomFactory.increase_probability_special_room()
+        elsif item.class == Hammer
+          print("The hammer you just found goes to your toolbox!\n")
+          @hammer += 1
         else
           @inventory << item
         end
