@@ -48,6 +48,10 @@ class Player
         @inventory = []
     end
 
+    def dragonAttack()
+      @hp = 1
+    end
+
     def isDead()
       @dead
     end
