@@ -148,6 +148,10 @@ class Player
         @key -= 1
     end
 
+    def getHp()
+        @hp
+    end
+
     def getMaxHp()
         @maxHp
     end
@@ -284,24 +288,27 @@ class Player
                     result = TRUE
                     @inventory.delete_at(@inventory.indexOfType(Armor))
                     @armor = TRUE
-                    print("Armor on!")
+                    print("Armor on!\n")
                 elsif (sp == TRUE && r == "sp" || sp == TRUE && r == "spike")
                     result = TRUE
                     @inventory.delete_at(@inventory.indexOfType(Spike))
                     @spike = TRUE
-                    print("Spiked armor ready!")
+                    print("Spiked armor ready!\n")
                 elsif (s == TRUE && r == "s" || s == TRUE && r == "sword")
                     result = TRUE
                     @inventory.delete_at(@inventory.indexOfType(Sword))
                     @sword = 2
+                    print("Sword equiped!\n")
                 elsif (ps == TRUE && r == "ps" || ps == TRUE && r == "poison")
                     result = TRUE
                     @inventory.delete_at(@inventory.indexOfType(Poison))
                     @sword = 3
+                    print("Poison applyed on your sword.\n")
                 elsif (h == TRUE && r == "h" || h == TRUE && r == "hammer")
                     result = TRUE
                     @inventory.delete_at(@inventory.indexOfType(Hammer))
                     @hammer = 1
+                    print("Hammer equiped.\n")
                 elsif (cmp == TRUE && r == "cmp" || cmp == TRUE && r == "create")
                     result = TRUE
                     x = 0
@@ -310,6 +317,7 @@ class Player
                         x += 1
                     end
                     @inventory.push(MegaPotion.new())
+                    print("Megapotion created.\n")
                 elsif (mp == TRUE && r == "mp" || mp == TRUE && r == "mega")
                     result = TRUE
                     MegaPotion.drink(self)

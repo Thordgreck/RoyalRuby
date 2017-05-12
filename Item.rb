@@ -112,6 +112,7 @@ class Potion < Item
 
     def Potion.drink(player)
         player.heal(1)
+        print("Potion used.\n")
     end
 end
 
@@ -121,10 +122,6 @@ class Poison < Item
         @desc = "Neither Magicians nor monsters like it"
         @helpDesc = "-1Hp, saaaad :'( Can be use to improve sword efficiency (Sword = 3 use)."
         @discovery = "a "+@name
-    end
-
-    def Poison.drink(player)
-        player.heal(-1)
     end
 end
 
@@ -140,8 +137,15 @@ class MysteriousPot < Item
         x = rand(2)
         if x == 0
             player.heal(2)
+            print("You use a Mysterious potion and gain 2hp.\n")
         else
             player.heal(-1)
+            if player.getHp() > 0
+                print("You use a Mysterious potion and loose 1hp.\n")
+            else
+                print("You'r dead...\n")
+                # TODO PLAYER DEAD HERE
+            end
         end
     end
 end
@@ -156,6 +160,7 @@ class MegaPotion < Item
 
     def MegaPotion.drink(player)
         player.heal(player.getMaxHp())
+        print("You use a Megapotion, you'r now full life.\n")
     end
 end
 
