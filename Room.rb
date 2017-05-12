@@ -33,8 +33,8 @@ class RoomFactory
           room = nil
         end
       end
-
     end
+    @@rooms << room
     room
   end
 
@@ -63,10 +63,6 @@ class RoomFactory
       end
     }
     nil
-  end
-
-  def RoomFactory.add_room(room)
-    @@rooms << room
   end
 
   def RoomFactory.getRoomParams(x, y)

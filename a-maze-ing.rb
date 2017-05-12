@@ -27,7 +27,6 @@ class Game
       if (@current.nil?)
         puts ("Created room at " + @x.to_s + " " + @y.to_s).white()
         @current = RoomFactory.newRoom(@x, @y)
-        RoomFactory.add_room(@current)
       end
       puts ("Went in room " + @x.to_s + " " + @y.to_s).white()
       @current.describe()
