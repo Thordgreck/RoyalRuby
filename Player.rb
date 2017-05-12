@@ -117,6 +117,7 @@ class Player
                 if @hp > 0
                     print("You lost #{dmg}Hp.\n".red())
                 else
+                  raise LooseGame.new()
                     print("You left your wife, your son, your home and this world for a better life...\n")
                     @dead = TRUE
                     gameEnd = TRUE
