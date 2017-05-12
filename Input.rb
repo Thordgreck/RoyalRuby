@@ -5,9 +5,9 @@ def ask_param()
   result = nil
   while result == nil
     r = gets.chomp.downcase
-    if (r == "ia" || r == "IA" || r == "")
+    if (r == "ia" || r == "i")
       result = false
-    elsif (r == "me" || r == "m")
+    elsif (r == "me" || r == "m" || r == "")
       result = true
     end
     if (result == nil)

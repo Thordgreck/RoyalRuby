@@ -14,10 +14,15 @@ kill you and eat you. You will also find objects that will help you fight
 monsters, survive, find the treasure and leave the maze.\n".bold_blue())
 won = 0
 lost = 0
+player = ask_param()
 while again
   begin
     Game.reset()
-    Game.mainloop(Player.new())
+    if (player)
+      Game.mainloop(Player.new())
+    else
+      Game.mainloop(IA.new())
+    end
   rescue WonGame => e
     puts "You win !!!!!!!!!!!!!".bold_cyan()
     won += 1
