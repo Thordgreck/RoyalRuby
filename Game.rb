@@ -9,6 +9,13 @@ class Game
     @@current = nil
     @@dragon = 0
 
+    def Game.reset()
+      @@x = 0
+      @@y = 0
+      @@current = nil
+      @@dragon = 0
+    end
+
     def Game.mainloop(player)
         while !player.isDead && !player.hasWon
             if (@@current.nil?)

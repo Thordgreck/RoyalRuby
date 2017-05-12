@@ -8,6 +8,7 @@ again = TRUE
 print("---> INTRO TEXT\n")
 while again
   begin
+    Game.reset()
     Game.mainloop(Player.new())
   rescue WonGame => e
     puts "You win !!!!!!!!!!!!!".bold_cyan()
