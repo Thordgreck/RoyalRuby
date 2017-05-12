@@ -1,3 +1,5 @@
+require_relative 'Game.rb'
+
 class EnemyFactory
     def EnemyFactory.new()
         x = rand(20) + 1
@@ -433,7 +435,9 @@ class Giant < Enemy
             print("You miss, but the giant doesn't!\n".red())
           end
         end
-        # IF MONSTER NERVOUS == 2 -> BACK TO THE START
+        if @monsterNervous == 2
+            Game.setCurrent(0, 0)
+        end
       end
     end
   end
