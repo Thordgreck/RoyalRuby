@@ -17,7 +17,7 @@ lost = 0
 while again
   begin
     Game.reset()
-    Game.mainloop(IA.new())
+    Game.mainloop(Player.new())
   rescue WonGame => e
     puts "You win !!!!!!!!!!!!!".bold_cyan()
     won += 1
@@ -25,8 +25,12 @@ while again
     puts "You left your wife, your son, your home and this world for a better life...".bold_red()
     lost += 1
   rescue StandardError => e
-    p won lost
+    puts won, lost
     raise e
   end
-  again = ask_new_game()
+  again = FALSE
+  if (lost + won < 1000)
+    again = TRUE
+  end
 end
+puts won, lost
