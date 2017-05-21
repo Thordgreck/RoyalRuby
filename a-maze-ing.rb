@@ -15,6 +15,8 @@ monsters, survive, find the treasure and leave the maze.\n".bold_blue())
 won = 0
 lost = 0
 player = ask_param()
+make_stats = TRUE
+stat_round_nbr = 20
 while again
   begin
     Game.reset()
@@ -34,8 +36,12 @@ while again
     raise e
   end
   again = FALSE
-  if (lost + won < 1000)
+  if (make_stats && lost + won < stat_round_nbr)
     again = TRUE
+  elsif (!make_stats)
+    puts "Do you want to play again? (y/N)".bold_magenta()
+    again = ask_yes_not()
   end
 end
-puts won, lost
+puts "You won " + won.to_s() + " times, and lost " + lost.to_s() + " times."
+puts "This makes a win ratio of " + (Float(won) / Float(stat_round_nbr)).to_s()
